@@ -1,8 +1,7 @@
 // data-loader.js — Олон JSON файлаас өгөгдөл татах + Worker холболт
 import { fillRow } from './utils.js';
 
-// 1. Таны Worker-ийн үндсэн хаяг
-const WORKER_URL = "https://dark-meadow-83ae.narhantv.workers.dev";
+// (Cloudflare Worker хэрэглэхгүй болсон — бүх линк бүтэн URL байх ёстой)
 
 // Линкийг тайлж унших туслах функц
 function decodeLink(link) {
@@ -56,11 +55,6 @@ export async function loadData() {
 
         // --- 🖼️ ПОСТЕР (ЗУРАГ) ХОЛБОЛТ ---
         let pLink = item.poster_link || item.poster || '';
-        if (pLink && !pLink.startsWith('http')) {
-          // Хэрэв линк /posters/3.jpg гэж байвал Worker-ийн хаягийг урд нь залгана
-          const cleanPath = pLink.startsWith('/') ? pLink : '/' + pLink;
-          pLink = WORKER_URL + cleanPath;
-        }
 
         // --- ⭐ ҮНЭЛГЭЭ ---
         let movieRating = window.FALLBACK_RATING || 7.0;
@@ -87,20 +81,12 @@ export async function loadData() {
           // Цуврал киноны ангиудын линкийг засах
           const decodedEpisodes = (item.episodes || []).map(ep => {
             let epLink = ep.embed_links ? ep.embed_links[0] : '';
-            if (epLink && !epLink.startsWith('http')) {
-                epLink = WORKER_URL + (epLink.startsWith('/') ? epLink : '/' + epLink);
-            }
             return { ...ep, embed_links: [decodeLink(epLink)] };
           });
           window.SERIES.push({ ...base, episodes: decodedEpisodes });
         } else {
           // --- 🎬 КИНОНЫ ВИДЕО ЛИНК ---
           let eLink = (item.embed_links && item.embed_links[0]) || item.embed || '';
-          if (eLink && !eLink.startsWith('http')) {
-            // Хэрэв линк /movies/test.mp4 гэж байвал Worker-ийн хаягийг залгана
-            const cleanPath = eLink.startsWith('/') ? eLink : '/' + eLink;
-            eLink = WORKER_URL + cleanPath;
-          }
           window.MOVIES.push({ ...base, embed: decodeLink(eLink) });
         }
       });
