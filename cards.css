@@ -1,0 +1,98 @@
+/* cards.css */
+main { padding: 0 40px; }
+.sec { margin-bottom: 40px; position: relative; }
+.sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.sec-title { font-size: 20px; font-weight: 600; letter-spacing: .5px; color: var(--text); }
+.sec-more { color: var(--text2); font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; border: none; background: none; transition: color .2s; }
+.sec-more:hover { color: var(--text); }
+
+.row-wrap { position: relative; display: flex; align-items: center; }
+.scroll-btn { position: absolute; z-index: 10; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; font-size: 24px; width: 40px; height: 100%; cursor: pointer; opacity: 0; transition: all 0.3s; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+.row-wrap:hover .scroll-btn { opacity: 1; }
+.scroll-btn:hover { background: rgba(0,0,0,0.9); color: var(--red); font-size: 30px; }
+.scroll-btn.left { left: -20px; border-radius: 0 8px 8px 0; }
+.scroll-btn.right { right: -20px; border-radius: 8px 0 0 8px; }
+.scroll-row { display: flex; gap: 16px; overflow-x: auto; padding: 20px 0; scroll-behavior: smooth; scrollbar-width: none; scroll-snap-type: x mandatory; scroll-padding-left: 40px; -webkit-overflow-scrolling: touch; }
+.scroll-row::-webkit-scrollbar { display: none; }
+
+.mcard { flex-shrink: 0; width: 180px; border-radius: var(--r); background: transparent; cursor: pointer; position: relative; z-index: 1; content-visibility: auto; contain-intrinsic-size: 180px 270px; scroll-snap-align: start; }
+.mcard-poster-wrap { width: 100%; height: 270px; border-radius: var(--r); overflow: hidden; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,.5); background: var(--bg3); transition: box-shadow 0.3s, border 0.3s; }
+.mcard-poster { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
+.mcard::before { content: ''; position: absolute; inset: -15px; background: var(--red); filter: blur(25px); opacity: 0; border-radius: 20px; transition: opacity 0.5s ease; z-index: -1; pointer-events: none; }
+.hover-vid-container { position: absolute; inset: 0; z-index: 2; opacity: 0; transition: opacity 0.5s ease; background: #000; pointer-events: none; }
+.mcard:hover .hover-vid-container { opacity: 1; transition-delay: 0.6s; }
+.hover-vid-container iframe { width: 100%; height: 100%; border: none; pointer-events: none; transform: scale(1.3); }
+.mcard-ov { position: absolute; inset: 0; background: rgba(0,0,0,.4); opacity: 0; transition: opacity .3s; display: flex; align-items: center; justify-content: center; z-index: 3; }
+.mcard:hover .mcard-ov { opacity: 1; }
+.mcard-play { width: 50px; height: 50px; background: rgba(229,9,20,.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px var(--red-glow); transform: scale(0.8); transition: transform .3s; }
+.mcard:hover .mcard-play { transform: scale(1); }
+.mcard-play svg { width: 20px; height: 20px; fill: white; margin-left: 4px; }
+.mcard-info { padding: 10px 4px; transition: opacity .3s; }
+.mcard-title { font-size: 14px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mcard-sub { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); }
+.mcard-sub .st { color: var(--gold); }
+
+.mgrid, .ggrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+.genre-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.gpill { padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border2); background: rgba(255,255,255,.05); color: var(--text); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.gpill:hover { background: rgba(255,255,255,.15); }
+.gpill.on { background: var(--text); color: #000; border-color: var(--text); }
+
+@media (min-width: 1440px) { main { padding: 0 60px; } .mcard { width: 220px; } .mcard-poster-wrap { height: 330px; } .scroll-row { scroll-padding-left: 60px; gap: 20px; } }
+@media (hover: hover) and (min-width: 769px) { .mcard:hover::before { opacity: 0.6; } .mcard:hover .mcard-poster-wrap { box-shadow: 0 15px 30px rgba(0,0,0,0.8); border: 2px solid rgba(255,255,255,0.2); } }
+@media (max-width: 1024px) { main { padding: 0 30px; } .scroll-row { scroll-padding-left: 30px; } .mcard { width: 150px; } .mcard-poster-wrap { height: 225px; } .hover-vid-container { display: none !important; } }
+@media (max-width: 768px) {
+  main { padding: 0 15px; }
+  .sec-title { font-size: 18px !important; }
+  .scroll-row { padding: 15px 0; gap: 12px; scroll-padding-left: 15px; }
+  .mcard { width: 120px; } 
+  .mcard-poster-wrap { height: 180px; }
+  .mcard-title { font-size: 12px; }
+  .mcard-sub { font-size: 11px; }
+  .scroll-btn { display: none; } 
+  .mcard:hover { transform: scale(1.08) translateY(-5px); z-index: 100; }
+  .mcard:hover .mcard-poster-wrap { box-shadow: 0 10px 20px rgba(0,0,0,0.8); border: 1px solid rgba(255,255,255,0.2); }
+  .mcard-ov { opacity: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); }
+  .mcard:hover .mcard-ov { opacity: 1; }
+  .mcard-play { width: 36px; height: 36px; transform: scale(0.8); }
+  .mcard:hover .mcard-play { transform: scale(1); }
+  .mcard-play svg { width: 14px; height: 14px; margin-left: 3px; }
+  .mgrid, .ggrid { grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 10px; }
+  .genre-bar { gap: 8px; margin-bottom: 15px; }
+  .gpill { padding: 6px 12px; font-size: 12px; }
+}
+
+/* ============================================================
+   2026 SPEED STACK: Content-Visibility
+   Дэлгэцэнд харагдаагүй секцүүдийг рендер хийхгүй → CPU хэмнэлт
+   ============================================================ */
+
+/* Scroll-доор байгаа том секцүүд */
+.sec {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 400px;
+}
+
+/* Hero доорх эхний секц нь шууд харагддаг тул override */
+.page-movies > main > .sec:first-child {
+  content-visibility: visible;
+}
+
+/* Full grid хуудас (бүгд харах) */
+#moviesFullSection,
+#seriesFullSection {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}
+
+/* Grid картууд: mgrid дотор байгаа */
+.mgrid .mcard {
+  content-visibility: auto;
+  contain-intrinsic-size: 160px 280px;
+}
+
+/* Weather grid */
+.w-grid > * {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 200px;
+}
