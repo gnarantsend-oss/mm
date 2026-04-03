@@ -1,0 +1,32 @@
+[
+  {
+    "id": "a1",
+    "title": "Нүцгэн зэвсэг",
+    "year": 2024,
+    "genre": [
+      "action"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BOGY4ZmVkMjItYzliYi00Y2MyLTkwNjMtMWQxNWZjNWZiOTk2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "embed": "https://vz-9d1a7c33-ea2.b-cdn.net/95606342-1fac-46c3-9151-907d3ffa587c/playlist.m3u8"
+  },
+  {
+    "id": "a2",
+    "title": "Дайны бурхан ирлээ",
+    "year": 2024,
+    "genre": [
+      "action"
+    ],
+    "poster": "https://tbinoukdsxxmbtzkghvj.supabase.co/storage/v1/object/public/movie-posters/posters/1768572899067-dixd1rswsxt.png",
+    "embed": "https://vz-bb5a4172-189.b-cdn.net/9abee2f6-ad9e-450f-bb41-de377364868f/playlist.m3u8"
+  },
+  {
+    "id": "a3",
+    "title": "Галзуу агент",
+    "year": 2024,
+    "genre": [
+      "action"
+    ],
+    "poster": "https://tbinoukdsxxmbtzkghvj.supabase.co/storage/v1/object/public/movie-posters/posters/1770044928290-cag9a5nao86.jpg",
+    "embed": "https://vz-bb5a4172-189.b-cdn.net/ed2618d9-dea4-4d39-b1da-51f7c41abd9a/playlist.m3u8"
+  }
+]
