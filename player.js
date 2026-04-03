@@ -1,7 +1,8 @@
 // player.js — NABOOSHY Видео Тоглуулагч
 import './player-hls.js';
 
-const WORKER_URL = window.location.origin;
+// GitHub Pages subdirectory-д ажиллах зөв base URL
+const WORKER_URL = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
 
 window.openPlayer = (m) => {
   _playMovie(m);
@@ -32,7 +33,7 @@ function _playMovie(m) {
     </video>`;
   } else if (videoUrl) {
     if (p2p) p2p.style.display = 'none';
-    wrap.innerHTML = `<iframe src="${videoUrl}" allowfullscreen style="width:100%;height:100%;border:none;background:#000;border-radius:8px;"></iframe>`;
+    wrap.innerHTML = `<iframe src="${videoUrl}" allowfullscreen allow="autoplay; fullscreen; encrypted-media; picture-in-picture" referrerpolicy="no-referrer" style="width:100%;height:100%;border:none;background:#000;border-radius:8px;"></iframe>`;
   }
 
   if (document.getElementById('pTitle')) document.getElementById('pTitle').textContent = m.title;

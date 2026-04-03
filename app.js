@@ -57,6 +57,4 @@ if (window.fetchTMDBNowPlaying) {
 }
 loadData();                        // ← 18 JSON арын дэвсгэрт
 
-// ── 🛡️ Хамгаалалт ──────────────────────────────────────────
-console.log('%cЗОГС!', 'color: red; font-size: 50px; font-weight: bold;');
-console.log('%cЭнэ сайтын кодыг хуулахыг хориглоно.', 'font-size: 18px;');
+
