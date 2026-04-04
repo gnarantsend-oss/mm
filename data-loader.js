@@ -2,29 +2,25 @@ import { fillRow } from './utils.js';
 
 export async function loadData() {
   try {
-    
+
     const titleEl = document.getElementById('appTitle');
     const phoneEl = document.getElementById('contactPhoneEl');
     if (titleEl) titleEl.textContent = `Nabooshy - ${window.CURRENT_YEAR || 2026}`;
     if (phoneEl) phoneEl.textContent = window.CONTACT_PHONE || '9937-6238';
 
-    
     window.MOVIES = [];
     window.SERIES = [];
 
-    
     const raw = await fetch('data_movies.json').then(r => r.json());
     if (!Array.isArray(raw)) throw new Error('data_movies.json буруу формат');
 
     raw.forEach((item, i) => {
       const isSeries = item.type?.toLowerCase().includes('series');
 
-      
       let movieRating = window.FALLBACK_RATING || 7.0;
       if (item.ratings?.imdb) movieRating = parseFloat(item.ratings.imdb);
       else if (item.rating)   movieRating = parseFloat(item.rating);
 
-      
       const category = Array.isArray(item.genre)
         ? item.genre.join(',')
         : (item.genre || '');
@@ -52,19 +48,17 @@ export async function loadData() {
       }
     });
 
-    
     buildHomeRows();
 
   } catch (e) {
-    console.error("Өгөгдөл ачаалахад алдаа гарлаа:", e);
+    console.error('Өгөгдөл ачаалахад алдаа гарлаа:', e);
   }
 }
 
 function buildHomeRows() {
-  
-  const run = () => {
-    fillRow('rowFeatured', window.MOVIES.slice(0, 30));
-    fillRow('rowSeries',   window.SERIES.slice(0, 20), true);
+
+  const run = async () => {
+    fillRow('rowSeries', window.SERIES.slice(0, 20), true);
 
     const dc = document.getElementById('dynamicRows');
     if (dc && window.HOME_ROWS) {
@@ -86,9 +80,11 @@ function buildHomeRows() {
         }
       });
     }
+
+    // Бүх row бэлэн болсны дараа zar.js-ийн insertAds дуудна
+    if (window.insertAds) await window.insertAds();
   };
 
-  
   if ('requestIdleCallback' in window) {
     requestIdleCallback(run, { timeout: 2000 });
   } else {
