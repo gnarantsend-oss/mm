@@ -23,24 +23,24 @@
   },
   {
     "id": "hero_3",
-    "title": "Кино 3",
+    "title": "Marvel",
     "year": "2025",
     "rating": "7.5",
     "poster": "https://img.youtube.com/vi/bp6hhq8DdgU/maxresdefault.jpg",
     "trailer": "https://www.youtube.com/watch?v=bp6hhq8DdgU",
     "embed": "",
     "cat": "Thriller",
-    "overview": "Тайлбар бичих хэсэг"
+    "overview": "Өөрийн суваг байрлуулах бол холбогдоорой"
   },
   {
     "id": "hero_4",
-    "title": "Кино 4",
+    "title": "Кино",
     "year": "2025",
     "rating": "7.9",
     "poster": "https://img.youtube.com/vi/1lJ6_HE4Dnw/maxresdefault.jpg",
     "trailer": "https://www.youtube.com/watch?v=1lJ6_HE4Dnw",
     "embed": "",
     "cat": "Adventure",
-    "overview": "Тайлбар бичих хэсэг"
+    "overview": "Өөрийн суваг байрлуулах бол холбогдоорой"
   }
 ]
