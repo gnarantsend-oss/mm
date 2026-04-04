@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "afterRowId": "rowSeries",
+    "type": "image",
+    "src": "https://img.freepik.com/free-vector/streaming-online-app-concept-banner_23-2148530364.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/d063gyqa?key=d754bdc9c5123dec15f7c0789fdfb1cc",
+    "label": "РЕКЛАМ"
+  },
+  {
+    "id": 2,
+    "type": "image",
+    "src": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/d063gyqa?key=d754bdc9c5123dec15f7c0789fdfb1cc",
+    "label": "РЕКЛАМ"
+  },
+  {
+    "id": 3,
+    "type": "image",
+    "src": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/d063gyqa?key=d754bdc9c5123dec15f7c0789fdfb1cc",
+    "label": "РЕКЛАМ"
+  }
+]
