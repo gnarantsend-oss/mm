@@ -1,25 +1,25 @@
 [
   {
     "id": "hero_1",
-    "title": "Кино 1",
-    "year": "2025",
+    "title": "Deadpool & Wolverine",
+    "year": "2024",
     "rating": "8.0",
     "poster": "https://img.youtube.com/vi/fFKKIj83YQ4/maxresdefault.jpg",
     "trailer": "https://www.youtube.com/watch?v=fFKKIj83YQ4",
     "embed": "",
     "cat": "Action",
-    "overview": "Тайлбар бичих хэсэг"
+    "overview": "Өөрийн суваг байрлуулах бол холбогдоорой"
   },
   {
     "id": "hero_2",
-    "title": "Кино 2",
+    "title": "One Piece",
     "year": "2025",
     "rating": "7.8",
     "poster": "https://img.youtube.com/vi/ZcsbhQxhFqU/maxresdefault.jpg",
     "trailer": "https://www.youtube.com/watch?v=ZcsbhQxhFqU",
     "embed": "",
-    "cat": "Drama",
-    "overview": "Тайлбар бичих хэсэг"
+    "cat": "Action",
+    "overview": "Өөрийн суваг байрлуулах бол холбогдоорой"
   },
   {
     "id": "hero_3",
