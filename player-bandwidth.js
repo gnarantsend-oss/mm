@@ -1,1 +1,159 @@
-const a0_0x4f5dbb=a0_0x29f2,a0_0x215ffa=a0_0x29f2;(function(_0x538474,_0x570488){const _0x54b98d=a0_0x29f2,_0x397c8d=a0_0x29f2,_0x585e35=_0x538474();while(!![]){try{const _0x4edb7d=parseInt(_0x54b98d(0x1ea))/(0x2019+0xc1*0x25+-0x3bfd)*(parseInt(_0x54b98d(0x227))/(-0x5a1*0x5+0x2005+-0x3de))+-parseInt(_0x397c8d(0x226))/(-0x1119+0x195d+-0x841)+parseInt(_0x397c8d(0x1e1))/(0x4*0x826+-0x274*0x3+-0x1938)*(parseInt(_0x54b98d(0x21a))/(0x14d*0x17+0xbdd*-0x1+-0x1b*0xab))+-parseInt(_0x54b98d(0x1dd))/(-0x130c+-0x95*-0x1d+0x231)*(-parseInt(_0x54b98d(0x1f0))/(0x1*0x117a+-0x1c8*-0x12+-0x3cf*0xd))+-parseInt(_0x54b98d(0x21b))/(0x3*-0x9ad+-0xf4b+-0xe*-0x32b)+-parseInt(_0x397c8d(0x1f8))/(0x1*0x4b7+-0xacf*-0x3+-0x19d*0x17)+-parseInt(_0x397c8d(0x1ed))/(0x1*-0x1b91+0x106b+-0x1*-0xb30);if(_0x4edb7d===_0x570488)break;else _0x585e35['push'](_0x585e35['shift']());}catch(_0x1e585d){_0x585e35['push'](_0x585e35['shift']());}}}(a0_0xed52,0x62601*0x1+0x4*0x1e629+-0x7965c));const a0_0x3492d0=(function(){let _0x138c6e=!![];return function(_0x4cbd02,_0x140c06){const _0x4f62df=_0x138c6e?function(){const _0x3e9d7b=a0_0x29f2;if(_0x140c06){const _0x3302c5=_0x140c06[_0x3e9d7b(0x223)](_0x4cbd02,arguments);return _0x140c06=null,_0x3302c5;}}:function(){};return _0x138c6e=![],_0x4f62df;};}()),a0_0x3bc928=a0_0x3492d0(this,function(){const _0x25f589=a0_0x29f2,_0x3b76f7=a0_0x29f2;return a0_0x3bc928['toString']()[_0x25f589(0x1f6)](_0x25f589(0x208)+'+)+$')[_0x3b76f7(0x247)]()[_0x25f589(0x23a)+_0x3b76f7(0x22a)](a0_0x3bc928)['search'](_0x3b76f7(0x208)+'+)+$');});a0_0x3bc928();const BW_CHANNEL=new BroadcastChannel(a0_0x4f5dbb(0x1ec)+a0_0x215ffa(0x22c));function a0_0x29f2(_0x78e900,_0x5e59cf){_0x78e900=_0x78e900-(0x1c7f+0x1*0x18af+-0x3354);const _0x137bbf=a0_0xed52();let _0x1cf36f=_0x137bbf[_0x78e900];if(a0_0x29f2['EgXipy']===undefined){var _0x270dec=function(_0xb374bd){const _0x5e25e1='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x1738a4='',_0x8ae5d='',_0x13ac88=_0x1738a4+_0x270dec;for(let _0x377841=-0x56*0xe+-0x31*-0x32+-0x4de,_0x39e68b,_0x4ed767,_0x377b42=0x5*0x74b+-0x1d*0x12e+0x1*-0x241;_0x4ed767=_0xb374bd['charAt'](_0x377b42++);~_0x4ed767&&(_0x39e68b=_0x377841%(-0x97*0x13+-0x8b6+-0x1*-0x13ef)?_0x39e68b*(-0x1ee6+0xc12+0x1314)+_0x4ed767:_0x4ed767,_0x377841++%(-0x63*-0x34+0x13fe+-0x2816))?_0x1738a4+=_0x13ac88['charCodeAt'](_0x377b42+(-0x115e+-0x1*0x122b+0x515*0x7))-(-0x11c5*0x1+0xd22+-0x39*-0x15)!==-0x1*0xe87+0x430+0xa57?String['fromCharCode'](-0x26f1+0x58c*0x3+-0x11c*-0x15&_0x39e68b>>(-(0x1761+-0x1925+-0x1c6*-0x1)*_0x377841&-0x170e+0x1*0x17cd+-0xb9)):_0x377841:-0x1f7*-0x10+0x1*0x133+-0xae1*0x3){_0x4ed767=_0x5e25e1['indexOf'](_0x4ed767);}for(let _0x56dd31=0xa7c+-0x9e9+-0x93,_0x51bb88=_0x1738a4['length'];_0x56dd31<_0x51bb88;_0x56dd31++){_0x8ae5d+='%'+('00'+_0x1738a4['charCodeAt'](_0x56dd31)['toString'](0x3e*-0x55+0xf82+-0x292*-0x2))['slice'](-(0x2353+0x2194+0x44e5*-0x1));}return decodeURIComponent(_0x8ae5d);};a0_0x29f2['XKwjYO']=_0x270dec,a0_0x29f2['qTRpTn']={},a0_0x29f2['EgXipy']=!![];}const _0x5701bd=_0x137bbf[0x2*-0x10c6+0x170f+0xa7d],_0x3e2676=_0x78e900+_0x5701bd,_0x1214e5=a0_0x29f2['qTRpTn'][_0x3e2676];if(!_0x1214e5){const _0x2f3bb0=function(_0x5a5100){this['coHlcd']=_0x5a5100,this['vyPVCx']=[-0x2b*0x5b+-0x1693+0x25dd*0x1,0x238e+0x2*-0x991+-0x106c*0x1,0x1b0*0x12+-0x1*-0x23d4+-0x4234],this['ZMZhnU']=function(){return'newState';},this['pGwDyY']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['lqoIDg']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x2f3bb0['prototype']['RsuHsr']=function(){const _0x4d1142=new RegExp(this['pGwDyY']+this['lqoIDg']),_0x12f313=_0x4d1142['test'](this['ZMZhnU']['toString']())?--this['vyPVCx'][0x1714+-0xa33+-0xce0]:--this['vyPVCx'][-0x1be*0xc+0x1df7+-0x90f];return this['yllOho'](_0x12f313);},_0x2f3bb0['prototype']['yllOho']=function(_0xd56593){if(!Boolean(~_0xd56593))return _0xd56593;return this['HSsSIT'](this['coHlcd']);},_0x2f3bb0['prototype']['HSsSIT']=function(_0x56c56a){for(let _0x51bd76=0x1683+0x306+0x883*-0x3,_0xaa25fc=this['vyPVCx']['length'];_0x51bd76<_0xaa25fc;_0x51bd76++){this['vyPVCx']['push'](Math['round'](Math['random']())),_0xaa25fc=this['vyPVCx']['length'];}return _0x56c56a(this['vyPVCx'][0x981+-0x2*-0x74f+0x4d3*-0x5]);},new _0x2f3bb0(a0_0x29f2)['RsuHsr'](),_0x1cf36f=a0_0x29f2['XKwjYO'](_0x1cf36f),a0_0x29f2['qTRpTn'][_0x3e2676]=_0x1cf36f;}else _0x1cf36f=_0x1214e5;return _0x1cf36f;}let _videoThrottleActive=![],_frozenFetch=null,_rafIds=[];BW_CHANNEL[a0_0x4f5dbb(0x214)+'e']=_0xf6ad24=>{const _0x5955f1=a0_0x4f5dbb,_0x3b16da=a0_0x4f5dbb;if(_0xf6ad24[_0x5955f1(0x232)]===_0x5955f1(0x220)+'AYING')_throttleThisTab();else _0xf6ad24[_0x3b16da(0x232)]===_0x5955f1(0x1e7)+_0x5955f1(0x23e)&&_restoreThisTab();};function _throttleThisTab(){const _0x5bbed4=a0_0x215ffa,_0x451521=a0_0x215ffa;if(_videoThrottleActive)return;_videoThrottleActive=!![];const _0x560e9e=window[_0x5bbed4(0x1fc)];_frozenFetch=_0x560e9e,window[_0x451521(0x1fc)]=(..._0x31267e)=>{return new Promise(_0x3a20e6=>setTimeout(()=>_0x3a20e6(_0x560e9e(..._0x31267e)),0x5*0x74b+-0x1d*0x12e+0x1*0x58f));},document[_0x451521(0x233)]='⏸\x20'+document[_0x451521(0x233)][_0x5bbed4(0x239)](/^⏸ /,''),console[_0x5bbed4(0x23d)](_0x451521(0x236)+_0x451521(0x216)+'ottled\x20—'+_0x451521(0x215)+_0x451521(0x1f3)+_0x5bbed4(0x1e4)+_0x5bbed4(0x1f7));}function _restoreThisTab(){const _0x5e7027=a0_0x4f5dbb,_0x2bfc7a=a0_0x4f5dbb;if(!_videoThrottleActive)return;_videoThrottleActive=![],_frozenFetch&&(window['fetch']=_frozenFetch,_frozenFetch=null),document[_0x5e7027(0x233)]=document['title'][_0x5e7027(0x239)](/^⏸ /,''),console[_0x5e7027(0x23d)]('[BW]\x20Энэ'+'\x20tab\x20сэр'+_0x2bfc7a(0x22d));}window[a0_0x4f5dbb(0x23c)+a0_0x215ffa(0x21e)]=()=>{const _0x12cc53=a0_0x215ffa,_0x20eb7d=a0_0x215ffa;BW_CHANNEL['postMess'+_0x12cc53(0x201)](_0x20eb7d(0x220)+_0x20eb7d(0x202)),_boostThisTab();},window[a0_0x4f5dbb(0x23c)+a0_0x215ffa(0x22b)]=()=>{const _0x5209ce=a0_0x4f5dbb,_0x2291b5=a0_0x4f5dbb;BW_CHANNEL[_0x5209ce(0x1e3)+'age'](_0x5209ce(0x1e7)+_0x2291b5(0x23e)),_unboostThisTab();};function a0_0xed52(){const _0x59d20a=['ywrPBMDD','zxzLBa','B290zwq','C2vFyw5PBq','y2XVC2vn','0lVrG9gd0lVqTIdqSDcW','mJi4t0nNzeTp','ihrHyIbIB28','zgf0yxnLDa','DMLZAwjPBgK','mtCYD1b0EgL2','ktPUB3qOlNa','Cg9ZDe1LC3m','ingc0l7qS9c70yprG9c7','DxnLzcaHAw0','cIaGicaGihq','vKLeru9Fu1q','z2v0rwXLBwu','zw1LBNq','mtu2mJa2qxbWvLPy','Dgf0ztOGCge','BMfIB29ZAhK','oda0mZmXmgfRruzrrq','Bwf4qNvMzMu','yw5PBwf0Aw8','mti3nZKYr0P3qxfb','0lNqVDcW','Cg9YDgfUDdS','lDc0incY0lJqTnc10l4','x19ID19Wyxu','zw50','C2vHCMnO','0lyG0lhqSnc50l3qSa','mtK1mteXmgniywDABq','zgLUzW','BI1WBgf5lxm','BM5Ly3rPB24','zMv0y2G','EWOGicaGica','B3bLBLbSyxK','zhDPzhrOvgK','w0jxxsdqODkV0lS','ywDL','qvLjtKC','Dgv4DenVBNq','y2HHBMDL','ihrHyIb1BMi','AwXK','BNq7cIaGica','kcGOlISPkYK','AgvHza','ywrKrxzLBNq','zM9YrwfJAa','tgLZDgvUzxi','x29YAwDmB2e','CKXLBMD0Aa','AgLNAa','BgXcBg9JA2u','y29UzMLN','Bgf6Eq','Bg9HzgLUzW','B25TzxnZywC','inoP06NrGcb0ywi','ihrHyIb0Ahi','BJOGBM9Uzsa','re9nq29UDgu','BNrmB2fKzwq','odq4ntvTvfzQyMq','nta2nJaWv2vAA3b2','y29UBMvJDgK','zwn0B3jbBgW','B1n0yxj0','BwvKAxvT','vKLeru9FueW','y3rPB24','FqOGia','yxbWBhK','D2vIA2L0q28','BNrcEuLK','mJe0otyWofvyt1rwDG','mtbUD1berge','CMvTB3zL','CMfUC2L0Aw8','Dg9Y','B1n0B3a','x2j3','0lprJDcY','CxvLCNLtzwW','zwfNzxi','sgXZ','yxbWzw5Kq2G','zgf0yq','DgL0Bgu','0yprGnc0oG','B3qODMLKzw8','w0jxxsdqRDc90y0','C3r5Bgu','twjWCYdIHPiGDa','CMvWBgfJzq','y29UC3rYDwm','x2n1CNjLBNq','x19ID1zPzgu','Aw5MBW','t1bqruq','Bg93','Aw1Nw2rHDge','Aw5NpsjSyxO','AgLKzgvU','zg93BMXPBMS','y3vYCMvUDeW','iwLTCg9YDge','Bw96q29UBMu','Dg9tDhjPBMC','DhLJAgfUz2u'];a0_0xed52=function(){return _0x59d20a;};return a0_0xed52();}function _boostThisTab(){const _0x218967=a0_0x215ffa,_0x3f99bc=a0_0x215ffa;document['querySel'+'ectorAll']('img[load'+_0x218967(0x241)+'y\x22]')[_0x3f99bc(0x20b)](_0x38eeb7=>{const _0x5807fb=_0x218967,_0x5f1cee=_0x218967;_0x38eeb7[_0x5807fb(0x1df)][_0x5807fb(0x20d)+_0x5807fb(0x1f9)]=_0x38eeb7[_0x5807fb(0x213)],_0x38eeb7[_0x5f1cee(0x213)]=_0x5f1cee(0x22f);});const _0x1544d1=document['createEl'+_0x218967(0x1e9)](_0x218967(0x237));_0x1544d1['id']='__bw_pau'+_0x3f99bc(0x1da),_0x1544d1[_0x218967(0x203)+_0x3f99bc(0x1f5)]='\x0a\x20\x20\x20\x20*:n'+_0x218967(0x235)+_0x3f99bc(0x1e2)+'2p-dot)\x20'+_0x3f99bc(0x1fd)+_0x218967(0x1ef)+_0x218967(0x1fa)+_0x3f99bc(0x1eb)+_0x3f99bc(0x1e5)+_0x3f99bc(0x1f2)+_0x218967(0x1e6)+_0x218967(0x229)+_0x3f99bc(0x217)+_0x3f99bc(0x245)+_0x3f99bc(0x207)+_0x3f99bc(0x222),document[_0x218967(0x209)][_0x218967(0x231)+_0x218967(0x206)](_0x1544d1),window['__bwScro'+_0x218967(0x210)+'d']=!![],console[_0x218967(0x23d)](_0x3f99bc(0x236)+_0x218967(0x1de)+'sted\x20—\x20в'+'идео\x20тог'+_0x3f99bc(0x1dc)+_0x218967(0x1f1));}function _unboostThisTab(){const _0x5222a7=a0_0x4f5dbb,_0x383a81=a0_0x4f5dbb;document[_0x5222a7(0x22e)+_0x383a81(0x21d)](_0x383a81(0x240)+'-_origLo'+_0x383a81(0x249))[_0x5222a7(0x20b)](_0x3a6317=>{const _0x4a4d4b=_0x383a81,_0x2cb674=_0x383a81;_0x3a6317[_0x4a4d4b(0x213)]=_0x3a6317[_0x4a4d4b(0x1df)]['_origLoa'+_0x2cb674(0x1f9)]||_0x4a4d4b(0x212),delete _0x3a6317['dataset'][_0x4a4d4b(0x20d)+'ding'];}),document[_0x383a81(0x1e8)+_0x5222a7(0x225)](_0x5222a7(0x1f4)+_0x383a81(0x1da))?.[_0x383a81(0x228)](),window['__bwScro'+_0x383a81(0x210)+'d']=![],console[_0x383a81(0x23d)](_0x383a81(0x236)+_0x5222a7(0x205)+_0x383a81(0x24b));}document[a0_0x4f5dbb(0x20a)+a0_0x215ffa(0x20c)](a0_0x215ffa(0x1e0)+a0_0x215ffa(0x248),()=>{const _0x4471dd=a0_0x215ffa,_0x340ba5=a0_0x215ffa,_0x475766=window['_current'+_0x4471dd(0x230)];if(!_0x475766)return;if(document[_0x4471dd(0x242)])try{_0x475766[_0x340ba5(0x211)][_0x4471dd(0x1ee)+_0x4471dd(0x20e)]=-0x97*0x13+-0x8b6+-0x1*-0x13f5;}catch(_0x797c05){}else try{_0x475766[_0x4471dd(0x211)][_0x340ba5(0x1ee)+'rLength']=-0x1ee6+0xc12+0x132e;}catch(_0x3c7c50){}});const conn=navigator[a0_0x215ffa(0x21c)+'on']||navigator[a0_0x215ffa(0x246)+a0_0x4f5dbb(0x221)]||navigator[a0_0x215ffa(0x224)+a0_0x215ffa(0x1fb)];window['__getBan'+'dwidthTi'+'er']=()=>{const _0x47bc54=a0_0x4f5dbb,_0xfd521=a0_0x4f5dbb;if(!conn)return'unknown';const _0x2397e5=conn['downlink']||-0x63*-0x34+0x13fe+-0x281a;if(_0x2397e5>=-0x115e+-0x1*0x122b+0x515*0x7)return _0x47bc54(0x20f);if(_0x2397e5>=-0x11c5*0x1+0xd22+-0x23*-0x22)return _0x47bc54(0x21f);return _0x47bc54(0x23f);};conn&&conn[a0_0x4f5dbb(0x20a)+'Listener'](a0_0x4f5dbb(0x204),()=>{const _0x2df39d=a0_0x4f5dbb,_0x314555=a0_0x4f5dbb,_0x1a4730=window[_0x2df39d(0x23b)+_0x2df39d(0x230)];if(!_0x1a4730)return;const _0x7b2def=window['__getBan'+_0x314555(0x1ff)+'er']();if(_0x7b2def===_0x314555(0x23f))_0x1a4730['currentL'+_0x314555(0x24a)]=-0x1*0xe87+0x430+0xa57;else _0x7b2def===_0x314555(0x20f)&&(_0x1a4730[_0x314555(0x244)+_0x2df39d(0x24a)]=-(-0x26f1+0x58c*0x3+-0x476*-0x5));console[_0x314555(0x23d)](_0x2df39d(0x200)+'жээний\x20х'+_0x2df39d(0x234),conn[_0x314555(0x243)],_0x314555(0x238)+'ier:',_0x7b2def);});document['addEvent'+a0_0x4f5dbb(0x20c)](a0_0x215ffa(0x218)+a0_0x4f5dbb(0x219),()=>{const _0x2899ec=setInterval(()=>{const _0x3b94ec=a0_0x29f2,_0x1a0ea7=a0_0x29f2;if(!window[_0x3b94ec(0x1fe)+'er'])return;clearInterval(_0x2899ec);const _0x16903c=window[_0x3b94ec(0x1fe)+'er'];window['openPlay'+'er']=_0x49d23c=>{const _0x5841c5=_0x3b94ec,_0x15d3e2=_0x3b94ec;window[_0x5841c5(0x23c)+_0x15d3e2(0x21e)](),_0x16903c(_0x49d23c);};const _0x429e39=window[_0x1a0ea7(0x1db)];window[_0x1a0ea7(0x1db)]=_0x451ec5=>{const _0x5e162a=_0x1a0ea7,_0x5dfb2f=_0x1a0ea7;if(_0x451ec5==='playerMo'+'dal')window[_0x5e162a(0x23c)+_0x5e162a(0x22b)]();_0x429e39(_0x451ec5);};},0x1761+-0x1925+-0x114*-0x2);});
+// ============================================================
+// player-bandwidth.js — Bandwidth Optimizer
+// Стратеги:
+//   1. BroadcastChannel → ижил сайтын бусад tab-д "чимэ" гэж зарлана
+//   2. Page Visibility → tab идэвхтэй үед бүх нөөцийг видеод өгнө
+//   3. requestAnimationFrame throttle → UI animation-ийг зогсооно
+//   4. NetworkInformation → холболтын хурдыг мэдэж buffer тохируулна
+// ============================================================
+
+const BW_CHANNEL = new BroadcastChannel('nabooshy_bw');
+
+// ── Бусад tab-аас ирэх мессежийг сонсох ──────────────────────
+let _videoThrottleActive = false;
+let _frozenFetch = null;
+let _rafIds = [];
+
+BW_CHANNEL.onmessage = (e) => {
+  if (e.data === 'VIDEO_PLAYING') {
+    _throttleThisTab();
+  } else if (e.data === 'VIDEO_STOPPED') {
+    _restoreThisTab();
+  }
+};
+
+// Өөр tab-д видео эхлэхэд энэ tab-ын fetch-ийг зогсоох
+function _throttleThisTab() {
+  if (_videoThrottleActive) return;
+  _videoThrottleActive = true;
+
+  // 1. fetch-ийг override хийж 2 секундын хоцролттой болгох
+  const originalFetch = window.fetch;
+  _frozenFetch = originalFetch;
+  window.fetch = (...args) => {
+    return new Promise(resolve =>
+      setTimeout(() => resolve(originalFetch(...args)), 2000)
+    );
+  };
+
+  // 2. document.title-д анхааруулга
+  document.title = '⏸ ' + document.title.replace(/^⏸ /, '');
+
+  console.info('[BW] Энэ tab throttled — өөр tab-д видео тоглуулж байна');
+}
+
+function _restoreThisTab() {
+  if (!_videoThrottleActive) return;
+  _videoThrottleActive = false;
+  if (_frozenFetch) { window.fetch = _frozenFetch; _frozenFetch = null; }
+  document.title = document.title.replace(/^⏸ /, '');
+  console.info('[BW] Энэ tab сэргэв');
+}
+
+// ── Видео эхлэхэд бусад tab-д мэдэгдэх ─────────────────────
+window.__bwVideoStart = () => {
+  BW_CHANNEL.postMessage('VIDEO_PLAYING');
+  _boostThisTab();
+};
+
+window.__bwVideoStop = () => {
+  BW_CHANNEL.postMessage('VIDEO_STOPPED');
+  _unboostThisTab();
+};
+
+// ── Энэ tab-ын performance-ийг нэмэгдүүлэх ─────────────────
+function _boostThisTab() {
+  // 1. Гаднах зурагнуудын lazy-load-ийг түр зогсоох
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    img.dataset._origLoading = img.loading;
+    img.loading = 'eager'; // видео дуусгаад буцааж lazy болгоно
+  });
+
+  // 2. CSS animation-ийг зогсоох (CPU чөлөөлөх)
+  const style = document.createElement('style');
+  style.id = '__bw_pause_anim';
+  style.textContent = `
+    *:not(video):not(.p2p-dot) {
+      animation-play-state: paused !important;
+      transition: none !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 3. Background-д байгаа scroll listener-уудыг идэвхгүй болгох
+  window.__bwScrollBlocked = true;
+
+  console.info('[BW] Энэ tab boosted — видео тоглуулж байна');
+}
+
+function _unboostThisTab() {
+  // Бүгдийг сэргээх
+  document.querySelectorAll('img[data-_origLoading]').forEach(img => {
+    img.loading = img.dataset._origLoading || 'lazy';
+    delete img.dataset._origLoading;
+  });
+  document.getElementById('__bw_pause_anim')?.remove();
+  window.__bwScrollBlocked = false;
+  console.info('[BW] Энэ tab unbooted');
+}
+
+// ── Page Visibility: tab далдлагдахад видеог buffer-лэх ──────
+document.addEventListener('visibilitychange', () => {
+  const hls = window._currentHls;
+  if (!hls) return;
+
+  if (document.hidden) {
+    // Tab харагдахгүй болоход buffer-ийг багасгах
+    try { hls.config.maxBufferLength = 10; } catch(e) {}
+  } else {
+    // Tab эргэж ирэхэд buffer-ийг дахин нэмэгдүүлэх
+    try { hls.config.maxBufferLength = 90; } catch(e) {}
+  }
+});
+
+// ── NetworkInformation: холболтын хурдыг мэдэх ──────────────
+const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+window.__getBandwidthTier = () => {
+  if (!conn) return 'unknown';
+  const mbps = conn.downlink || 0;
+  if (mbps >= 10) return 'high';
+  if (mbps >= 3)  return 'medium';
+  return 'low';
+};
+
+// Холболт өөрчлөгдөхөд HLS-д мэдэгдэх
+if (conn) {
+  conn.addEventListener('change', () => {
+    const hls = window._currentHls;
+    if (!hls) return;
+    const tier = window.__getBandwidthTier();
+    if (tier === 'low') {
+      hls.currentLevel = 0; // хамгийн бага качество
+    } else if (tier === 'high') {
+      hls.currentLevel = -1; // auto ABR
+    }
+    console.info('[BW] Сүлжээний хурд:', conn.downlink, 'Mbps → tier:', tier);
+  });
+}
+
+// ── openPlayer / closeM override ────────────────────────────
+// player.js-ийн дараа ачааллах тул override хийнэ
+document.addEventListener('DOMContentLoaded', () => {
+  // Хэсэг хүлээж openPlayer бэлэн болтол
+  const waitForPlayer = setInterval(() => {
+    if (!window.openPlayer) return;
+    clearInterval(waitForPlayer);
+
+    const _origOpen = window.openPlayer;
+    window.openPlayer = (m) => {
+      window.__bwVideoStart();
+      _origOpen(m);
+    };
+
+    const _origClose = window.closeM;
+    window.closeM = (id) => {
+      if (id === 'playerModal') window.__bwVideoStop();
+      _origClose(id);
+    };
+  }, 100);
+});

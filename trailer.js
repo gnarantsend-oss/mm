@@ -1,1 +1,107 @@
-function a0_0x304c(){const _0x107dce=['pteMyMfJA2C','mtC3mZKYoe9pDgHzBG','C2vHCMnO','yxnZAwDU','z2LUCY92Awq','mdaLo2jVCMq','z2v0rwXLBwu','DwXSC2nYzwu','ugXHEwvYu3q','Bxa0','Aw5Uzxjive0','jNbVCNrYywK','zML0oMnVDMu','pGOGicaGica','CZOVl3D3DY4','ndu4mJu1mhD5B3LVra','o29IAMvJDc0','AgvYB1zPzgu','yNLSAw5Lpta','zxq6mdT3Awq','BNrcEuLK','iIb0ExbLpsi','zxi6BM9UztS','icaGicaGihm','yw1L','yxKIpGOGica','zt0ICg9ZAxq','B2fYzc13CMK','DgfYz2v0','Aw9UoMfIC28','mtK1nde3otjzr3nPv20','Dg9tDhjPBMC','AgvYB1LurNi','pc9PzNjHBwu','B25SB2fK','jMf1Dg9WBge','yxbWzw5Kq2G','BIbHBgXVDZ0','zgL2','jNnOB3DFDgu','yw1LpG','CM91BMq9msy','Dg9Y','Cg9ZAxrPB24','kYKRja','zw4GywXSB3C','zgvZDhjVEq','EtSGy2XPCgi','y29UC3rYDwm','Bg9VCa','oYikicaGica','DMLKzw8VBxa','CgXHExnjBMW','DgG6mtaWjtS','phnVDxjJzsa','Bwf0y2G','oMfIC29SDxq','mJy0nZeZmKffBxLktG','AwzYyw1L','ugXHEwvY','icaGicbZDhK','iMf1Dg9WBge','ndaXnJq3mgrKr1j5rq','mtaWjtTOzwK','Bgu9iNbVC2K','Exb0zwqTBwu','C2v0oJa7D2K','CgXHEvzPzgu','icaGywXSB3C','Ew91DhvIzq','C3r5Bgu','AwzYyw1LcIa','Et0XjM11Dgu','zd0XjMXVB3a','CgLJDhvYzsi','kcGOlISPkYK','zgf0yq','zw8V','lMnVBs92Awq','mdT3Awr0AdO','yxrL','zw1LBNq','y3nZvgv4Da','Dd0WiGOGica','DhvYzs1PBI0','DgvZDa','zwn0B3i','zMfJzwjVB2S','CMm9iMH0Dha','pteIcIaGica','Ehq9zMfSC2u','cIaGicaGidW','B2X1Dgu7Aw4','DgL0Bgu9mcy','ueXbwuLorW','AwXK','zw8UCgHWp2G','ru5eruq','odaXnZy2r21xCKHt','CZOVl3bSyxK','DMLTzw8','icaGpc9PzNi','y3jLyxrLrwW','zhrOoJeWmcu','mtjitwvfAw8','CMvMpq','B0nVBNrHAw4','CxvLCNLtzwW','mJu5nZi3mwPZvhrHAa','C3jJpsi'];a0_0x304c=function(){return _0x107dce;};return a0_0x304c();}(function(_0x53933d,_0x2eb46f){const _0x641aed=a0_0x4c35,_0x593145=a0_0x4c35,_0x117802=_0x53933d();while(!![]){try{const _0x1c5ed8=-parseInt(_0x641aed(0x1d7))/(-0x1*0xf7f+-0x1399+0x2319)+-parseInt(_0x593145(0x1ae))/(0x3ae+-0x1544+0x1198)+-parseInt(_0x641aed(0x1e1))/(-0xd9b+-0xb*-0xc5+0x527)+parseInt(_0x593145(0x1e4))/(0x1*0x24ab+0x1f9*0x13+-0x4a22)+-parseInt(_0x641aed(0x1b3))/(-0xad*0x13+0xd*0x75+-0xa1*-0xb)*(-parseInt(_0x641aed(0x1dd))/(-0x1*0x2386+-0xb69+-0xfa7*-0x3))+-parseInt(_0x593145(0x184))/(0x1*-0x9a3+0xab9+-0x10f)+parseInt(_0x593145(0x193))/(0x12fe+0x20c4+-0x33ba*0x1);if(_0x1c5ed8===_0x2eb46f)break;else _0x117802['push'](_0x117802['shift']());}catch(_0x112fcf){_0x117802['push'](_0x117802['shift']());}}}(a0_0x304c,0xbb16b+0x1*-0x16cb23+0x180687));const a0_0x2573c4=(function(){let _0x22404e=!![];return function(_0x46eb0d,_0x4a3fec){const _0x1b4710=_0x22404e?function(){if(_0x4a3fec){const _0x2231bb=_0x4a3fec['apply'](_0x46eb0d,arguments);return _0x4a3fec=null,_0x2231bb;}}:function(){};return _0x22404e=![],_0x1b4710;};}()),a0_0x43f11f=a0_0x2573c4(this,function(){const _0x214ba1=a0_0x4c35,_0x3719a7=a0_0x4c35;return a0_0x43f11f[_0x214ba1(0x194)]()[_0x214ba1(0x1e5)]('(((.+)+)'+_0x214ba1(0x1a1))['toString']()[_0x214ba1(0x1a5)+_0x3719a7(0x19f)](a0_0x43f11f)['search'](_0x214ba1(0x1c0)+_0x3719a7(0x1a1));});a0_0x43f11f();function a0_0x4c35(_0x10b795,_0x595f44){_0x10b795=_0x10b795-(0xb*-0x1d+-0x43c+0x55*0x15);const _0x418451=a0_0x304c();let _0x5ccd32=_0x418451[_0x10b795];if(a0_0x4c35['AlbGXT']===undefined){var _0xd19dfe=function(_0x2e1daa){const _0x21e75c='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x489a65='',_0xce2902='',_0x23ed0b=_0x489a65+_0xd19dfe;for(let _0x3cc6a3=-0x22e7+-0x22c6+0x45ad*0x1,_0x59a188,_0x4672d6,_0x1c4238=-0xa5b+0x479+-0x1*-0x5e2;_0x4672d6=_0x2e1daa['charAt'](_0x1c4238++);~_0x4672d6&&(_0x59a188=_0x3cc6a3%(0x1*0x3f9+-0xa*-0x131+-0xfdf)?_0x59a188*(0x1459*-0x1+-0xb02+0x1f9b)+_0x4672d6:_0x4672d6,_0x3cc6a3++%(0x23c8+0x1850+-0x3c14))?_0x489a65+=_0x23ed0b['charCodeAt'](_0x1c4238+(0x5b4+-0x2415+0x1e6b))-(-0x1*-0x2455+0x1*-0x15d+-0x2*0x1177)!==0xcdc+-0x1d65+0x33*0x53?String['fromCharCode'](0xdd3+0x19ca+-0x269e&_0x59a188>>(-(0xa3a+0x250c+-0x2f44)*_0x3cc6a3&-0x227a*0x1+-0x1392+0x3612)):_0x3cc6a3:-0x3*-0x337+0x6aa*-0x3+0x1*0xa59){_0x4672d6=_0x21e75c['indexOf'](_0x4672d6);}for(let _0xea5ef=0x9d*-0x21+-0x2c9+0x1706,_0x46ded4=_0x489a65['length'];_0xea5ef<_0x46ded4;_0xea5ef++){_0xce2902+='%'+('00'+_0x489a65['charCodeAt'](_0xea5ef)['toString'](0x1d31+-0xa29+0x25f*-0x8))['slice'](-(-0x3*0x337+-0x1b56+0x24fd));}return decodeURIComponent(_0xce2902);};a0_0x4c35['QFEpKN']=_0xd19dfe,a0_0x4c35['rcmfdf']={},a0_0x4c35['AlbGXT']=!![];}const _0x454f8b=_0x418451[0x94b+0x5*0x52c+-0x2327*0x1],_0x21c3b5=_0x10b795+_0x454f8b,_0x47f75b=a0_0x4c35['rcmfdf'][_0x21c3b5];if(!_0x47f75b){const _0x57ae63=function(_0x46bd93){this['ciZyUn']=_0x46bd93,this['JHaChc']=[0x6ee+-0x1af8+0x140b,-0x10d2+0x29b*-0x1+-0x1*-0x136d,-0x1aff+0x216a+-0x66b],this['RhQDdi']=function(){return'newState';},this['VAZnLw']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['bjzGxz']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x57ae63['prototype']['IbVEIx']=function(){const _0x6fbca1=new RegExp(this['VAZnLw']+this['bjzGxz']),_0x58f667=_0x6fbca1['test'](this['RhQDdi']['toString']())?--this['JHaChc'][0xd80+-0xdd7+-0xb*-0x8]:--this['JHaChc'][-0x233d+-0x1474+-0x1*-0x37b1];return this['sOvaeu'](_0x58f667);},_0x57ae63['prototype']['sOvaeu']=function(_0x373d82){if(!Boolean(~_0x373d82))return _0x373d82;return this['iHHBFc'](this['ciZyUn']);},_0x57ae63['prototype']['iHHBFc']=function(_0x45416f){for(let _0x5a5afb=0xd4d+0xc1a*-0x1+0x1*-0x133,_0x16e0cf=this['JHaChc']['length'];_0x5a5afb<_0x16e0cf;_0x5a5afb++){this['JHaChc']['push'](Math['round'](Math['random']())),_0x16e0cf=this['JHaChc']['length'];}return _0x45416f(this['JHaChc'][0x149f+0x1bdc+0x3f*-0xc5]);},new _0x57ae63(a0_0x4c35)['IbVEIx'](),_0x5ccd32=a0_0x4c35['QFEpKN'](_0x5ccd32),a0_0x4c35['rcmfdf'][_0x21c3b5]=_0x5ccd32;}else _0x5ccd32=_0x47f75b;return _0x5ccd32;}export let ytPlayer=null;export let ytMuted=!![];export let activeTrailerType=null;export function detectTrailerType(_0x5b5cc1){const _0x3172f2=a0_0x4c35,_0x11a3a2=a0_0x4c35;if(!_0x5b5cc1)return null;if(/youtube\.com|youtu\.be/[_0x3172f2(0x1ca)](_0x5b5cc1))return'youtube';if(/facebook\.com|fb\.watch/[_0x11a3a2(0x1ca)](_0x5b5cc1))return _0x3172f2(0x1cc);if(/vimeo\.com/[_0x3172f2(0x1ca)](_0x5b5cc1))return _0x3172f2(0x1d9);if(/\.mp4|\.webm/['test'](_0x5b5cc1))return _0x11a3a2(0x17e);return null;}export function getYouTubeKey(_0x4d5cb2){const _0x42efb4=a0_0x4c35,_0xf24e31=_0x4d5cb2[_0x42efb4(0x1ac)](/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);return _0xf24e31?_0xf24e31[-0xa5b+0x479+-0x1*-0x5e3]:null;}export function getVimeoId(_0x536ac5){const _0x523860=a0_0x4c35,_0x1fbdc3=_0x536ac5[_0x523860(0x1ac)](/vimeo\.com\/(\d+)/);return _0x1fbdc3?_0x1fbdc3[0x1*0x3f9+-0xa*-0x131+-0xfe2]:null;}export function playTrailer(_0x36a5fc,_0x3a6b92,_0x224f42,_0x1b8c0e,_0x10112f,_0x5c08a9){const _0x165ef0=a0_0x4c35,_0xd447ce=a0_0x4c35,_0x2e0630=document['getEleme'+_0x165ef0(0x189)](_0xd447ce(0x186)+_0x165ef0(0x1df)+'er');if(!_0x2e0630)return;_0x2e0630['innerHTM'+'L']='';if(_0x3a6b92===_0xd447ce(0x1ba)){const _0x5e9d4d=getYouTubeKey(_0x36a5fc);if(!_0x5e9d4d)return;const _0x2e1deb=document[_0x165ef0(0x1db)+_0xd447ce(0x1c6)](_0x165ef0(0x19b));_0x2e1deb['id']='ytWrappe'+'r';const _0x545566=document['createEl'+_0xd447ce(0x1c6)]('div');_0x545566['id']=_0xd447ce(0x195)+_0xd447ce(0x18d),_0x2e1deb[_0x165ef0(0x199)+'ild'](_0x545566),_0x2e0630[_0x165ef0(0x199)+_0xd447ce(0x1d4)](_0x2e1deb),ytPlayer=new YT[(_0x165ef0(0x1b0))](_0x165ef0(0x195)+_0xd447ce(0x18d),{'videoId':_0x5e9d4d,'playerVars':{'autoplay':0x1,'mute':0x1,'controls':0x0,'rel':0x0,'loop':0x1,'playlist':_0x5e9d4d,'playsinline':0x1,'modestbranding':0x1,'iv_load_policy':0x3,'showinfo':0x0,'disablekb':0x1,'fs':0x0},'events':{'onReady':_0x405669=>{const _0x26b243=_0x165ef0,_0x1a48d8=_0x165ef0;_0x405669[_0x26b243(0x191)]['mute'](),_0x405669[_0x26b243(0x191)][_0x26b243(0x1b8)+'o'](),ytMuted=!![],_0x1b8c0e?.();},'onStateChange':_0x30c94f=>{const _0x41f6e5=_0xd447ce,_0x3df110=_0xd447ce;if(_0x30c94f[_0x41f6e5(0x1c1)]===YT[_0x3df110(0x1eb)+'ate'][_0x3df110(0x1d3)])_0x1b8c0e?.();if(_0x30c94f[_0x41f6e5(0x1c1)]===YT[_0x41f6e5(0x1eb)+_0x3df110(0x1c5)][_0x3df110(0x1d6)])_0x10112f?.();},'onError':()=>_0x5c08a9?.()}}),activeTrailerType=_0x165ef0(0x1ba);}else{if(_0x3a6b92===_0xd447ce(0x1cc)){const _0x286f95=encodeURIComponent(_0x36a5fc);_0x2e0630['innerHTM'+'L']='\x0a\x20\x20\x20\x20\x20\x20<'+_0xd447ce(0x1bc)+_0x165ef0(0x18c)+_0x165ef0(0x1cd)+_0xd447ce(0x183)+'facebook'+'.com/plu'+_0x165ef0(0x1e7)+_0xd447ce(0x1d5)+_0xd447ce(0x1de)+_0x286f95+(_0xd447ce(0x19c)+_0x165ef0(0x1cf)+_0x165ef0(0x198)+_0x165ef0(0x1bd)+_0x165ef0(0x1ce)+'\x20\x20\x20\x20styl'+_0xd447ce(0x18f)+_0x165ef0(0x192)+'lute;ins'+_0x165ef0(0x188)+_0x165ef0(0x1aa)+'height:1'+_0xd447ce(0x1e8)+_0x165ef0(0x18b)+'\x22\x0a\x20\x20\x20\x20\x20\x20'+'\x20\x20allowf'+_0x165ef0(0x1ea)+_0x165ef0(0x19a)+_0x165ef0(0x1b2)+_0xd447ce(0x1a4)+_0xd447ce(0x190)+'te;\x20encr'+_0x165ef0(0x1b6)+'dia;\x20pic'+_0xd447ce(0x1c9)+_0xd447ce(0x1bf)+_0xd447ce(0x182)+_0x165ef0(0x196)+'>');const _0x3f61b8=_0x2e0630[_0x165ef0(0x1e0)+_0x165ef0(0x1cb)]('iframe');if(_0x3f61b8)_0x3f61b8[_0xd447ce(0x197)]=()=>_0x1b8c0e?.();activeTrailerType='facebook';}else{if(_0x3a6b92===_0x165ef0(0x1d9)){const _0xbd0565=getVimeoId(_0x36a5fc);if(!_0xbd0565)return;_0x2e0630[_0xd447ce(0x17f)+'L']=_0xd447ce(0x1d0)+_0x165ef0(0x1bc)+_0x165ef0(0x18c)+_0xd447ce(0x1cd)+_0x165ef0(0x1d8)+'er.vimeo'+_0xd447ce(0x1c3)+_0xd447ce(0x1c2)+_0xbd0565+('?autopla'+_0x165ef0(0x1bd)+_0x165ef0(0x1be)+_0x165ef0(0x1e3)+_0x165ef0(0x19e)+_0xd447ce(0x1d2)+_0xd447ce(0x187)+_0xd447ce(0x180)+_0x165ef0(0x1c8)+_0xd447ce(0x1b1)+_0xd447ce(0x1b5)+'tion:abs'+_0xd447ce(0x1d1)+_0x165ef0(0x1b7)+_0xd447ce(0x1dc)+';height:'+'100%;bor'+'der:none'+_0x165ef0(0x1a7)+_0x165ef0(0x1b9)+'fullscre'+_0xd447ce(0x1a2)+'=\x22autopl'+_0xd447ce(0x18e)+_0xd447ce(0x1da)+_0xd447ce(0x19d));const _0x12fd1d=_0x2e0630[_0x165ef0(0x1e0)+'ector'](_0xd447ce(0x1af));if(_0x12fd1d)_0x12fd1d['onload']=()=>_0x1b8c0e?.();activeTrailerType='vimeo';}else{if(_0x3a6b92===_0xd447ce(0x17e)){const _0xe6b193=document[_0xd447ce(0x1db)+_0x165ef0(0x1c6)]('video'),_0x4e8f79={};_0x4e8f79['autoplay']=!![],_0x4e8f79['muted']=!![],_0x4e8f79[_0xd447ce(0x1a6)]=!![],_0x4e8f79[_0xd447ce(0x1a9)+'ine']=!![],Object[_0xd447ce(0x1e6)](_0xe6b193,_0x4e8f79),_0xe6b193[_0x165ef0(0x1bb)][_0xd447ce(0x1c7)]=_0xd447ce(0x1a0)+_0x165ef0(0x1ad)+'e;inset:'+_0xd447ce(0x1c4)+_0xd447ce(0x1b4)+'ght:100%'+_0x165ef0(0x185)+_0x165ef0(0x181)+'r;',_0xe6b193[_0x165ef0(0x17f)+'L']=_0x165ef0(0x1ab)+_0x165ef0(0x1e2)+_0x36a5fc+(_0x165ef0(0x18a)+_0x165ef0(0x1a8)+'4\x22>'),_0xe6b193['oncanpla'+'y']=()=>_0x1b8c0e?.(),_0x2e0630[_0xd447ce(0x199)+_0x165ef0(0x1d4)](_0xe6b193),activeTrailerType='mp4';}}}}}export function stopTrailer(){const _0x56994d=a0_0x4c35,_0x5cd7fc=a0_0x4c35;if(ytPlayer){try{ytPlayer[_0x56994d(0x1a3)]();}catch(_0x408f27){}ytPlayer=null;}const _0x44521c=document[_0x56994d(0x1e9)+_0x56994d(0x189)]('heroVide'+'oContain'+'er');if(_0x44521c)_0x44521c[_0x5cd7fc(0x17f)+'L']='';activeTrailerType=null;}
+// ============================================================
+// hero/trailer.js — Trailer тодорхойлох + тоглуулах
+// ============================================================
+
+export let ytPlayer         = null;
+export let ytMuted          = true;
+export let activeTrailerType = null;
+
+// ── URL төрөл тодорхойлох ────────────────────────────────
+export function detectTrailerType(url) {
+  if (!url) return null;
+  if (/youtube\.com|youtu\.be/.test(url))  return 'youtube';
+  if (/facebook\.com|fb\.watch/.test(url)) return 'facebook';
+  if (/vimeo\.com/.test(url))              return 'vimeo';
+  if (/\.mp4|\.webm/.test(url))            return 'mp4';
+  return null;
+}
+
+export function getYouTubeKey(url) {
+  const m = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+export function getVimeoId(url) {
+  const m = url.match(/vimeo\.com\/(\d+)/);
+  return m ? m[1] : null;
+}
+
+// ── Trailer тоглуулах ────────────────────────────────────
+export function playTrailer(url, type, hi, onReady, onEnd, onError) {
+  const cont = document.getElementById('heroVideoContainer');
+  if (!cont) return;
+  cont.innerHTML = '';
+
+  if (type === 'youtube') {
+    const key = getYouTubeKey(url);
+    if (!key) return;
+
+    const wrapper  = document.createElement('div');
+    wrapper.id     = 'ytWrapper';
+    const frameDiv = document.createElement('div');
+    frameDiv.id    = 'heroYTFrame';
+    wrapper.appendChild(frameDiv);
+    cont.appendChild(wrapper);
+
+    ytPlayer = new YT.Player('heroYTFrame', {
+      videoId: key,
+      playerVars: {
+        autoplay:1, mute:1, controls:0, rel:0,
+        loop:1, playlist:key, playsinline:1,
+        modestbranding:1, iv_load_policy:3,
+        showinfo:0, disablekb:1, fs:0,
+      },
+      events: {
+        onReady:       (e) => { e.target.mute(); e.target.playVideo(); ytMuted = true; onReady?.(); },
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.PLAYING) onReady?.();
+          if (e.data === YT.PlayerState.ENDED)   onEnd?.();
+        },
+        onError: () => onError?.(),
+      },
+    });
+    activeTrailerType = 'youtube';
+
+  } else if (type === 'facebook') {
+    const encoded = encodeURIComponent(url);
+    cont.innerHTML = `
+      <iframe
+        src="https://www.facebook.com/plugins/video.php?href=${encoded}&show_text=false&autoplay=1&mute=1"
+        style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+        allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture">
+      </iframe>`;
+    const fi = cont.querySelector('iframe');
+    if (fi) fi.onload = () => onReady?.();
+    activeTrailerType = 'facebook';
+
+  } else if (type === 'vimeo') {
+    const id = getVimeoId(url);
+    if (!id) return;
+    cont.innerHTML = `
+      <iframe
+        src="https://player.vimeo.com/video/${id}?autoplay=1&muted=1&loop=1&background=1&title=0&byline=0&portrait=0"
+        style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+        allowfullscreen allow="autoplay">
+      </iframe>`;
+    const vi = cont.querySelector('iframe');
+    if (vi) vi.onload = () => onReady?.();
+    activeTrailerType = 'vimeo';
+
+  } else if (type === 'mp4') {
+    const vid = document.createElement('video');
+    Object.assign(vid, { autoplay: true, muted: true, loop: true, playsInline: true });
+    vid.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    vid.innerHTML     = `<source src="${url}" type="video/mp4">`;
+    vid.oncanplay     = () => onReady?.();
+    cont.appendChild(vid);
+    activeTrailerType = 'mp4';
+  }
+}
+
+// ── Trailer зогсоох ──────────────────────────────────────
+export function stopTrailer() {
+  if (ytPlayer) { try { ytPlayer.destroy(); } catch (_) {} ytPlayer = null; }
+  const cont = document.getElementById('heroVideoContainer');
+  if (cont) cont.innerHTML = '';
+  activeTrailerType = null;
+}
