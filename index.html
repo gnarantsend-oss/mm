@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#E50914">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title id="appTitle">Nabooshy - Ухаалаг Платформ</title>
+
+<!-- PWA Manifest (2026 оны шинэчлэл: App болгож суулгах) -->
+<link rel="manifest" href="manifest.json">
+
+<!-- ① Preconnect: Хамгийн чухал гадаад холболтуудыг урьдчилж нээх -->
+<link rel="preconnect" href="https://api.themoviedb.org">
+<link rel="preconnect" href="https://image.tmdb.org">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://www.youtube.com">
+<link rel="dns-prefetch" href="https://vidsrc.to">
+
+<!-- ② CSS: render-blocking нь байхгүй болгох (onload trick) -->
+<link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="nave.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="hero.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="cards.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="nave.css">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="cards.css">
+</noscript>
+
+<!-- ③ Фонт: display=swap → layout shift байхгүй -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+
+<!-- ④ JS modulepreload: parse хийхэд хүлээхгүй -->
+<link rel="modulepreload" href="app.js">
+<link rel="modulepreload" href="zar.js">
+
+<!-- ⑤ HLS болон P2P: defer болгох (Hero ачаалагдсаны дараа) -->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-core@latest/build/p2p-media-loader-core.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/p2p-media-loader-hlsjs@latest/build/p2p-media-loader-hlsjs.min.js" defer></script>
+<script src="https://www.youtube.com/iframe_api" defer></script>
+
+<!-- ⑥ Speculation Rules API: .mcard-д hover хийхэд урьдчилж рендер -->
+<script type="speculationrules">
+{
+  "prerender": [
+    {
+      "where": { "selector_matches": ".mcard" },
+      "eagerness": "moderate"
+    }
+  ],
+  "prefetch": [
+    {
+      "where": { "selector_matches": "nav button" },
+      "eagerness": "conservative"
+    }
+  ]
+}
+</script>
+  </head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav id="navbar">
+  <div class="nav-logo" onclick="gotoPage('movies')">
+    <div class="logo-mark">N</div>
+    <div class="logo-name">NABOO<span>SHY</span></div>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" id="t-movies"  onclick="gotoPage('movies')"> <span class="tab-icon">🎬</span><span>КИНО</span></button>
+    <button class="nav-tab"        id="t-games"   onclick="gotoPage('games')">  <span class="tab-icon">🎮</span><span>ТОГЛООМ</span></button>
+    <button class="nav-tab"        id="t-weather" onclick="gotoPage('weather')"><span class="tab-icon">🌤</span><span>ЦАГ АГААР</span></button>
+    <button class="nav-tab"        id="t-search"  onclick="gotoPage('search')"> <span class="tab-icon">🔍</span><span>ХАЙХ</span></button>
+  </div>
+  <div class="nav-right">
+    <div class="search-wrap" onclick="gotoPage('search')">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="searchIn" type="text" placeholder="Хайх..." oninput="doSearch(this.value)" onfocus="gotoPage('search')">
+    </div>
+
+  </div>
+</nav>
+
+<!-- ===================== SHARED HERO ===================== -->
+<div id="heroWrap">
+  <div class="hero" id="hero">
+    <div id="heroVideoContainer" class="hero-video-container"></div>
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-body">
+      <div class="hero-tag" id="heroTag">🔥 ДЭЛХИЙН ШИЛДЭГ</div>
+      <div class="hero-title" id="heroTitle">Ачаалж байна...</div>
+      <div class="hero-meta" id="heroMeta"></div>
+      <div class="hero-desc" id="heroDesc"></div>
+      <div class="hero-btns" id="heroBtns">
+        <button class="btn-watch" id="heroWatch"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> Үзэх</button>
+        <button class="btn-more"  id="heroMore">ℹ Дэлгэрэнгүй</button>
+        <button class="btn-volume" id="heroVolumeBtn" onclick="toggleHeroVolume()">🔇 Дууг нээх</button>
+      </div>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+  </div>
+</div>
+
+<!-- ===================== MOVIES (КИНО) ===================== -->
+<div class="page active" id="page-movies">
+  <main style="margin-top:-40px;position:relative;z-index:10;">
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-title" style="color:var(--red);font-size:22px;">🔥 Онцлох шилдэг бүтээлүүд</div>
+
+      </div>
+      <div class="row-wrap">
+        <button class="scroll-btn left" onclick="scrollRow('rowFeatured',-600)">❮</button>
+        <div class="scroll-row" id="rowFeatured"></div>
+        <button class="scroll-btn right" onclick="scrollRow('rowFeatured',600)">❯</button>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-title">📺 Шилдэг цувралууд</div>
+      </div>
+      <div class="row-wrap">
+        <button class="scroll-btn left" onclick="scrollRow('rowSeries',-600)">❮</button>
+        <div class="scroll-row" id="rowSeries"></div>
+        <button class="scroll-btn right" onclick="scrollRow('rowSeries',600)">❯</button>
+      </div>
+    </section>
+
+    <div id="dynamicRows"></div>
+
+    <section class="sec">
+      <div class="sec-head">
+        <div class="sec-title">🎮 Онлайн Тоглоомууд</div>
+      </div>
+      <div class="row-wrap">
+        <button class="scroll-btn left" onclick="scrollRow('rowGames',-600)">❮</button>
+        <div class="scroll-row" id="rowGames"></div>
+        <button class="scroll-btn right" onclick="scrollRow('rowGames',600)">❯</button>
+      </div>
+    </section>
+
+    <section class="sec" style="margin-top:60px;border-top:1px solid var(--border);padding-top:40px;">
+      <div class="sec-head">
+        <div class="sec-title" style="color:var(--blue);">🌍 Дэлхийд яг одоо гарч буй кинонууд</div>
+      </div>
+      <div class="row-wrap">
+        <button class="scroll-btn left" onclick="scrollRow('rowInternational',-600)">❮</button>
+        <div class="scroll-row" id="rowInternational"></div>
+        <button class="scroll-btn right" onclick="scrollRow('rowInternational',600)">❯</button>
+      </div>
+    </section>
+
+
+
+    <div id="seriesFullSection" style="display:none;">
+      <div class="page-header" style="margin-top:40px;">
+        <h1 class="page-h1">📺 Цуврал кино</h1>
+        <p class="page-sub" id="seriesCount"></p>
+      </div>
+      <div class="genre-bar" id="seriesGenreBar"></div>
+      <div class="mgrid" id="seriesGrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ===================== GAMES (ТОГЛООМ) ===================== -->
+<div class="page" id="page-games">
+  <main>
+    <div class="genre-bar" id="gameGenreBar" style="margin-top:20px;"></div>
+    <div class="mgrid" id="gamesGrid"></div>
+  </main>
+</div>
+
+<!-- ===================== WEATHER (ЦАГ АГААР) ===================== -->
+<div class="page" id="page-weather">
+  <main>
+    <div class="weather-update-bar">
+      <span id="weatherLastUpdate">⏳ Мэдээлэл татаж байна...</span>
+      <button class="weather-refresh-btn" onclick="refreshWeather()">🔄 Шинэчлэх</button>
+    </div>
+    <div class="w-grid" id="weatherGrid"></div>
+  </main>
+</div>
+
+<!-- ===================== SEARCH (ХАЙХ) ===================== -->
+<div class="page" id="page-search">
+  <main>
+    <div class="search-page-box">
+      <div class="search-page-icon">🔍</div>
+      <div class="search-page-wrap">
+        <input id="searchPageInput" type="text" class="search-page-input"
+               placeholder="Кино, цуврал, тоглоом, хот хайх..."
+               oninput="doSearch(this.value)" autofocus>
+      </div>
+      <div class="search-page-hint">Жишээ: <span onclick="doSearch('action')">action</span> · <span onclick="doSearch('дархан')">дархан</span> · <span onclick="doSearch('chess')">chess</span></div>
+    </div>
+    <div id="searchCount" style="color:var(--text2);font-size:14px;margin-bottom:16px;"></div>
+    <div class="mgrid" id="searchGrid"></div>
+  </main>
+</div>
+
+    <div id="authLogin" style="display:none">
+      <div class="auth-field"><label>И-мэйл хаяг</label><input type="email" id="loginEmail" placeholder="email@example.com"></div>
+      <div class="auth-field"><label>Нууц үг</label><input type="password" id="loginPass" placeholder="••••••••"></div>
+      <div class="auth-field" style="background:rgba(255,255,255,.05);padding:10px;border-radius:6px;border:1px solid var(--border2);">
+        <label style="color:var(--text2);">Хамгаалалт: <span id="captchaQuestionLogin" style="color:var(--gold);font-size:16px;"></span></label>
+        <input type="number" id="captchaAnswerLogin" placeholder="Хариуг бичнэ үү">
+      </div>
+      <button class="auth-btn" onclick="doLogin()">Нэвтрэх</button>
+      <div class="auth-switch"><span style="color:var(--text2);">Бүртгэлгүй юу?</span> <a onclick="switchAuth('register')">Шинээр бүртгүүлэх</a></div>
+    </div>
+    
+    <div style="margin-top:25px;padding-top:15px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--text3);line-height:1.5;">
+      Зар байршуулах: <strong id="contactPhoneEl" style="color:var(--gold);">Уншиж байна...</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PLAYER MODAL ===================== -->
+<div class="modal-bg" id="playerModal" onclick="closeMb(event,'playerModal')">
+  <div class="modal pmodal">
+    <button class="mcls" onclick="closeM('playerModal')">✕</button>
+    <div class="player-layout">
+      <div class="player-vid-sec">
+        <div class="p2p-status" id="p2pStatus" style="display:none;"><div class="p2p-dot"></div> P2P Сүлжээ идэвхтэй</div>
+        <div class="player-wrap" id="playerWrap" style="width:100%;height:100%;"></div>
+      </div>
+    </div>
+    <div style="padding:20px 30px;background:var(--bg2);border-radius:0 0 12px 12px;">
+      <div class="m-title" id="pTitle" style="font-size:24px;margin-bottom:4px;"></div>
+      <div class="m-meta" id="pMeta" style="margin-bottom:0;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MOVIE DETAIL MODAL ===================== -->
+<div class="modal-bg" id="movieModal" onclick="closeMb(event,'movieModal')">
+  <div class="modal">
+    <button class="mcls" onclick="closeM('movieModal')">✕</button>
+    <div class="m-hero" id="mHero"><div class="m-hero-g"></div></div>
+    <div class="m-body">
+      <div class="m-title" id="mTitle"></div>
+      <div class="m-meta" id="mMeta"></div>
+      <div class="m-desc" id="mDesc"></div>
+      <div class="m-acts" id="mActs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SERIES MODAL ===================== -->
+<div class="modal-bg" id="seriesModal" onclick="closeMb(event,'seriesModal')">
+  <div class="modal" style="max-width:900px">
+    <button class="mcls" onclick="closeM('seriesModal')">✕</button>
+    <div class="m-hero" id="smHero"><div class="m-hero-g"></div></div>
+    <div class="m-body">
+      <div class="m-title" id="smTitle"></div>
+      <div class="m-meta" id="smMeta"></div>
+      <div class="m-desc" id="smDesc"></div>
+      <div class="m-series-wrap">
+        <div class="s-tabs" id="smSeasonTabs"></div>
+        <div class="ep-grid" id="smEpGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== GAME MODAL ===================== -->
+<div class="modal-bg" id="gameModal" onclick="closeMb(event,'gameModal')">
+  <div class="modal gmodal">
+    <button class="mcls" onclick="closeM('gameModal')">✕</button>
+    <iframe class="gm-frame" id="gmFrame" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ===================== СКРИПТҮҮД ===================== -->
+<script type="module" src="config.js"></script>
+<script type="module" src="zar.js"></script>
+<script type="module" src="app.js"></script>
+<script type="module" src="spatial-ui.js"></script>
+<script type="module" src="player-advanced.js"></script>
+<script type="module" src="profile-gamify.js"></script>
+<script type="module" src="watch-party.js"></script>
+<script type="module" src="pwa-init.js"></script>
+
+<!-- =========================================================
+     RGB ХӨДӨЛГӨӨНТЭЙ FAVICON (N ҮСЭГ)
+     ========================================================= -->
+<script>
+  (function() {
+    let hue = 0;
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext('2d');
+    
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+
+    setInterval(() => {
+      ctx.clearRect(0, 0, 32, 32);
+      ctx.fillStyle = '#1a1a2e'; 
+      ctx.beginPath();
+      ctx.roundRect(0, 0, 32, 32, 8); 
+      ctx.fill();
+
+      ctx.font = 'bold 22px "Segoe UI", Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      ctx.fillStyle = `hsl(${hue}, 100%, 60%)`; 
+      ctx.shadowColor = `hsl(${hue}, 100%, 60%)`;
+      ctx.shadowBlur = 8;
+      
+      ctx.fillText('N', 16, 18);
+
+      link.href = canvas.toDataURL('image/png');
+      hue = (hue + 5) % 360;
+    }, 100); 
+  })();
+</script>
+  
+</body>
+</html>
