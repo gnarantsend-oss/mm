@@ -42,6 +42,11 @@ window.gotoPage = function (p) {
   document.getElementById('page-' + p)?.classList.add('active');
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('t-' + p)?.classList.add('active');
+
+  // Mobile bottom nav sync
+  document.querySelectorAll('.bnav-item').forEach(t => t.classList.remove('active'));
+  document.getElementById('bn-' + p)?.classList.add('active');
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   if (window.setPageHero)  window.setPageHero(p);
