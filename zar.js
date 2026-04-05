@@ -71,73 +71,21 @@ function _zarBuildEl(b) {
   const wrap = document.createElement('div');
   wrap.className = 'ad-wrap';
 
-  const imgSrc = b.src || b.image || null;
-  const label  = b.label || 'РЕКЛАМ';
+  // Adsterra 728x90 banner — createElement ашиглана (innerHTML дотор script ажилдахгүй)
+  const key = window.GLOBAL_ADS && window.GLOBAL_ADS.bannerKey ? window.GLOBAL_ADS.bannerKey : 'd2854ac5234b3ab02d5a2839d6dbef5e';
+  const inner = document.createElement('div');
+  inner.className = 'adsterra-banner-inner';
 
-  if (b.type === 'embed' && imgSrc) {
-    // iframe banner — createElement ашиглана
-    const box = document.createElement('div');
-    box.className = 'ad-img-box';
-    box.style.cssText = 'cursor:default;position:relative;';
+  const optScript = document.createElement('script');
+  optScript.textContent = 'window.atOptions = { "key": "' + key + '", "format": "iframe", "height": 90, "width": 728, "params": {} };';
 
-    const badge = document.createElement('div');
-    badge.className = 'ad-corner-badge';
-    badge.textContent = label;
+  const invScript = document.createElement('script');
+  invScript.src   = 'https://www.highperformanceformat.com/' + key + '/invoke.js';
+  invScript.async = true;
 
-    const iframe = document.createElement('iframe');
-    iframe.src             = imgSrc;
-    iframe.frameBorder     = '0';
-    iframe.allowFullscreen = true;
-    iframe.style.cssText   = 'width:100%;height:160px;border-radius:10px;display:block;border:1px solid rgba(212,175,55,0.3);';
-
-    box.appendChild(badge);
-    box.appendChild(iframe);
-    wrap.appendChild(box);
-
-  } else if (imgSrc) {
-    const href = b.link || window.GLOBAL_ADS?.smartlink || imgSrc;
-    const a    = document.createElement('a');
-    a.href    = href;
-    a.target  = '_blank';
-    a.rel     = 'noopener';
-    a.className = 'ad-img-box';
-    a.style.cssText = 'display:block;text-decoration:none;position:relative;';
-
-    const badge = document.createElement('div');
-    badge.className   = 'ad-corner-badge';
-    badge.textContent = label;
-
-    const img = document.createElement('img');
-    img.src     = imgSrc;
-    img.alt     = label;
-    img.loading = 'lazy';
-    img.style.cssText = 'width:100%;border-radius:10px;display:block;border:1px solid rgba(212,175,55,0.3);';
-
-    a.appendChild(badge);
-    a.appendChild(img);
-    wrap.appendChild(a);
-
-  } else {
-    const tg  = window.CONTACT_PHONE || 'https://t.me/oroodvz';
-    const box = document.createElement('div');
-    box.className = 'ad-empty-box';
-
-    const txt = document.createElement('div');
-    txt.innerHTML = `
-      <div style="color:#D4AF37;font-weight:600;">${label} — Реклам байрлуул</div>
-      <div style="color:rgba(212,175,55,0.5);font-size:12px;">Telegram-ээр холбогдоно уу</div>`;
-
-    const link = document.createElement('a');
-    link.href      = tg;
-    link.target    = '_blank';
-    link.rel       = 'noopener';
-    link.className = 'ad-phone-btn';
-    link.textContent = '✈️ Telegram';
-
-    box.appendChild(txt);
-    box.appendChild(link);
-    wrap.appendChild(box);
-  }
+  inner.appendChild(optScript);
+  inner.appendChild(invScript);
+  wrap.appendChild(inner);
 
   return wrap;
 }

@@ -1,34 +1,26 @@
 [
   {
     "id": "id1",
-    "label": "Кино Action",
+    "type": "adsterra",
     "afterRowId": "rowAction",
-    "active": true,
-    "image": "https://img.freepik.com/free-vector/streaming-online-app-concept-banner_23-2148530364.jpg",
-    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
+    "active": true
   },
   {
     "id": "id2",
-    "label": "Кино",
+    "type": "adsterra",
     "afterRowId": "rowDrama",
-    "active": true,
-    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
-    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
+    "active": true
   },
   {
     "id": "id3",
-    "label": "Кино",
+    "type": "adsterra",
     "afterRowId": "rowSciFi",
-    "active": true,
-    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
-    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
+    "active": true
   },
   {
     "id": "id4",
-    "label": "Кино",
+    "type": "adsterra",
     "afterRowId": "rowHorror",
-    "active": true,
-    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
-    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
+    "active": true
   }
 ]
