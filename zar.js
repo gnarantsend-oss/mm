@@ -22,58 +22,67 @@ function _loadScript(src, onload) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// ── AdBlock илрүүлэлт — найдвартай нэг арга ─────────────────
+// ── AdBlock илрүүлэлт — BlockAdBlock library-ийн арга ────────
 // ══════════════════════════════════════════════════════════════
 //
-// Яагаад зөвхөн bait-div арга вэ?
-//   • Network fetch (Google Ads) → сүлжээний алдаа, firewall,
-//     удаан connection дээр adblock байхгүй ч fail болдог.
-//   • Bait-div → adblock CSS filter-ийн тусгай зорилт.
-//     Бусад юм нь огт нөлөөлдөггүй тул false positive байхгүй.
+// GitHub: github.com/sitexw/BlockAdBlock
 //
-// Яагаад 2 удаа шалгах вэ?
-//   • Эхний шалгалт хурдан ачаалал дээр өргөн filter-ийг
-//     хүлээхгүйгээр гарч болдог. 800ms дараа давтвал найдвартай.
+// Яагаад energy арга нь найдвартай вэ?
+//   • AdBlock/uBlock/AdBlockPlus бvгд EasyList filter ашиглана
+//   • EasyList-д эдгээр class нэрүүд зориуд нэмэгдсэн байдаг
+//   • Bait div-ийн өндөр/харагдах байдлыг adblock өөрчилдөг
+//   • Network request биш тул сүлжээний алдаанаас ХАМААРАХГҮЙ
+//
+// baitClass — EasyList-ийн filter-т байдаг нийтлэг нэрүүд:
+const BAIT_CLASS = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links ad-banner adsbox adsbygoogle';
 
-function _checkBaitDiv() {
+// baitStyle — BlockAdBlock library-ийн батлагдсан style
+const BAIT_STYLE = 'width:1px!important;height:1px!important;position:absolute!important;left:-10000px!important;top:-1000px!important;';
+
+// Нэг удаагийн шалгалт
+function _singleCheck() {
   return new Promise(resolve => {
-    // ① Bait-д хэрэглэгдэх тусгай CSS — height:1px тогтооно
-    const style = document.createElement('style');
-    style.id = '_zar_bait_style';
-    style.textContent = '#_zar_ad_bait{display:block;height:1px;width:1px;}';
-    document.head.appendChild(style);
-
-    // ② Adblock-ийн хамгийн нийтлэг target class-ууд
     const bait = document.createElement('div');
-    bait.id    = '_zar_ad_bait';
-    bait.className = 'ad ads adsbox adsbygoogle pub_300x250 text-ad';
-    bait.setAttribute('aria-hidden', 'true');
-    // Харагдахгүй газар байрлуул — layout-д нөлөөлөхгүй
-    bait.style.cssText = 'position:fixed;top:-9999px;left:-9999px;pointer-events:none;z-index:-1;';
+    bait.setAttribute('class', BAIT_CLASS);
+    bait.setAttribute('style', BAIT_STYLE);
     document.body.appendChild(bait);
 
-    // ③ AdBlock-д CSS filter хэрэглэх хугацаа өг
+    // offsetParent-ийг нэг удаа trigger хийх (BlockAdBlock-ийн арга)
+    void bait.offsetParent;
+    void bait.offsetHeight;
+    void bait.offsetWidth;
+
     setTimeout(() => {
-      // offsetHeight === 0  →  adblock display:none !important тавьсан
-      const blocked = bait.offsetHeight === 0;
-      bait.remove();
-      style.remove();
+      const cs = window.getComputedStyle(bait);
+      const blocked =
+        cs.getPropertyValue('display')     === 'none'    ||
+        cs.getPropertyValue('visibility')  === 'hidden'  ||
+        cs.getPropertyValue('opacity')     === '0'       ||
+        bait.offsetHeight === 0  ||
+        bait.offsetWidth  === 0  ||
+        bait.clientHeight === 0  ||
+        bait.clientWidth  === 0;
+      document.body.removeChild(bait);
       resolve(blocked);
-    }, 300);
+    }, 50);
   });
 }
 
-// 2 удаа шалгаж баталгаажуулна — хоёулаа true байж гэмэ adblock гэж үзнэ
+// BlockAdBlock-ийн loop арга: 5 удаа × 50ms = нийт ~200ms
 async function detectAdBlock() {
   if (window.isTV) return false;
 
-  const first = await _checkBaitDiv();
-  if (!first) return false;                    // Эхний шалгалтад blocked биш → adblock байхгүй
+  const MAX = 5;
+  let blockedCount = 0;
 
-  // Эхний шалгалтад blocked → 800ms хүлээгээд дахин баталгаажуулна
-  await new Promise(r => setTimeout(r, 800));
-  const second = await _checkBaitDiv();
-  return second;                               // Хоёулаа true байж гэмэ adblock гэж үзнэ
+  for (let i = 0; i < MAX; i++) {
+    const blocked = await _singleCheck();
+    if (blocked) blockedCount++;
+  }
+
+  // 5-аас 3-аас дээш "blocked" гарвал адблок байна гэж үзнэ
+  // (1-2 нь browser render delay-ийн улмаас false positive байж болно)
+  return blockedCount >= 3;
 }
 
 // ── AdBlock wall ─────────────────────────────────────────────
@@ -125,7 +134,6 @@ async function checkAndEnforceAdBlock() {
 
   if (hasAdBlock) {
     _buildAdBlockWall();
-    // 5 секунд тутамд дахин шалгах — унтраасан бол wall хаана
     const iv = setInterval(async () => {
       const still = await detectAdBlock();
       if (!still) {
