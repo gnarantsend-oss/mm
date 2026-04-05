@@ -276,3 +276,58 @@
   .hero-dots { bottom: 18px; right: 16px; gap: 5px; }
   .hero-dot  { width: 7px; height: 7px; }
 }
+
+/* ── Маш жижиг дэлгэц (375px ба түүнээс бага) ───────────────── */
+@media (max-width: 390px) {
+  .hero { height: 60vh; min-height: 380px; }
+  .hero-body { padding: 0 12px 28px; }
+  .hero-title {
+    font-size: 22px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 6px !important;
+  }
+  .hero-desc {
+    font-size: 11px !important;
+    -webkit-line-clamp: 2;
+    margin-bottom: 10px !important;
+  }
+  .hero-tag { font-size: 10px; padding: 3px 8px; margin-bottom: 8px; }
+  .hero-meta span { font-size: 11px; }
+  .btn-watch, .btn-more, .btn-volume {
+    padding: 7px 11px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* ── Banner responsive ───────────────────────────────────────── */
+.adsterra-banner-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+  overflow: hidden;
+  max-width: 100%;
+}
+.adsterra-banner-inner {
+  transform-origin: top center;
+}
+@media (max-width: 750px) {
+  .adsterra-banner-inner {
+    transform: scale(0.52);
+    height: 47px;
+    margin-bottom: -43px;
+  }
+}
+@media (max-width: 480px) {
+  .adsterra-banner-inner {
+    transform: scale(0.44);
+    height: 40px;
+    margin-bottom: -50px;
+  }
+}
+@media (max-width: 390px) {
+  .adsterra-banner-inner {
+    transform: scale(0.38);
+    height: 34px;
+    margin-bottom: -56px;
+  }
+}

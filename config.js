@@ -1,8 +1,8 @@
 window.TMDB_KEY = '0b34540c864eaaf51207c87c28dabb36';
 window.OW_KEY   = '28b8969deb0ae248fe2db2e6064dd511';
 
-window.CONTACT_PHONE = '9937-6238';
-window.CONTACT_EMAIL = 'gnarantsend@gmail.com';
+window.CONTACT_PHONE = 'https://t.me/oroodvz';
+window.CONTACT_EMAIL = 'https://t.me/oroodvz';
 window.CURRENT_YEAR  = new Date().getFullYear();
 window.DEFAULT_CITY  = 'Ulaanbaatar';
 

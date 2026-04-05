@@ -52,14 +52,14 @@ function _zarBuildEl(b) {
 
   } else {
     // хоосон placeholder
-    const phone = window.CONTACT_PHONE || '99376238';
+    const tg = window.CONTACT_PHONE || 'https://t.me/oroodvz';
     wrap.innerHTML = `
       <div class="ad-empty-box">
         <div>
           <div style="color:#D4AF37;font-weight:600;">${label} — Реклам байрлуул</div>
-          <div style="color:rgba(212,175,55,0.5);font-size:12px;">Холбогдох: ${phone}</div>
+          <div style="color:rgba(212,175,55,0.5);font-size:12px;">Telegram-ээр холбогдоно уу</div>
         </div>
-        <a href="tel:${phone}" class="ad-phone-btn">📞 ${phone}</a>
+        <a href="${tg}" target="_blank" rel="noopener" class="ad-phone-btn">✈️ Telegram</a>
       </div>`;
   }
   return wrap;
