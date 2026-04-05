@@ -12,10 +12,11 @@ function _zarInjectCSS() {
 }
 
 // ── Script аюулгүй inject хийх helper ───────────────────────
-function _loadScript(src, onload) {
+function _loadScript(src, onload, attrs = {}) {
   const s = document.createElement('script');
   s.src   = src;
   s.async = true;
+  Object.entries(attrs).forEach(([k, v]) => s.setAttribute(k, v));
   if (onload) s.onload = onload;
   document.head.appendChild(s);
   return s;
@@ -24,22 +25,9 @@ function _loadScript(src, onload) {
 // ══════════════════════════════════════════════════════════════
 // ── AdBlock илрүүлэлт — BlockAdBlock library-ийн арга ────────
 // ══════════════════════════════════════════════════════════════
-//
-// GitHub: github.com/sitexw/BlockAdBlock
-//
-// Яагаад energy арга нь найдвартай вэ?
-//   • AdBlock/uBlock/AdBlockPlus бvгд EasyList filter ашиглана
-//   • EasyList-д эдгээр class нэрүүд зориуд нэмэгдсэн байдаг
-//   • Bait div-ийн өндөр/харагдах байдлыг adblock өөрчилдөг
-//   • Network request биш тул сүлжээний алдаанаас ХАМААРАХГҮЙ
-//
-// baitClass — EasyList-ийн filter-т байдаг нийтлэг нэрүүд:
 const BAIT_CLASS = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links ad-banner adsbox adsbygoogle';
-
-// baitStyle — BlockAdBlock library-ийн батлагдсан style
 const BAIT_STYLE = 'width:1px!important;height:1px!important;position:absolute!important;left:-10000px!important;top:-1000px!important;';
 
-// Нэг удаагийн шалгалт
 function _singleCheck() {
   return new Promise(resolve => {
     const bait = document.createElement('div');
@@ -47,7 +35,6 @@ function _singleCheck() {
     bait.setAttribute('style', BAIT_STYLE);
     document.body.appendChild(bait);
 
-    // offsetParent-ийг нэг удаа trigger хийх (BlockAdBlock-ийн арга)
     void bait.offsetParent;
     void bait.offsetHeight;
     void bait.offsetWidth;
@@ -68,7 +55,6 @@ function _singleCheck() {
   });
 }
 
-// BlockAdBlock-ийн loop арга: 5 удаа × 50ms = нийт ~200ms
 async function detectAdBlock() {
   if (window.isTV) return false;
 
@@ -80,8 +66,6 @@ async function detectAdBlock() {
     if (blocked) blockedCount++;
   }
 
-  // 5-аас 3-аас дээш "blocked" гарвал адблок байна гэж үзнэ
-  // (1-2 нь browser render delay-ийн улмаас false positive байж болно)
   return blockedCount >= 3;
 }
 
@@ -147,7 +131,7 @@ async function checkAndEnforceAdBlock() {
   return hasAdBlock;
 }
 
-// ── 1-р зар: Popunder + Social Bar ───────────────────────────
+// ── 1-р зар: Popunder + Social Bar + Banner slot ─────────────
 function initGlobalAds() {
   if (!window.GLOBAL_ADS) return;
   const ads = window.GLOBAL_ADS;
@@ -157,6 +141,7 @@ function initGlobalAds() {
     if (ads.socialBar) _loadScript(ads.socialBar);
   }
 
+  // Banner 728x90 slot
   const slot = document.getElementById('adsterra-banner-slot');
   if (slot && ads.bannerKey) {
     slot.className = 'adsterra-banner-wrap';
@@ -173,23 +158,24 @@ function initGlobalAds() {
     _loadScript(`https://www.highperformanceformat.com/${ads.bannerKey}/invoke.js`);
   }
 
+  // Smartlink — nav дахь линк
   if (ads.smartlink) {
     const navLink = document.getElementById('nav-smartlink');
     if (navLink) navLink.href = ads.smartlink;
   }
 }
 
-// ── Banner element үүсгэх ─────────────────────────────────────
-function _zarBuildEl(b) {
+// ── Banner 728x90 element үүсгэх ──────────────────────────────
+function _zarBuildBannerEl() {
+  const key = window.GLOBAL_ADS?.bannerKey || 'd2854ac5234b3ab02d5a2839d6dbef5e';
   const wrap = document.createElement('div');
   wrap.className = 'ad-wrap';
-  const key = window.GLOBAL_ADS && window.GLOBAL_ADS.bannerKey ? window.GLOBAL_ADS.bannerKey : 'd2854ac5234b3ab02d5a2839d6dbef5e';
   const inner = document.createElement('div');
   inner.className = 'adsterra-banner-inner';
   const optScript = document.createElement('script');
-  optScript.textContent = 'window.atOptions = { "key": "' + key + '", "format": "iframe", "height": 90, "width": 728, "params": {} };';
+  optScript.textContent = `window.atOptions = { "key": "${key}", "format": "iframe", "height": 90, "width": 728, "params": {} };`;
   const invScript = document.createElement('script');
-  invScript.src   = 'https://www.highperformanceformat.com/' + key + '/invoke.js';
+  invScript.src   = `https://www.highperformanceformat.com/${key}/invoke.js`;
   invScript.async = true;
   inner.appendChild(optScript);
   inner.appendChild(invScript);
@@ -197,10 +183,34 @@ function _zarBuildEl(b) {
   return wrap;
 }
 
-// ── Banner-ууд — data_banner.json-оос ────────────────────────
+// ── Native Banner element үүсгэх ─────────────────────────────
+function _zarBuildNativeEl() {
+  const nb = window.GLOBAL_ADS?.nativeBanner;
+  if (!nb) return null;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'ad-wrap ad-wrap--native';
+
+  // Container div — native banner скрипт эндэд агуулга оруулна
+  const container = document.createElement('div');
+  container.id = nb.containerId;
+  wrap.appendChild(container);
+
+  // Invoke script
+  const s = document.createElement('script');
+  s.src   = nb.src;
+  s.async = true;
+  s.setAttribute('data-cfasync', 'false');
+  wrap.appendChild(s);
+
+  return wrap;
+}
+
+// ── Banner/Native — data_banner.json-оос ─────────────────────
 export async function insertAds() {
   _zarInjectCSS();
   document.querySelectorAll('.ad-wrap').forEach(el => el.remove());
+
   let banners = window.BANNERS || [];
   if (!banners.length) {
     try {
@@ -211,11 +221,23 @@ export async function insertAds() {
       return;
     }
   }
+
   banners.filter(b => b.active !== false).forEach(b => {
     const rowEl = document.getElementById(b.afterRowId);
     if (!rowEl) return;
+
     const section = rowEl.closest('section') || rowEl.parentElement;
-    if (section) section.insertAdjacentElement('afterend', _zarBuildEl(b));
+    if (!section) return;
+
+    let el = null;
+    if (b.type === 'native') {
+      el = _zarBuildNativeEl();
+    } else {
+      // default: adsterra banner 728x90
+      el = _zarBuildBannerEl();
+    }
+
+    if (el) section.insertAdjacentElement('afterend', el);
   });
 }
 

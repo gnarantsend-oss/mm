@@ -9,9 +9,15 @@ window.GLOBAL_ADS = {
   // 2. Social Bar — <body> төгсгөлд ачааллагдана
   socialBar: 'https://pl29062606.profitablecpmratenetwork.com/fe/a7/e6/fea7e69d388311cc0a7cfdfb22e9c372.js',
 
-  // 3. Banner 728x90 — Adsterra дансны KEY (invoke.js URL-д автоматаар орно)
+  // 3. Banner 728x90 — Adsterra дансны KEY
   bannerKey: 'd2854ac5234b3ab02d5a2839d6dbef5e',
 
   // 4. Smartlink — nav болон banner картуудын линк
   smartlink: 'https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951',
+
+  // 5. Native Banner — script src болон container key
+  nativeBanner: {
+    src: 'https://pl29072042.profitablecpmratenetwork.com/6b235f7e75dd61d796440c813e01cf75/invoke.js',
+    containerId: 'container-6b235f7e75dd61d796440c813e01cf75'
+  }
 };
