@@ -64,6 +64,58 @@
 </script>
   </head>
 <body>
+<!-- ═══════════════ WELCOME ХАКЕР ДЭЛГЭЦ ═══════════════ -->
+<div id="__welcome">
+  <canvas id="__wmatrix"></canvas>
+  <div class="__wcenter">
+    <div class="__wlogo">N</div>
+    <div class="__wlines" id="__wlines"></div>
+    <div class="__wbar"><div class="__wfill" id="__wfill"></div></div>
+    <div class="__wpct" id="__wpct">0%</div>
+  </div>
+</div>
+
+<style>
+#__welcome {
+  position:fixed;inset:0;background:#000;z-index:2147483646;
+  font-family:'Courier New',monospace;overflow:hidden;
+  transition:opacity 0.8s ease;
+}
+#__welcome.hide { opacity:0; pointer-events:none; }
+#__wmatrix { position:absolute;inset:0;opacity:0.15; }
+#__welcome .__wcenter {
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;z-index:2;
+}
+#__welcome .__wlogo {
+  font-size:72px;font-weight:900;color:#00ff41;
+  text-shadow:0 0 30px #00ff41,0 0 80px #00ff41;
+  animation:__wpulse 1s infinite alternate;
+  margin-bottom:10px;
+}
+#__welcome .__wlines {
+  color:#00ff41;font-size:13px;letter-spacing:2px;
+  text-align:left;width:320px;min-height:130px;
+  text-shadow:0 0 8px #00ff41;
+}
+#__welcome .__wlines div { margin:3px 0; opacity:0; animation:__wfadein 0.3s forwards; }
+#__welcome .__wbar {
+  width:320px;height:4px;background:#003a00;
+  border-radius:2px;overflow:hidden;margin-top:6px;
+}
+#__welcome .__wfill {
+  height:100%;width:0%;background:#00ff41;
+  box-shadow:0 0 10px #00ff41;
+  transition:width 0.2s ease;
+}
+#__welcome .__wpct {
+  color:#00ff41;font-size:12px;letter-spacing:3px;
+  text-shadow:0 0 8px #00ff41;
+}
+@keyframes __wpulse { from{filter:brightness(1)} to{filter:brightness(1.4) drop-shadow(0 0 20px #00ff41)} }
+@keyframes __wfadein { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+</style>
+
 
 <div class="toast" id="toast"></div>
 
@@ -359,81 +411,33 @@
      ========================================================= -->
 <style>
 #__devblock {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#000;
-  z-index:2147483647;
-  overflow:hidden;
-  font-family:'Courier New',monospace;
+  display:none;position:fixed;inset:0;background:#000;
+  z-index:2147483647;overflow:hidden;font-family:'Courier New',monospace;
 }
-#__devblock canvas {
-  position:absolute;
-  inset:0;
-  opacity:0.18;
-}
+#__devblock canvas { position:absolute;inset:0;opacity:0.18; }
 #__devblock .center {
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  z-index:2;
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;z-index:2;
 }
-#__devblock .skull {
-  font-size:90px;
-  animation:_pulse 0.8s infinite alternate;
-  filter:drop-shadow(0 0 30px #ff0000);
-}
+#__devblock .skull { font-size:90px;animation:_pulse 0.8s infinite alternate;filter:drop-shadow(0 0 30px #ff0000); }
 #__devblock .main-txt {
-  font-size:clamp(28px,6vw,64px);
-  font-weight:900;
-  color:#ff0000;
-  letter-spacing:6px;
-  text-transform:uppercase;
-  text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000;
-  animation:_glitch 0.15s infinite;
+  font-size:clamp(24px,5vw,56px);font-weight:900;color:#ff0000;
+  letter-spacing:6px;text-transform:uppercase;
+  text-shadow:0 0 20px #ff0000,0 0 60px #ff0000;animation:_glitch 0.15s infinite;
 }
-#__devblock .sub-txt {
-  font-size:clamp(12px,2vw,18px);
-  color:#ff4444;
-  letter-spacing:3px;
-  opacity:0.85;
-  text-shadow:0 0 10px #ff0000;
-}
-#__devblock .scan {
-  position:absolute;
-  left:0;right:0;
-  height:3px;
-  background:linear-gradient(90deg,transparent,#ff0000,transparent);
-  box-shadow:0 0 20px #ff0000;
-  animation:_scan 2s linear infinite;
-  z-index:1;
-}
-#__devblock .ip-box {
-  margin-top:10px;
-  border:1px solid #ff000055;
-  padding:10px 24px;
-  border-radius:6px;
-  color:#ff6666;
-  font-size:13px;
-  letter-spacing:2px;
-  text-align:center;
-  background:rgba(255,0,0,0.06);
-  animation:_blink 1s infinite;
-}
+#__devblock .sub-txt { font-size:clamp(12px,2vw,18px);color:#ff4444;letter-spacing:3px;opacity:0.85;text-shadow:0 0 10px #ff0000; }
+#__devblock .scan { position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#ff0000,transparent);box-shadow:0 0 20px #ff0000;animation:_scan 2s linear infinite;z-index:1; }
+#__devblock .ip-box { margin-top:10px;border:1px solid #ff000055;padding:10px 24px;border-radius:6px;color:#ff6666;font-size:13px;letter-spacing:2px;text-align:center;background:rgba(255,0,0,0.06);animation:_blink 1s infinite; }
 @keyframes _pulse { from{transform:scale(1)} to{transform:scale(1.15)} }
 @keyframes _scan  { from{top:0} to{top:100%} }
 @keyframes _blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
 @keyframes _glitch {
-  0%   {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
-  20%  {text-shadow:-2px 0 #00ffff, 2px 0 #ff0000; transform:translate(-1px,1px)}
-  40%  {text-shadow:2px 0 #ff00ff, -2px 0 #ff0000; transform:translate(1px,-1px)}
-  60%  {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
-  80%  {text-shadow:-1px 0 #00ffff, 1px 0 #ff0000; transform:translate(1px,0)}
-  100% {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
+  0%  {text-shadow:0 0 20px #ff0000,0 0 60px #ff0000;transform:translate(0)}
+  20% {text-shadow:-2px 0 #00ffff,2px 0 #ff0000;transform:translate(-1px,1px)}
+  40% {text-shadow:2px 0 #ff00ff,-2px 0 #ff0000;transform:translate(1px,-1px)}
+  60% {text-shadow:0 0 20px #ff0000,0 0 60px #ff0000;transform:translate(0)}
+  80% {text-shadow:-1px 0 #00ffff,1px 0 #ff0000;transform:translate(1px,0)}
+  100%{text-shadow:0 0 20px #ff0000,0 0 60px #ff0000;transform:translate(0)}
 }
 </style>
 
@@ -460,57 +464,65 @@
   });
   document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
   document.addEventListener('dragstart',   function(e) { e.preventDefault(); return false; });
+
+  // ── 2. Console warning + debugger trap ───────────────────
+  // Console-д том улаан warning
+  setTimeout(function() {
+    console.log('%c⛔ ЗОГС!', 'color:#ff0000;font-size:48px;font-weight:900;text-shadow:0 0 10px red;');
+    console.log('%cЭНЭ КОНСОЛ ХӨГЖҮҮЛЭГЧДЭД ЗОРИУЛАГДСАН.
+ТА ЭНД ЮУ ЧИ БИЧВЭЛ ТАНЫ МЭДЭЭЛЭЛ АЛДАГДАЖ БОЛНО.', 'color:#ff4444;font-size:16px;font-weight:700;background:#1a0000;padding:10px;border-radius:6px;');
+    console.log('%c👁 nabo.pages.dev — Бүх үйлдэл бүртгэгдэж байна.', 'color:#ff6600;font-size:13px;');
+  }, 500);
+
+  // Debugger trap — DevTools нээлттэй бол hang болно
+  setInterval(function() {
+    (function() { debugger; })();
+  }, 50);
+
+  // Console цэвэрлэх (debugger-тэй хавсарч хүчтэй ажиллана)
   setInterval(function() { try { console.clear(); } catch(e) {} }, 100);
 
-  // ── 2. Matrix код бороо ──────────────────────────────────
-  function startMatrix() {
-    var c   = document.getElementById('__matrix');
+  // ── 3. Matrix код бороо (DevTools дэлгэц) ────────────────
+  function startMatrix(canvasId, color) {
+    var c = document.getElementById(canvasId);
     if (!c) return;
     var ctx = c.getContext('2d');
-    c.width  = window.innerWidth;
-    c.height = window.innerHeight;
+    c.width = window.innerWidth; c.height = window.innerHeight;
     var cols = Math.floor(c.width / 16);
     var drops = Array(cols).fill(1);
-    var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ∑∂∫≠≈ABCDEF0123456789';
+    var chars = '01アイウエオカキクケコ∑∂∫≠≈ABCDEF0123456789ᠠᠡᠢᠣᠤ';
     setInterval(function() {
       ctx.fillStyle = 'rgba(0,0,0,0.05)';
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.fillStyle = '#ff2200';
+      ctx.fillRect(0,0,c.width,c.height);
+      ctx.fillStyle = color;
       ctx.font = '14px Courier New';
-      drops.forEach(function(y, i) {
-        var ch = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(ch, i * 16, y * 16);
-        if (y * 16 > c.height && Math.random() > 0.975) drops[i] = 0;
+      drops.forEach(function(y,i) {
+        ctx.fillText(chars[Math.floor(Math.random()*chars.length)], i*16, y*16);
+        if (y*16>c.height && Math.random()>0.975) drops[i]=0;
         drops[i]++;
       });
     }, 40);
   }
 
-  // ── 3. Аймшигтай дуу (Web Audio) ─────────────────────────
+  // ── 4. Аймшигтай дуу ─────────────────────────────────────
   function playAlarm() {
     try {
-      var ac  = new (window.AudioContext || window.webkitAudioContext)();
-      function beep(freq, start, dur, type) {
-        var o = ac.createOscillator();
-        var g = ac.createGain();
-        o.connect(g); g.connect(ac.destination);
-        o.type = type || 'sawtooth';
-        o.frequency.setValueAtTime(freq, ac.currentTime + start);
-        o.frequency.exponentialRampToValueAtTime(freq * 0.5, ac.currentTime + start + dur);
-        g.gain.setValueAtTime(0.3, ac.currentTime + start);
-        g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + start + dur);
-        o.start(ac.currentTime + start);
-        o.stop(ac.currentTime + start + dur);
+      var ac = new (window.AudioContext||window.webkitAudioContext)();
+      function beep(freq,start,dur,type) {
+        var o=ac.createOscillator(),g=ac.createGain();
+        o.connect(g);g.connect(ac.destination);
+        o.type=type||'sawtooth';
+        o.frequency.setValueAtTime(freq,ac.currentTime+start);
+        o.frequency.exponentialRampToValueAtTime(freq*0.5,ac.currentTime+start+dur);
+        g.gain.setValueAtTime(0.3,ac.currentTime+start);
+        g.gain.exponentialRampToValueAtTime(0.001,ac.currentTime+start+dur);
+        o.start(ac.currentTime+start);o.stop(ac.currentTime+start+dur);
       }
-      beep(880, 0,    0.2, 'sawtooth');
-      beep(440, 0.25, 0.2, 'sawtooth');
-      beep(880, 0.5,  0.2, 'sawtooth');
-      beep(220, 0.75, 0.5, 'sawtooth');
-      beep(660, 0,    1.2, 'square');
+      beep(880,0,0.2);beep(440,0.25,0.2);beep(880,0.5,0.2);beep(220,0.75,0.5);beep(660,0,1.2,'square');
     } catch(e) {}
   }
 
-  // ── 4. Хуурамч IP scan ───────────────────────────────────
+  // ── 5. Хуурамч IP scan ───────────────────────────────────
   function fakeIPScan() {
     var box = document.getElementById('__ipbox');
     if (!box) return;
@@ -521,73 +533,115 @@
       '⚡ БҮРТГЭЛ РҮҮ ИЛГЭЭЖ БАЙНА...',
       '🚨 ХЯНАЛТ ИДЭВХЖЛЭЭ — ТА БАРИГДЛАА'
     ];
-    var i = 0;
-    var iv = setInterval(function() {
-      if (i < steps.length) { box.textContent = steps[i++]; }
-      else { clearInterval(iv); }
+    var i=0;
+    var iv=setInterval(function() {
+      if (i<steps.length) { box.textContent=steps[i++]; }
+      else clearInterval(iv);
     }, 1200);
   }
 
-  // ── 5. DevTools илрүүлэх ─────────────────────────────────
-  var _overlay  = document.getElementById('__devblock');
-  var _devOpen  = false;
-  var _thresh   = 160;
-  var _alarmed  = false;
-  var _matrixOn = false;
-
+  // ── 6. DevTools илрүүлэх ─────────────────────────────────
+  var _overlay=document.getElementById('__devblock');
+  var _devOpen=false,_thresh=160,_alarmed=false,_matrixOn=false;
   setInterval(function() {
-    var open = (window.outerWidth  - window.innerWidth  > _thresh) ||
-               (window.outerHeight - window.innerHeight > _thresh);
-    if (open !== _devOpen) {
-      _devOpen = open;
-      if (_overlay) _overlay.style.display = open ? 'block' : 'none';
+    var open=(window.outerWidth-window.innerWidth>_thresh)||(window.outerHeight-window.innerHeight>_thresh);
+    if (open!==_devOpen) {
+      _devOpen=open;
+      if (_overlay) _overlay.style.display=open?'block':'none';
       if (open) {
         document.querySelectorAll('video,iframe').forEach(function(el) {
-          try {
-            if (el.tagName === 'VIDEO') el.pause();
-            else { var s = el.src; el.src = ''; el.src = s; }
-          } catch(e) {}
+          try { if(el.tagName==='VIDEO') el.pause(); else {var s=el.src;el.src='';el.src=s;} } catch(e){}
         });
-        if (!_matrixOn) { startMatrix(); _matrixOn = true; }
-        if (!_alarmed)  { playAlarm(); fakeIPScan(); _alarmed = true; }
+        if (!_matrixOn) { startMatrix('__matrix','#ff2200'); _matrixOn=true; }
+        if (!_alarmed)  { playAlarm(); fakeIPScan(); _alarmed=true; }
       }
     }
   }, 500);
 
-  // ── 6. Tab-аас гарвал видео pause ────────────────────────
+  // ── 7. Tab switch → видео pause ──────────────────────────
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
-      document.querySelectorAll('video').forEach(function(v) {
-        v._wasPlaying = !v.paused; v.pause();
-      });
+      document.querySelectorAll('video').forEach(function(v) { v._wasPlaying=!v.paused; v.pause(); });
     } else {
-      document.querySelectorAll('video').forEach(function(v) {
-        if (v._wasPlaying) v.play().catch(function(){});
-      });
+      document.querySelectorAll('video').forEach(function(v) { if(v._wasPlaying) v.play().catch(function(){}); });
     }
   });
 
-  // ── 7. Copy watermark ────────────────────────────────────
+  // ── 8. Copy watermark ────────────────────────────────────
   document.addEventListener('copy', function(e) {
-    var sel = window.getSelection ? window.getSelection().toString() : '';
+    var sel=window.getSelection?window.getSelection().toString():'';
     if (!sel) return;
-    try {
-      e.clipboardData.setData('text/plain', sel + '\n\n— Эх сурвалж: nabo.pages.dev');
-      e.preventDefault();
-    } catch(err) {}
+    try { e.clipboardData.setData('text/plain', sel+'\n\n— Эх сурвалж: nabo.pages.dev'); e.preventDefault(); } catch(err){}
   });
 
-  // ── 8. Нуугдмал watermark ────────────────────────────────
+  // ── 9. Нуугдмал watermark ────────────────────────────────
   document.addEventListener('DOMContentLoaded', function() {
-    var uid = localStorage.getItem('_nabo_uid');
+    var uid=localStorage.getItem('_nabo_uid');
     if (!uid) {
-      uid = 'U' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase();
-      localStorage.setItem('_nabo_uid', uid);
+      uid='U'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,6).toUpperCase();
+      localStorage.setItem('_nabo_uid',uid);
     }
-    var wm = document.createElement('div');
-    wm.style.cssText = 'position:fixed;bottom:8px;right:10px;font-size:9px;color:rgba(255,255,255,0.04);pointer-events:none;z-index:9999;user-select:none;letter-spacing:1px;';
-    wm.textContent = 'nabo · ' + uid;
+    var wm=document.createElement('div');
+    wm.style.cssText='position:fixed;bottom:8px;right:10px;font-size:9px;color:rgba(255,255,255,0.04);pointer-events:none;z-index:9999;user-select:none;letter-spacing:1px;';
+    wm.textContent='nabo · '+uid;
     document.body.appendChild(wm);
+  });
+
+  // ── 10. Welcome хакер дэлгэц ─────────────────────────────
+  var _wLines = [
+    { t:300,  txt:'▶ NABOOSHY СИСТЕМ ЭХЛҮҮЛЖ БАЙНА...' },
+    { t:900,  txt:'✓ СҮЛЖЭЭНИЙ ХОЛБОЛТ ТОГТООГДЛОО' },
+    { t:1500, txt:'✓ ХЭРЭГЛЭГЧИЙН БҮРТГЭЛ ШАЛГАЖ БАЙНА...' },
+    { t:2100, txt:'✓ АЮУЛГҮЙ БАЙДЛЫН ШАЛГАЛТ ХИЙЖ БАЙНА...' },
+    { t:2700, txt:'✓ КОНТЕНТЫН САН АЧААЛЛАЖ БАЙНА...' },
+    { t:3300, txt:'✓ БЭЛЭН — ТАВТАЙ МОРИЛ 🎬' },
+  ];
+  var _wPcts = [0,18,36,55,75,100];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var wel  = document.getElementById('__welcome');
+    var lines= document.getElementById('__wlines');
+    var fill = document.getElementById('__wfill');
+    var pct  = document.getElementById('__wpct');
+    if (!wel) return;
+
+    // Welcome Matrix (ногоон)
+    startMatrix('__wmatrix','#00ff41');
+
+    // Startup дуу
+    try {
+      var ac2=new(window.AudioContext||window.webkitAudioContext)();
+      function wbeep(freq,start,dur){
+        var o=ac2.createOscillator(),g=ac2.createGain();
+        o.connect(g);g.connect(ac2.destination);
+        o.type='sine';
+        o.frequency.setValueAtTime(freq,ac2.currentTime+start);
+        g.gain.setValueAtTime(0.15,ac2.currentTime+start);
+        g.gain.exponentialRampToValueAtTime(0.001,ac2.currentTime+start+dur);
+        o.start(ac2.currentTime+start);o.stop(ac2.currentTime+start+dur);
+      }
+      wbeep(440,0,0.1);wbeep(550,0.12,0.1);wbeep(660,0.24,0.1);wbeep(880,0.36,0.25);
+    } catch(e){}
+
+    _wLines.forEach(function(item, idx) {
+      setTimeout(function() {
+        var d=document.createElement('div');
+        d.textContent=item.txt;
+        d.style.animationDelay='0s';
+        if (lines) lines.appendChild(d);
+        if (fill) fill.style.width=_wPcts[idx]+'%';
+        if (pct)  pct.textContent=_wPcts[idx]+'%';
+      }, item.t);
+    });
+
+    setTimeout(function() {
+      if (fill) fill.style.width='100%';
+      if (pct)  pct.textContent='100%';
+      setTimeout(function() {
+        wel.classList.add('hide');
+        setTimeout(function() { wel.style.display='none'; }, 800);
+      }, 600);
+    }, 3800);
   });
 
 })();
