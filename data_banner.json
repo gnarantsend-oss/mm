@@ -2,25 +2,19 @@
   {
     "id": "id1",
     "type": "adsterra",
-    "afterRowId": "rowAction",
+    "afterRowId": "rowSeries",
     "active": true
   },
   {
     "id": "id2",
-    "type": "adsterra",
-    "afterRowId": "rowDrama",
+    "type": "native",
+    "afterRowId": "rowGames",
     "active": true
   },
   {
     "id": "id3",
     "type": "adsterra",
-    "afterRowId": "rowSciFi",
-    "active": true
-  },
-  {
-    "id": "id4",
-    "type": "adsterra",
-    "afterRowId": "rowHorror",
+    "afterRowId": "rowInternational",
     "active": true
   }
 ]
