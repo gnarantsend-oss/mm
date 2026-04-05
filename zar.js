@@ -22,12 +22,63 @@ function _loadScript(src, onload) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// ── AdBlock илрүүлэлт + хаалтын дэлгэц ──────────────────────
+// ── AdBlock илрүүлэлт — найдвартай нэг арга ─────────────────
 // ══════════════════════════════════════════════════════════════
+//
+// Яагаад зөвхөн bait-div арга вэ?
+//   • Network fetch (Google Ads) → сүлжээний алдаа, firewall,
+//     удаан connection дээр adblock байхгүй ч fail болдог.
+//   • Bait-div → adblock CSS filter-ийн тусгай зорилт.
+//     Бусад юм нь огт нөлөөлдөггүй тул false positive байхгүй.
+//
+// Яагаад 2 удаа шалгах вэ?
+//   • Эхний шалгалт хурдан ачаалал дээр өргөн filter-ийг
+//     хүлээхгүйгээр гарч болдог. 800ms дараа давтвал найдвартай.
 
+function _checkBaitDiv() {
+  return new Promise(resolve => {
+    // ① Bait-д хэрэглэгдэх тусгай CSS — height:1px тогтооно
+    const style = document.createElement('style');
+    style.id = '_zar_bait_style';
+    style.textContent = '#_zar_ad_bait{display:block;height:1px;width:1px;}';
+    document.head.appendChild(style);
+
+    // ② Adblock-ийн хамгийн нийтлэг target class-ууд
+    const bait = document.createElement('div');
+    bait.id    = '_zar_ad_bait';
+    bait.className = 'ad ads adsbox adsbygoogle pub_300x250 text-ad';
+    bait.setAttribute('aria-hidden', 'true');
+    // Харагдахгүй газар байрлуул — layout-д нөлөөлөхгүй
+    bait.style.cssText = 'position:fixed;top:-9999px;left:-9999px;pointer-events:none;z-index:-1;';
+    document.body.appendChild(bait);
+
+    // ③ AdBlock-д CSS filter хэрэглэх хугацаа өг
+    setTimeout(() => {
+      // offsetHeight === 0  →  adblock display:none !important тавьсан
+      const blocked = bait.offsetHeight === 0;
+      bait.remove();
+      style.remove();
+      resolve(blocked);
+    }, 300);
+  });
+}
+
+// 2 удаа шалгаж баталгаажуулна — хоёулаа true байж гэмэ adblock гэж үзнэ
+async function detectAdBlock() {
+  if (window.isTV) return false;
+
+  const first = await _checkBaitDiv();
+  if (!first) return false;                    // Эхний шалгалтад blocked биш → adblock байхгүй
+
+  // Эхний шалгалтад blocked → 800ms хүлээгээд дахин баталгаажуулна
+  await new Promise(r => setTimeout(r, 800));
+  const second = await _checkBaitDiv();
+  return second;                               // Хоёулаа true байж гэмэ adblock гэж үзнэ
+}
+
+// ── AdBlock wall ─────────────────────────────────────────────
 function _buildAdBlockWall() {
   if (document.getElementById('_adblock_wall')) return;
-
   const wall = document.createElement('div');
   wall.id = '_adblock_wall';
   wall.innerHTML = `
@@ -68,56 +119,13 @@ function _removeAdBlockWall() {
   document.body.style.overflow = '';
 }
 
-// AdBlock шалгах — 2 найдвартай арга
-async function detectAdBlock() {
-  if (window.isTV) return false;
-
-  let blocked = false;
-
-  // Арга 1: Хуурамч зарын div — нуугдсан эсэхийг шалгах
-  try {
-    const bait = document.createElement('div');
-    bait.className = 'ad ads adsbox ad-placement carbon-ads pub_300x250 pub_300x250m';
-    bait.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;pointer-events:none;';
-    document.body.appendChild(bait);
-    await new Promise(r => setTimeout(r, 150));
-    const cs = window.getComputedStyle(bait);
-    if (
-      cs.display === 'none' ||
-      cs.visibility === 'hidden' ||
-      cs.opacity === '0' ||
-      bait.offsetHeight === 0
-    ) {
-      blocked = true;
-    }
-    bait.remove();
-  } catch (e) { blocked = true; }
-
-  if (blocked) return true;
-
-  // Арга 2: Зарын network request хаагдсан эсэх
-  try {
-    await new Promise((resolve, reject) => {
-      const t = setTimeout(() => reject(new Error('timeout')), 2000);
-      const img = new Image();
-      img.onload  = () => { clearTimeout(t); resolve(); };
-      img.onerror = () => { clearTimeout(t); reject(); };
-      img.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?t=' + Date.now();
-    });
-  } catch (e) {
-    blocked = true;
-  }
-
-  return blocked;
-}
-
 async function checkAndEnforceAdBlock() {
   _zarInjectCSS();
   const hasAdBlock = await detectAdBlock();
 
   if (hasAdBlock) {
     _buildAdBlockWall();
-    // 5 секунд тутамд дахин шалгах
+    // 5 секунд тутамд дахин шалгах — унтраасан бол wall хаана
     const iv = setInterval(async () => {
       const still = await detectAdBlock();
       if (!still) {
@@ -141,14 +149,12 @@ function initGlobalAds() {
     if (ads.socialBar) _loadScript(ads.socialBar);
   }
 
-  // Banner 728x90
   const slot = document.getElementById('adsterra-banner-slot');
   if (slot && ads.bannerKey) {
     slot.className = 'adsterra-banner-wrap';
     const inner = document.createElement('div');
     inner.className = 'adsterra-banner-inner';
     slot.appendChild(inner);
-
     window.atOptions = {
       'key'    : ads.bannerKey,
       'format' : 'iframe',
@@ -159,7 +165,6 @@ function initGlobalAds() {
     _loadScript(`https://www.highperformanceformat.com/${ads.bannerKey}/invoke.js`);
   }
 
-  // Nav smartlink
   if (ads.smartlink) {
     const navLink = document.getElementById('nav-smartlink');
     if (navLink) navLink.href = ads.smartlink;
@@ -170,22 +175,17 @@ function initGlobalAds() {
 function _zarBuildEl(b) {
   const wrap = document.createElement('div');
   wrap.className = 'ad-wrap';
-
   const key = window.GLOBAL_ADS && window.GLOBAL_ADS.bannerKey ? window.GLOBAL_ADS.bannerKey : 'd2854ac5234b3ab02d5a2839d6dbef5e';
   const inner = document.createElement('div');
   inner.className = 'adsterra-banner-inner';
-
   const optScript = document.createElement('script');
   optScript.textContent = 'window.atOptions = { "key": "' + key + '", "format": "iframe", "height": 90, "width": 728, "params": {} };';
-
   const invScript = document.createElement('script');
   invScript.src   = 'https://www.highperformanceformat.com/' + key + '/invoke.js';
   invScript.async = true;
-
   inner.appendChild(optScript);
   inner.appendChild(invScript);
   wrap.appendChild(inner);
-
   return wrap;
 }
 
@@ -193,7 +193,6 @@ function _zarBuildEl(b) {
 export async function insertAds() {
   _zarInjectCSS();
   document.querySelectorAll('.ad-wrap').forEach(el => el.remove());
-
   let banners = window.BANNERS || [];
   if (!banners.length) {
     try {
@@ -204,7 +203,6 @@ export async function insertAds() {
       return;
     }
   }
-
   banners.filter(b => b.active !== false).forEach(b => {
     const rowEl = document.getElementById(b.afterRowId);
     if (!rowEl) return;
@@ -216,9 +214,7 @@ export async function insertAds() {
 // ── Эхлүүлэх ─────────────────────────────────────────────────
 window.addEventListener('load', async () => {
   const blocked = await checkAndEnforceAdBlock();
-  if (!blocked) {
-    initGlobalAds();
-  }
+  if (!blocked) initGlobalAds();
 });
 
 window.insertAds = insertAds;
