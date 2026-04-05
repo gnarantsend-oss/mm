@@ -1,447 +1,272 @@
 /* ═══════════════════════════════════════════════════════════════════
-   GLOW.CSS — Nabooshy 2026 Aurora · RGB · Neon · Gradient Effects
-   Бүх ажиллагаатай элементүүд гэрэлтэж, өнгө солигдоно
+   GLOW.CSS v2 — Mobile-Safe Aurora · RGB · Neon · Gradient Effects
+   filter:hue-rotate() огт хэрэглэхгүй (mobile Safari эвддэг)
+   Зөвхөн: background-position · box-shadow · text-shadow · transform
    ═══════════════════════════════════════════════════════════════════ */
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   KEYFRAMES — Үндсэн анимэйшнүүд
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-/* Бүх өнгөөр эргэх (hue-rotate) */
-@keyframes aurora {
-  0%   { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* Gradient текст урсах */
+/* KEYFRAMES */
 @keyframes gradFlow {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-/* Гэрэл амьсгалах (pulse) */
-@keyframes glowBreath {
-  0%, 100% { box-shadow: 0 0 10px var(--glow-color, rgba(229,9,20,.5)),
-                          0 0 30px var(--glow-color, rgba(229,9,20,.2)); }
-  50%       { box-shadow: 0 0 20px var(--glow-color, rgba(229,9,20,.8)),
-                          0 0 60px var(--glow-color, rgba(229,9,20,.35)),
-                          0 0 100px var(--glow-color, rgba(229,9,20,.15)); }
-}
-
-/* Текст гэрэл амьсгалах */
-@keyframes textGlowBreath {
-  0%, 100% { text-shadow: 0 0 8px currentColor, 0 0 20px currentColor; opacity: 1; }
-  50%       { text-shadow: 0 0 16px currentColor, 0 0 40px currentColor, 0 0 80px currentColor; opacity: .9; }
-}
-
-/* RGB border sweep */
-@keyframes rgbBorder {
-  0%   { border-color: hsl(0,   100%, 60%); box-shadow: 0 0 12px hsl(0,   100%, 60%); }
-  16%  { border-color: hsl(60,  100%, 60%); box-shadow: 0 0 12px hsl(60,  100%, 60%); }
-  33%  { border-color: hsl(120, 100%, 55%); box-shadow: 0 0 12px hsl(120, 100%, 55%); }
-  50%  { border-color: hsl(180, 100%, 55%); box-shadow: 0 0 12px hsl(180, 100%, 55%); }
-  66%  { border-color: hsl(240, 100%, 65%); box-shadow: 0 0 12px hsl(240, 100%, 65%); }
-  83%  { border-color: hsl(300, 100%, 60%); box-shadow: 0 0 12px hsl(300, 100%, 60%); }
-  100% { border-color: hsl(360, 100%, 60%); box-shadow: 0 0 12px hsl(360, 100%, 60%); }
-}
-
-/* Shimmer sweep */
-@keyframes shimmer {
+@keyframes shimmerSweep {
   0%   { background-position: -200% center; }
   100% { background-position:  200% center; }
 }
-
-/* Neon flicker (logo) */
-@keyframes neonFlicker {
-  0%, 95%, 100% { opacity: 1; }
-  96%           { opacity: .85; }
-  97%           { opacity: 1; }
-  98%           { opacity: .9; }
+@keyframes glowBreath {
+  0%, 100% { box-shadow: 0 0 8px  var(--gb-c, rgba(229,9,20,.5)), 0 0 24px var(--gb-c, rgba(229,9,20,.2)); }
+  50%       { box-shadow: 0 0 18px var(--gb-c, rgba(229,9,20,.85)), 0 0 50px var(--gb-c, rgba(229,9,20,.35)), 0 0 90px var(--gb-c, rgba(229,9,20,.1)); }
 }
-
-/* Float up-down */
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 6px currentColor, 0 0 16px currentColor; }
+  50%       { text-shadow: 0 0 14px currentColor, 0 0 36px currentColor, 0 0 70px currentColor; }
+}
 @keyframes floatY {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-4px); }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes rgbBorder {
+  0%   { border-color: hsl(0,100%,62%);   box-shadow: 0 0 10px hsl(0,100%,62%,.5); }
+  14%  { border-color: hsl(51,100%,58%);  box-shadow: 0 0 10px hsl(51,100%,58%,.5); }
+  28%  { border-color: hsl(120,90%,48%);  box-shadow: 0 0 10px hsl(120,90%,48%,.5); }
+  42%  { border-color: hsl(180,100%,50%); box-shadow: 0 0 10px hsl(180,100%,50%,.5); }
+  57%  { border-color: hsl(217,100%,65%); box-shadow: 0 0 10px hsl(217,100%,65%,.5); }
+  71%  { border-color: hsl(270,90%,65%);  box-shadow: 0 0 10px hsl(270,90%,65%,.5); }
+  85%  { border-color: hsl(320,100%,60%); box-shadow: 0 0 10px hsl(320,100%,60%,.5); }
+  100% { border-color: hsl(360,100%,62%); box-shadow: 0 0 10px hsl(360,100%,62%,.5); }
+}
+@keyframes cardGlowShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+@keyframes neonFlicker {
+  0%, 92%, 94%, 100% { opacity: 1; }
+  93%                 { opacity: .82; }
 }
 
-/* Rotate hue on glow shadow */
-@keyframes rgbShadow {
-  0%   { box-shadow: 0 4px 20px hsl(0,  100%,55%,.6), 0 0 40px hsl(0,  100%,55%,.2); }
-  25%  { box-shadow: 0 4px 20px hsl(90, 100%,50%,.6), 0 0 40px hsl(90, 100%,50%,.2); }
-  50%  { box-shadow: 0 4px 20px hsl(180,100%,50%,.6), 0 0 40px hsl(180,100%,50%,.2); }
-  75%  { box-shadow: 0 4px 20px hsl(270,100%,60%,.6), 0 0 40px hsl(270,100%,60%,.2); }
-  100% { box-shadow: 0 4px 20px hsl(360,100%,55%,.6), 0 0 40px hsl(360,100%,55%,.2); }
-}
-
-/* Card glow color shift */
-@keyframes cardGlow {
-  0%   { background: hsl(0,   80%, 50%); }
-  33%  { background: hsl(200, 80%, 50%); }
-  66%  { background: hsl(280, 80%, 55%); }
-  100% { background: hsl(0,   80%, 50%); }
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   LOGO — Neon glow + flicker
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── LOGO ── */
 .logo-mark {
-  animation: glowBreath 3s ease-in-out infinite, neonFlicker 8s linear infinite;
-  --glow-color: var(--red-glow);
+  --gb-c: rgba(229,9,20,.55);
+  animation: glowBreath 3s ease-in-out infinite, neonFlicker 9s linear infinite;
+  will-change: box-shadow;
 }
 .logo-name {
-  background: linear-gradient(90deg,
-    #fff 0%, #ff6b6b 20%, #fff 35%, #ffd700 50%, #fff 65%, #7eb3ff 80%, #fff 100%);
+  isolation: isolate;
+  background: linear-gradient(90deg, #ffffff 0%, #ffaaaa 20%, #ffffff 35%, #ffe88a 52%, #ffffff 65%, #a8d4ff 82%, #ffffff 100%);
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 6s linear infinite;
 }
-.logo-name span {
-  /* inherits gradient from parent */
-  -webkit-text-fill-color: inherit;
-}
+.logo-name span { -webkit-text-fill-color: inherit; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAVBAR — Active tab glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── NAVBAR ACTIVE ── */
 .nav-tab.active {
-  background: rgba(255,255,255,.1);
-  box-shadow:
-    0 0 12px rgba(229,9,20,.4),
-    inset 0 1px 0 rgba(255,255,255,.15);
+  --gb-c: rgba(229,9,20,.4);
   animation: glowBreath 3s ease-in-out infinite;
-  --glow-color: var(--red-glow);
+  will-change: box-shadow;
 }
-.nav-tab.active .tab-icon {
-  animation: floatY 2.5s ease-in-out infinite;
-  display: inline-block;
-}
+.nav-tab.active .tab-icon { display: inline-block; animation: floatY 2.8s ease-in-out infinite; }
+.nav-settings-btn { --gb-c: rgba(229,9,20,.3); animation: glowBreath 4s ease-in-out infinite; }
+.nav-settings-btn:hover { animation: rgbBorder 2.5s linear infinite; }
 
-/* Settings button slow rotate glow */
-.nav-settings-btn {
-  animation: aurora 6s linear infinite;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO BUTTONS — Neon pulse
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.btn-watch {
-  position: relative;
-  overflow: hidden;
-  animation: glowBreath 2.5s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.6);
-}
-/* shimmer sweep on btn-watch */
-.btn-watch::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(105deg,
-    transparent 30%,
-    rgba(255,255,255,.25) 50%,
-    transparent 70%);
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
-  pointer-events: none;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO TAG — Aurora shimmer
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── HERO TAG ── */
 .hero-tag {
-  background: linear-gradient(90deg,
-    var(--red) 0%, #ff6b35 25%, var(--red) 50%, #e91e8c 75%, var(--red) 100%);
+  background: linear-gradient(90deg, #e50914 0%, #ff6b35 25%, #e50914 50%, #e91e8c 75%, #e50914 100%);
   background-size: 300% auto;
+  will-change: background-position;
   animation: gradFlow 4s linear infinite;
-  box-shadow:
-    0 0 10px var(--red-glow),
-    0 0 30px rgba(229,9,20,.25);
+  box-shadow: 0 0 10px rgba(229,9,20,.5), 0 0 28px rgba(229,9,20,.2);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO TITLE — gradient text
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── HERO TITLE ── */
 .hero-title {
-  background: linear-gradient(135deg,
-    #ffffff 0%,
-    #ffe0e0 30%,
-    #ffffff 50%,
-    #e0f0ff 75%,
-    #ffffff 100%);
+  isolation: isolate;
+  background: linear-gradient(120deg, #ffffff 0%, #ffe4e4 30%, #ffffff 50%, #ddeeff 75%, #ffffff 100%);
   background-size: 250% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 7s ease-in-out infinite;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SECTION TITLES — gradient + glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── SECTION TITLES ── */
 .sec-title {
-  background: linear-gradient(90deg,
-    #ffffff 0%,
-    rgba(255,255,255,.7) 40%,
-    #ffffff 60%,
-    rgba(229,9,20,.9) 80%,
-    #ffffff 100%);
-  background-size: 300% auto;
+  isolation: isolate;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,.65) 35%, #ffffff 55%, #ff6b6b 78%, #ffffff 100%);
+  background-size: 280% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 8s linear infinite;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MOVIE CARDS — rainbow glow on hover
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── STARS ── */
+.hero-meta .star, .mcard-sub .st, .m-meta .st {
+  color: var(--gold);
+  animation: textGlow 2.5s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+/* ── BTN WATCH ── */
+.btn-watch {
+  position: relative; overflow: hidden; isolation: isolate;
+  --gb-c: rgba(229,9,20,.6);
+  animation: glowBreath 2.5s ease-in-out infinite;
+  will-change: box-shadow;
+}
+.btn-watch::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 2.8s linear infinite;
+}
+
+/* ── GENRE PILLS active ── */
+.gpill.on {
+  background: rgba(255,255,255,.06) !important;
+  color: #fff !important;
+  will-change: border-color, box-shadow;
+  animation: rgbBorder 3.5s linear infinite;
+}
+
+/* ── MOVIE CARDS ── */
 @media (hover: hover) {
   .mcard:hover::before {
-    animation: cardGlow 3s linear infinite;
-    opacity: 0.7;
-    filter: blur(28px);
+    background: linear-gradient(45deg, hsl(0,80%,50%) 0%, hsl(200,80%,50%) 50%, hsl(280,80%,55%) 100%);
+    background-size: 300% 300%;
+    animation: cardGlowShift 3s ease-in-out infinite;
+    opacity: .7;
   }
-  .mcard:hover .mcard-poster-wrap {
-    border: 2px solid transparent !important;
-    background-clip: padding-box;
-    animation: rgbBorder 4s linear infinite;
-  }
+  .mcard:hover .mcard-poster-wrap { animation: rgbBorder 3.5s linear infinite; }
+  .mcard:hover .mcard-play { --gb-c: rgba(229,9,20,.75); animation: glowBreath 1.2s ease-in-out infinite; }
 }
-/* Touch: tap glow */
 .mcard:active::before {
-  opacity: 0.8;
-  animation: cardGlow 1.5s linear infinite;
+  opacity: .6;
+  background: linear-gradient(45deg, hsl(0,80%,50%), hsl(200,80%,50%));
+  background-size: 200% 200%;
+  animation: cardGlowShift 1.5s linear infinite;
 }
+.mcard-play { --gb-c: rgba(229,9,20,.6); animation: glowBreath 2.2s ease-in-out infinite; will-change: box-shadow; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STAR RATING — gold pulse
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.hero-meta .star,
-.mcard-sub .st,
-.m-meta .st {
-  animation: textGlowBreath 2.5s ease-in-out infinite;
-  color: var(--gold);
-}
+/* ── BOTTOM NAV active ── */
+.bnav-item.active .bnav-icon { display: inline-block; animation: floatY 2.5s ease-in-out infinite; will-change: transform; }
+.bnav-item.active .bnav-label { color: var(--red); animation: textGlow 3s ease-in-out infinite; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GENRE PILLS — active RGB border
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.gpill.on {
-  background: transparent !important;
-  color: #fff !important;
-  animation: rgbBorder 3s linear infinite;
-  text-shadow: 0 0 8px rgba(255,255,255,.6);
-}
+/* ── SCROLL BTNS ── */
+.scroll-btn:hover { --gb-c: rgba(229,9,20,.5); animation: glowBreath 1.5s ease-in-out infinite; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BOTTOM NAV — active item aurora glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.bnav-item.active .bnav-icon {
-  animation:
-    floatY 2.5s ease-in-out infinite,
-    aurora 4s linear infinite;
-  display: inline-block;
-}
-.bnav-item.active::after {
-  animation: aurora 3s linear infinite;
-  box-shadow: 0 0 8px currentColor;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SCROLL BUTTONS — hover neon
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.scroll-btn:hover {
-  color: #fff;
-  text-shadow: 0 0 10px #fff, 0 0 20px var(--red);
-  animation: glowBreath 1.5s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.5);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PLAYER PLAY BUTTON — pulse glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.mcard-play {
-  animation: glowBreath 2s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.7);
-}
-.mcard:hover .mcard-play {
-  animation: glowBreath 1.2s ease-in-out infinite, aurora 4s linear infinite;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SETTINGS PANEL — aurora border top
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── SETTINGS SHEET rainbow top ── */
+.settings-sheet { position: relative; }
 .settings-sheet::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    hsl(0,100%,60%) 0%,
-    hsl(60,100%,60%) 16%,
-    hsl(120,100%,55%) 33%,
-    hsl(180,100%,55%) 50%,
-    hsl(240,100%,65%) 66%,
-    hsl(300,100%,60%) 83%,
-    hsl(360,100%,60%) 100%);
-  background-size: 200% auto;
-  animation: gradFlow 3s linear infinite;
-  z-index: 10;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 10;
   border-radius: 28px 28px 0 0;
+  background: linear-gradient(90deg, hsl(0,100%,62%) 0%, hsl(51,100%,58%) 16%, hsl(120,90%,48%) 33%, hsl(180,100%,50%) 50%, hsl(217,100%,65%) 66%, hsl(270,90%,65%) 83%, hsl(0,100%,62%) 100%);
+  background-size: 200% auto;
+  will-change: background-position;
+  animation: gradFlow 3s linear infinite;
 }
-@media (min-width: 560px) {
-  .settings-sheet::before { border-radius: 24px 24px 0 0; }
-}
+@media (min-width: 560px) { .settings-sheet::before { border-radius: 24px 24px 0 0; } }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SETTINGS TITLE — gradient shimmer
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── SETTINGS TITLE ── */
 .settings-title {
-  background: linear-gradient(90deg,
-    #fff 0%, #ff9999 25%, #fff 45%, #99ccff 65%, #ccffcc 80%, #fff 100%);
+  isolation: isolate;
+  background: linear-gradient(90deg, #fff 0%, #ffaaaa 22%, #fff 40%, #aad4ff 62%, #ccffcc 80%, #fff 100%);
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 5s linear infinite;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SETTINGS TOGGLE — checked glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.s-toggle input:checked ~ .s-toggle-track {
-  animation: glowBreath 2.5s ease-in-out infinite;
-  --glow-color: var(--red-glow);
-}
+/* ── TOGGLE checked ── */
+.s-toggle input:checked ~ .s-toggle-track { --gb-c: var(--red-glow); animation: glowBreath 2.5s ease-in-out infinite; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   TOAST — left border aurora
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.toast.show {
-  animation: rgbBorder 3s linear infinite;
-  border-left-width: 4px;
-}
+/* ── TOAST ── */
+.toast.show { border-left-width: 3px; animation: rgbBorder 3s linear infinite; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WEATHER CARDS — hover aurora
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.w-card:hover {
-  animation: rgbBorder 4s linear infinite !important;
-}
+/* ── WEATHER ── */
 .w-temp-big {
+  isolation: isolate;
   background: linear-gradient(135deg, #fff 0%, #7eb3ff 50%, #fff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 5s ease-in-out infinite;
 }
-.w-icon-big {
-  animation: floatY 3s ease-in-out infinite;
-  display: inline-block;
-}
+.w-card:hover { animation: rgbBorder 4s linear infinite; }
+.w-icon-big { display: inline-block; animation: floatY 3s ease-in-out infinite; will-change: transform; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GAME CARDS — hover neon
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.game-card:hover {
-  animation: glowBreath 2s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.3);
-}
-.game-emoji {
-  transition: transform .3s;
-}
-.game-card:hover .game-emoji {
-  animation: aurora 3s linear infinite, floatY 2s ease-in-out infinite;
-}
+/* ── GAMES ── */
+.game-card:hover { --gb-c: rgba(229,9,20,.3); animation: glowBreath 2s ease-in-out infinite; }
+.game-card:hover .game-emoji { animation: floatY 2s ease-in-out infinite; }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAV-RIGHT promo link — shimmer
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── PROMO LINK ── */
 #nav-smartlink {
-  background: linear-gradient(90deg,
-    var(--gold) 0%, #fff8b0 30%, var(--gold) 60%, #ffa500 80%, var(--gold) 100%);
+  isolation: isolate;
+  background: linear-gradient(90deg, var(--gold) 0%, #fff5a0 30%, var(--gold) 55%, #ffb300 80%, var(--gold) 100%);
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  will-change: background-position;
   animation: gradFlow 4s linear infinite;
-  border-color: transparent !important;
-  position: relative;
-}
-#nav-smartlink::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 6px;
-  padding: 1px;
-  background: linear-gradient(90deg, var(--gold), #fff, var(--gold), #ffa500, var(--gold));
-  background-size: 300% auto;
-  animation: gradFlow 4s linear infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  border: 1px solid rgba(255,193,7,.5) !important;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO PROGRESS — rainbow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── HERO PROGRESS rainbow ── */
 .hero-progress-fill {
-  background: linear-gradient(90deg,
-    hsl(0,100%,55%) 0%,
-    hsl(60,100%,55%) 20%,
-    hsl(120,100%,45%) 40%,
-    hsl(200,100%,55%) 60%,
-    hsl(270,100%,60%) 80%,
-    hsl(330,100%,55%) 100%);
+  background: linear-gradient(90deg, hsl(0,100%,55%) 0%, hsl(60,100%,55%) 20%, hsl(120,90%,45%) 40%, hsl(200,100%,55%) 60%, hsl(270,100%,60%) 80%, hsl(330,100%,55%) 100%);
   background-size: 300% 100%;
+  will-change: background-position;
   animation: gradFlow 3s linear infinite;
-  box-shadow: 0 0 14px rgba(255,100,100,.8);
+  box-shadow: 0 0 12px rgba(255,80,80,.7);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MODAL OPEN BUTTON — glow
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.m-acts .btn-watch,
-.m-acts .btn-more {
-  transition: box-shadow .3s, transform .2s;
-}
-.m-acts .btn-watch:hover {
-  animation: glowBreath 1.5s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.7);
+/* ── SEARCH ── */
+.search-wrap:focus-within { --gb-c: rgba(229,9,20,.4); animation: glowBreath 2s ease-in-out infinite; }
+.search-page-input:focus { animation: rgbBorder 3s linear infinite; outline: none; }
+
+/* ── EP ITEMS ── */
+.ep-item:hover { animation: rgbBorder 3s linear infinite; }
+
+/* ── MODAL TITLE ── */
+.m-title {
+  isolation: isolate;
+  background: linear-gradient(120deg, #fff 0%, #ffd0d0 30%, #fff 55%, #d0e8ff 80%, #fff 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 6s ease-in-out infinite;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   EPISODE ITEM hover — aurora
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.ep-item:hover {
-  animation: rgbBorder 3s linear infinite;
+/* ── PAGE H1 ── */
+.page-h1 {
+  isolation: isolate;
+  background: linear-gradient(90deg, #fff 0%, #ff8a8a 35%, #fff 55%, #8ab4ff 80%, #fff 100%);
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 7s linear infinite;
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SEARCH INPUT focus — rainbow border
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.search-page-input:focus {
-  animation: rgbBorder 3s linear infinite;
-  outline: none;
-}
-.search-wrap:focus-within {
-  animation: glowBreath 2s ease-in-out infinite;
-  --glow-color: rgba(229,9,20,.4);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   REDUCE MOTION: хэрвээ хэрэглэгч хөдөлгөөн хааж байвал
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── REDUCE MOTION ── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+  *, *::before, *::after { animation: none !important; will-change: auto !important; }
+  .logo-name, .hero-title, .sec-title, .settings-title, .w-temp-big, .m-title, .page-h1 {
+    background-position: 0% 50% !important;
   }
 }
