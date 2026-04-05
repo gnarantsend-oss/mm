@@ -115,8 +115,9 @@ function buildHomeRows() {
           fillRow(id, items);
           rowCount++;
 
-          // ── Гурав тутмын row-ийн дараа banner нэм ──
-          if (rowCount % 3 === 0) {
+          // Mobile: бүр row-ийн ард, Desktop: 3 тутамд
+          const isMobile = window.innerWidth < 768;
+          if (isMobile || rowCount % 3 === 0) {
             dc.appendChild(makeBannerDiv());
           }
         }
