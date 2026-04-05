@@ -7,12 +7,6 @@
   },
   {
     "id": "id2",
-    "type": "native",
-    "afterRowId": "rowGames",
-    "active": true
-  },
-  {
-    "id": "id3",
     "type": "adsterra",
     "afterRowId": "rowInternational",
     "active": true
