@@ -26,4 +26,79 @@ export const ZAR_CSS = `
 .ad-phone-btn { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg, #c9a800, #f0d060); color: #000; font-weight: 800; font-size: 14px; padding: 10px 20px; border-radius: 7px; text-decoration: none; white-space: nowrap; flex-shrink: 0; font-family: 'Oswald', 'Inter', sans-serif; box-shadow: 0 4px 14px rgba(212,175,55,0.3); letter-spacing: 0.5px; transition: transform 0.2s, box-shadow 0.2s; }
 .ad-phone-btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(212,175,55,0.5); }
 @media (max-width: 480px) { .ad-link-box, .ad-empty-box { padding: 12px 14px; } .ad-link-title { font-size: 12px; } .ad-goto-btn, .ad-phone-btn { font-size: 12px; padding: 8px 13px; } .ad-badge { font-size: 10px; padding: 3px 7px; } }
+/* ── AdBlock Wall ──────────────────────────────────────────── */
+#_adblock_wall {
+  position: fixed; inset: 0; z-index: 999999;
+  background: rgba(0,0,0,0.97);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; box-sizing: border-box;
+  backdrop-filter: blur(8px);
+}
+._abw-box {
+  background: linear-gradient(145deg, #111 0%, #1a1200 100%);
+  border: 1.5px solid rgba(212,175,55,0.45);
+  border-radius: 16px;
+  padding: 40px 36px;
+  max-width: 520px; width: 100%;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(212,175,55,0.12), 0 20px 60px rgba(0,0,0,0.8);
+  animation: _abw-in 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes _abw-in {
+  from { opacity:0; transform: scale(0.85) translateY(20px); }
+  to   { opacity:1; transform: scale(1)   translateY(0);     }
+}
+._abw-icon { font-size: 56px; margin-bottom: 12px; }
+._abw-title {
+  font-size: 26px; font-weight: 800; color: #D4AF37;
+  font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+  margin: 0 0 14px;
+}
+._abw-desc {
+  color: rgba(255,255,255,0.75); font-size: 15px; line-height: 1.6;
+  margin: 0 0 24px;
+}
+._abw-desc strong { color: #f0d060; }
+._abw-steps {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 10px; padding: 18px 20px;
+  margin-bottom: 28px; text-align: left;
+  display: flex; flex-direction: column; gap: 14px;
+}
+._abw-step {
+  display: flex; align-items: flex-start; gap: 14px;
+  color: rgba(255,255,255,0.8); font-size: 14px; line-height: 1.5;
+}
+._abw-step strong { color: #f0d060; }
+._abw-num {
+  min-width: 28px; height: 28px;
+  background: linear-gradient(135deg,#c9a800,#f0d060);
+  color: #000; font-weight: 800; font-size: 13px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'Oswald', sans-serif;
+}
+._abw-btn {
+  background: linear-gradient(135deg,#c9a800,#f0d060);
+  color: #000; font-weight: 800; font-size: 16px;
+  padding: 14px 36px; border-radius: 10px; border: none;
+  cursor: pointer; font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.8px; width: 100%;
+  box-shadow: 0 6px 24px rgba(212,175,55,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 14px;
+}
+._abw-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(212,175,55,0.55);
+}
+._abw-note {
+  color: rgba(255,255,255,0.35); font-size: 12px; margin: 0;
+}
+@media (max-width: 480px) {
+  ._abw-box { padding: 28px 20px; }
+  ._abw-title { font-size: 22px; }
+  ._abw-icon { font-size: 44px; }
+}
+
 `;
