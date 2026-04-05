@@ -354,5 +354,244 @@
   })();
 </script>
 
+<!-- =========================================================
+     DEVTOOLS ХАМГААЛАЛТ
+     ========================================================= -->
+<style>
+#__devblock {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:2147483647;
+  overflow:hidden;
+  font-family:'Courier New',monospace;
+}
+#__devblock canvas {
+  position:absolute;
+  inset:0;
+  opacity:0.18;
+}
+#__devblock .center {
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  z-index:2;
+}
+#__devblock .skull {
+  font-size:90px;
+  animation:_pulse 0.8s infinite alternate;
+  filter:drop-shadow(0 0 30px #ff0000);
+}
+#__devblock .main-txt {
+  font-size:clamp(28px,6vw,64px);
+  font-weight:900;
+  color:#ff0000;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000;
+  animation:_glitch 0.15s infinite;
+}
+#__devblock .sub-txt {
+  font-size:clamp(12px,2vw,18px);
+  color:#ff4444;
+  letter-spacing:3px;
+  opacity:0.85;
+  text-shadow:0 0 10px #ff0000;
+}
+#__devblock .scan {
+  position:absolute;
+  left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#ff0000,transparent);
+  box-shadow:0 0 20px #ff0000;
+  animation:_scan 2s linear infinite;
+  z-index:1;
+}
+#__devblock .ip-box {
+  margin-top:10px;
+  border:1px solid #ff000055;
+  padding:10px 24px;
+  border-radius:6px;
+  color:#ff6666;
+  font-size:13px;
+  letter-spacing:2px;
+  text-align:center;
+  background:rgba(255,0,0,0.06);
+  animation:_blink 1s infinite;
+}
+@keyframes _pulse { from{transform:scale(1)} to{transform:scale(1.15)} }
+@keyframes _scan  { from{top:0} to{top:100%} }
+@keyframes _blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes _glitch {
+  0%   {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
+  20%  {text-shadow:-2px 0 #00ffff, 2px 0 #ff0000; transform:translate(-1px,1px)}
+  40%  {text-shadow:2px 0 #ff00ff, -2px 0 #ff0000; transform:translate(1px,-1px)}
+  60%  {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
+  80%  {text-shadow:-1px 0 #00ffff, 1px 0 #ff0000; transform:translate(1px,0)}
+  100% {text-shadow:0 0 20px #ff0000, 0 0 60px #ff0000; transform:translate(0)}
+}
+</style>
+
+<div id="__devblock">
+  <canvas id="__matrix"></canvas>
+  <div class="scan"></div>
+  <div class="center">
+    <div class="skull">☠️</div>
+    <div class="main-txt">⚠ СИСТЕМД НЭВТРЭХ ХОРИГЛОНО ⚠</div>
+    <div class="sub-txt">ТА ХЯНАЛТАН ДОР БАЙНА 👁 &nbsp;|&nbsp; ХАНДАЛТ БҮРТГЭГДЛЭЭ</div>
+    <div class="ip-box" id="__ipbox">📡 IP ХАЯГ ТОДОРХОЙЛЖ БАЙНА...</div>
+  </div>
+</div>
+
+<script>
+(function() {
+
+  // ── 1. Товчлуур хориглох ─────────────────────────────────
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c','K','k'].includes(e.key)) { e.preventDefault(); return false; }
+    if (e.ctrlKey && ['U','u','S','s'].includes(e.key)) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('selectstart', function(e) { e.preventDefault(); return false; });
+  document.addEventListener('dragstart',   function(e) { e.preventDefault(); return false; });
+  setInterval(function() { try { console.clear(); } catch(e) {} }, 100);
+
+  // ── 2. Matrix код бороо ──────────────────────────────────
+  function startMatrix() {
+    var c   = document.getElementById('__matrix');
+    if (!c) return;
+    var ctx = c.getContext('2d');
+    c.width  = window.innerWidth;
+    c.height = window.innerHeight;
+    var cols = Math.floor(c.width / 16);
+    var drops = Array(cols).fill(1);
+    var chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ∑∂∫≠≈ABCDEF0123456789';
+    setInterval(function() {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = '#ff2200';
+      ctx.font = '14px Courier New';
+      drops.forEach(function(y, i) {
+        var ch = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(ch, i * 16, y * 16);
+        if (y * 16 > c.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+    }, 40);
+  }
+
+  // ── 3. Аймшигтай дуу (Web Audio) ─────────────────────────
+  function playAlarm() {
+    try {
+      var ac  = new (window.AudioContext || window.webkitAudioContext)();
+      function beep(freq, start, dur, type) {
+        var o = ac.createOscillator();
+        var g = ac.createGain();
+        o.connect(g); g.connect(ac.destination);
+        o.type = type || 'sawtooth';
+        o.frequency.setValueAtTime(freq, ac.currentTime + start);
+        o.frequency.exponentialRampToValueAtTime(freq * 0.5, ac.currentTime + start + dur);
+        g.gain.setValueAtTime(0.3, ac.currentTime + start);
+        g.gain.exponentialRampToValueAtTime(0.001, ac.currentTime + start + dur);
+        o.start(ac.currentTime + start);
+        o.stop(ac.currentTime + start + dur);
+      }
+      beep(880, 0,    0.2, 'sawtooth');
+      beep(440, 0.25, 0.2, 'sawtooth');
+      beep(880, 0.5,  0.2, 'sawtooth');
+      beep(220, 0.75, 0.5, 'sawtooth');
+      beep(660, 0,    1.2, 'square');
+    } catch(e) {}
+  }
+
+  // ── 4. Хуурамч IP scan ───────────────────────────────────
+  function fakeIPScan() {
+    var box = document.getElementById('__ipbox');
+    if (!box) return;
+    var steps = [
+      '📡 IP ХАЯГ ТОДОРХОЙЛЖ БАЙНА...',
+      '🔍 БАЙРШИЛ ТОГТООЖ БАЙНА...',
+      '🌐 БРАУЗЕР МЭДЭЭЛЭЛ ЦУГЛУУЛЖ БАЙНА...',
+      '⚡ БҮРТГЭЛ РҮҮ ИЛГЭЭЖ БАЙНА...',
+      '🚨 ХЯНАЛТ ИДЭВХЖЛЭЭ — ТА БАРИГДЛАА'
+    ];
+    var i = 0;
+    var iv = setInterval(function() {
+      if (i < steps.length) { box.textContent = steps[i++]; }
+      else { clearInterval(iv); }
+    }, 1200);
+  }
+
+  // ── 5. DevTools илрүүлэх ─────────────────────────────────
+  var _overlay  = document.getElementById('__devblock');
+  var _devOpen  = false;
+  var _thresh   = 160;
+  var _alarmed  = false;
+  var _matrixOn = false;
+
+  setInterval(function() {
+    var open = (window.outerWidth  - window.innerWidth  > _thresh) ||
+               (window.outerHeight - window.innerHeight > _thresh);
+    if (open !== _devOpen) {
+      _devOpen = open;
+      if (_overlay) _overlay.style.display = open ? 'block' : 'none';
+      if (open) {
+        document.querySelectorAll('video,iframe').forEach(function(el) {
+          try {
+            if (el.tagName === 'VIDEO') el.pause();
+            else { var s = el.src; el.src = ''; el.src = s; }
+          } catch(e) {}
+        });
+        if (!_matrixOn) { startMatrix(); _matrixOn = true; }
+        if (!_alarmed)  { playAlarm(); fakeIPScan(); _alarmed = true; }
+      }
+    }
+  }, 500);
+
+  // ── 6. Tab-аас гарвал видео pause ────────────────────────
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      document.querySelectorAll('video').forEach(function(v) {
+        v._wasPlaying = !v.paused; v.pause();
+      });
+    } else {
+      document.querySelectorAll('video').forEach(function(v) {
+        if (v._wasPlaying) v.play().catch(function(){});
+      });
+    }
+  });
+
+  // ── 7. Copy watermark ────────────────────────────────────
+  document.addEventListener('copy', function(e) {
+    var sel = window.getSelection ? window.getSelection().toString() : '';
+    if (!sel) return;
+    try {
+      e.clipboardData.setData('text/plain', sel + '\n\n— Эх сурвалж: nabo.pages.dev');
+      e.preventDefault();
+    } catch(err) {}
+  });
+
+  // ── 8. Нуугдмал watermark ────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function() {
+    var uid = localStorage.getItem('_nabo_uid');
+    if (!uid) {
+      uid = 'U' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,6).toUpperCase();
+      localStorage.setItem('_nabo_uid', uid);
+    }
+    var wm = document.createElement('div');
+    wm.style.cssText = 'position:fixed;bottom:8px;right:10px;font-size:9px;color:rgba(255,255,255,0.04);pointer-events:none;z-index:9999;user-select:none;letter-spacing:1px;';
+    wm.textContent = 'nabo · ' + uid;
+    document.body.appendChild(wm);
+  });
+
+})();
+</script>
+
 </body>
 </html>
