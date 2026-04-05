@@ -1,3 +1,4 @@
+import './tv-ui.js';   // TV илэрвэл YouTube-style UI автоматаар ачаалагдана
 import './player.js';
 import './player-advanced.js';
 import './config.js';

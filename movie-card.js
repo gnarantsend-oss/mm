@@ -1,9 +1,16 @@
 window.makeMovieCard = function (m, isFirst = false) {
   const d = document.createElement('div');
   d.className = 'mcard';
+
+  // TV дээр remote-ийн focus/navigation ажиллахын тулд tabindex
+  d.setAttribute('tabindex', '0');
+  d.setAttribute('role', 'button');
+  d.setAttribute('aria-label', m.title);
+
   const imgAttrs = isFirst
     ? 'fetchpriority="high" loading="eager"'
     : 'loading="lazy" decoding="async"';
+
   d.innerHTML = `
     <div class="mcard-poster-wrap">
       <img class="mcard-poster"
@@ -21,7 +28,14 @@ window.makeMovieCard = function (m, isFirst = false) {
       <div class="mcard-title">${m.title}</div>
       <div class="mcard-sub"><span class="st">★</span>${m.rating} <span>·</span> ${m.year}</div>
     </div>`;
-  d.addEventListener('click', () => window.openMovieDetail(m));
+
+  // Click (хулгана болон TV Enter) — нэг handler
+  const open = () => window.openMovieDetail(m);
+  d.addEventListener('click', open);
+
+  // TV: Enter товч — click event автоматаар ажиллана (tabindex=0 байвал)
+  // Нэмэлт keydown handler хэрэггүй, spatial-ui.js хариуцна
+
   return d;
 };
 
@@ -32,8 +46,16 @@ window.openMovieDetail = function (m) {
     `<span class="st">★</span>${m.rating} &nbsp;·&nbsp; ${m.year} &nbsp;·&nbsp; ${m.cat || ''}`;
   document.getElementById('mDesc').textContent = '';
   document.getElementById('mActs').innerHTML =
-    `<button class="btn-watch" style="width:100%;margin-top:10px;"
+    `<button class="btn-watch" tabindex="0" style="width:100%;margin-top:10px;"
              onclick="openPlayer(window._curM)">▶ ЯГ ОДОО ҮЗЭХ</button>`;
   window._curM = m;
   document.getElementById('movieModal').classList.add('open');
+
+  // TV: modal нээгдсэний дараа "Үзэх" товч руу focus
+  if (window.isTV) {
+    setTimeout(() => {
+      const btn = document.querySelector('#movieModal .btn-watch');
+      if (btn) btn.focus();
+    }, 200);
+  }
 };
