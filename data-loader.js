@@ -6,12 +6,27 @@ export async function loadData() {
     const titleEl = document.getElementById('appTitle');
     const phoneEl = document.getElementById('contactPhoneEl');
     if (titleEl) titleEl.textContent = `Nabooshy - ${window.CURRENT_YEAR || 2026}`;
-    if (phoneEl) phoneEl.textContent = window.CONTACT_PHONE || '9937-6238';
+    if (phoneEl) {
+      const tg = window.CONTACT_PHONE || 'https://t.me/oroodvz';
+      phoneEl.href = tg;
+      phoneEl.textContent = '✈️ @oroodvz Telegram';
+    }
 
     window.MOVIES = [];
     window.SERIES = [];
 
-    const raw = await fetch('data_movies.json').then(r => r.json());
+    // ── data_movies.json болон data_hero.json зэрэг ачаалах ──
+    const [raw, heroRaw] = await Promise.all([
+      fetch('data_movies.json').then(r => r.json()),
+      fetch('data_hero.json?v=' + Date.now()).then(r => r.json()).catch(() => null)
+    ]);
+
+    // Hero өгөгдөл
+    if (Array.isArray(heroRaw) && heroRaw.length) {
+      window.HERO_MOVIES = heroRaw;
+      if (window.initHero) window.initHero();
+    }
+
     if (!Array.isArray(raw)) throw new Error('data_movies.json буруу формат');
 
     raw.forEach((item, i) => {
@@ -55,6 +70,25 @@ export async function loadData() {
   }
 }
 
+function makeBannerDiv() {
+  const wrap = document.createElement('div');
+  wrap.className = 'adsterra-banner-wrap';
+  wrap.innerHTML = `
+    <div class="adsterra-banner-inner">
+      <script>
+        atOptions = {
+          'key' : 'd2854ac5234b3ab02d5a2839d6dbef5e',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      <\/script>
+      <script src="https://www.highperformanceformat.com/d2854ac5234b3ab02d5a2839d6dbef5e/invoke.js"><\/script>
+    </div>`;
+  return wrap;
+}
+
 function buildHomeRows() {
 
   const run = async () => {
@@ -63,6 +97,8 @@ function buildHomeRows() {
     const dc = document.getElementById('dynamicRows');
     if (dc && window.HOME_ROWS) {
       dc.innerHTML = '';
+      let rowCount = 0;
+
       window.HOME_ROWS.forEach(({ id, title, keys }) => {
         const items = window.MOVIES.filter(m => keys.some(k => m.cat.includes(k))).slice(0, 25);
         if (items.length > 0) {
@@ -77,11 +113,16 @@ function buildHomeRows() {
             </div>`;
           dc.appendChild(sec);
           fillRow(id, items);
+          rowCount++;
+
+          // ── Гурав тутмын row-ийн дараа banner нэм ──
+          if (rowCount % 3 === 0) {
+            dc.appendChild(makeBannerDiv());
+          }
         }
       });
     }
 
-    // Бүх row бэлэн болсны дараа zar.js-ийн insertAds дуудна
     if (window.insertAds) await window.insertAds();
   };
 
@@ -91,3 +132,4 @@ function buildHomeRows() {
     setTimeout(run, 300);
   }
 }
+
