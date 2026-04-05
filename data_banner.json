@@ -1,21 +1,34 @@
 [
   {
-    "id": 1,
-    "afterRowId": "rowSeries",
-    "type": "image",
-    "src": "https://img.freepik.com/free-vector/streaming-online-app-concept-banner_23-2148530364.jpg",
-    "label": "РЕКЛАМ"
+    "id": "id1",
+    "label": "Кино Action",
+    "afterRowId": "rowAction",
+    "active": true,
+    "image": "https://img.freepik.com/free-vector/streaming-online-app-concept-banner_23-2148530364.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
   },
   {
-    "id": 2,
-    "type": "image",
-    "src": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
-    "label": "РЕКЛАМ"
+    "id": "id2",
+    "label": "Кино",
+    "afterRowId": "rowDrama",
+    "active": true,
+    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
   },
   {
-    "id": 3,
-    "type": "image",
-    "src": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
-    "label": "РЕКЛАМ"
+    "id": "id3",
+    "label": "Кино",
+    "afterRowId": "rowSciFi",
+    "active": true,
+    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
+  },
+  {
+    "id": "id4",
+    "label": "Кино",
+    "afterRowId": "rowHorror",
+    "active": true,
+    "image": "https://img.freepik.com/free-vector/movie-theater-concept-banner-template_23-2148175024.jpg",
+    "link": "https://www.profitablecpmratenetwork.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951"
   }
 ]

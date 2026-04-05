@@ -142,10 +142,11 @@ function _zarBuildEl(b) {
   return wrap;
 }
 
-// ── 2+3-р зар: Image banner-ууд — data_banner.json-оос ────────
+// ── Banner-ууд — data_banner.json-оос (id-д суурилсан удирдлага) ──
 export async function insertAds() {
   _zarInjectCSS();
 
+  // Өмнөх banner-уудыг цэвэрлэнэ
   document.querySelectorAll('.ad-wrap').forEach(el => el.remove());
 
   let banners = window.BANNERS || [];
@@ -159,26 +160,12 @@ export async function insertAds() {
     }
   }
 
-  const fixedBanners   = banners.filter(b =>  b.afterRowId);
-  const cyclingBanners = banners.filter(b => !b.afterRowId);
-
-  fixedBanners.forEach(b => {
+  // active:false бол харуулахгүй
+  banners.filter(b => b.active !== false).forEach(b => {
     const rowEl = document.getElementById(b.afterRowId);
     if (!rowEl) return;
     const section = rowEl.closest('section') || rowEl.parentElement;
     if (section) section.insertAdjacentElement('afterend', _zarBuildEl(b));
-  });
-
-  if (!cyclingBanners.length || !window.HOME_ROWS) return;
-  let bidx = 0;
-  window.HOME_ROWS.forEach(({ id }) => {
-    const rowEl = document.getElementById(id);
-    if (!rowEl) return;
-    const section = rowEl.closest('section');
-    if (!section) return;
-    const b = cyclingBanners[bidx % cyclingBanners.length];
-    section.insertAdjacentElement('afterend', _zarBuildEl(b));
-    bidx++;
   });
 }
 
