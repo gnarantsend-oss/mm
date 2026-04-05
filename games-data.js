@@ -1,11 +1,11 @@
 const RAWG_KEY = 'd5b91afa0e704aa3b31930dfc78e5cfe';
 
 window.HERO_GAMES = [
-  { title:'PUBG',             cat:'Shooter',  desc:'Battle Royale',          trailer:'GXXEsnG14kw', poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/library_600x900_2x.jpg' },
-  { title:'Dota 2',           cat:'Strategy', desc:'MOBA - Стратеги',        trailer:'-cSFPIwMEq4',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/library_600x900_2x.jpg' },
-  { title:'Counter-Strike 2', cat:'Shooter',  desc:'Тактикийн буудлага',     trailer:'c80dVYcL69E',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/library_600x900_2x.jpg' },
-  { title:'Apex Legends',     cat:'Shooter',  desc:'Хурдтай Battle Royale',  trailer:'e_E9W2vsRbQ',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/library_600x900_2x.jpg' },
-  { title:'Rust',             cat:'Survival', desc:'Амьд үлдэх тулаан',      trailer:'W1ZJ1Hj2kQY',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900_2x.jpg' },
+  { title:'PUBG',             cat:'Shooter',  desc:'Battle Royale',          trailer:'', poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/578080/library_600x900_2x.jpg' },
+  { title:'Dota 2',           cat:'Strategy', desc:'MOBA - Стратеги',        trailer:'',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/library_600x900_2x.jpg' },
+  { title:'Counter-Strike 2', cat:'Shooter',  desc:'Тактикийн буудлага',     trailer:'',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/library_600x900_2x.jpg' },
+  { title:'Apex Legends',     cat:'Shooter',  desc:'Хурдтай Battle Royale',  trailer:'',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/library_600x900_2x.jpg' },
+  { title:'Rust',             cat:'Survival', desc:'Амьд үлдэх тулаан',      trailer:'',  poster:'https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900_2x.jpg' },
 ];
 
 window.GAMES_LIST = [
