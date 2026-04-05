@@ -15,9 +15,10 @@ export async function loadData() {
     window.MOVIES = [];
     window.SERIES = [];
 
-    // ── data_movies.json болон data_hero.json зэрэг ачаалах ──
-    const [raw, heroRaw] = await Promise.all([
+    // ── data_movies.json, data_serial.json болон data_hero.json зэрэг ачаалах ──
+    const [raw, serialRaw, heroRaw] = await Promise.all([
       fetch('data_movies.json').then(r => r.json()),
+      fetch('data_serial.json?v=' + Date.now()).then(r => r.json()).catch(() => []),
       fetch('data_hero.json?v=' + Date.now()).then(r => r.json()).catch(() => null)
     ]);
 
@@ -28,6 +29,37 @@ export async function loadData() {
     }
 
     if (!Array.isArray(raw)) throw new Error('data_movies.json буруу формат');
+
+    // ── data_serial.json-г SERIES массивт нэмэх ──
+    if (Array.isArray(serialRaw)) {
+      serialRaw.forEach((item, i) => {
+        let rating = window.FALLBACK_RATING || 7.0;
+        if (item.ratings?.imdb) rating = parseFloat(item.ratings.imdb);
+        else if (item.rating)   rating = parseFloat(item.rating);
+
+        const category = Array.isArray(item.genre)
+          ? item.genre.join(',')
+          : (item.genre || '');
+
+        const episodes = (item.episodes || []).map(ep => ({
+          ...ep,
+          embed_links: [ep.embed_links?.[0] || ''],
+        }));
+
+        window.SERIES.push({
+          id:       'sj' + i,
+          title:    item.mongolian_title || item.title,
+          title_en: item.title,
+          year:     item.year || window.FALLBACK_YEAR || 2024,
+          rating,
+          poster:   item.poster_link || item.poster || window.FALLBACK_POSTER,
+          cat:      category.toLowerCase(),
+          country:  (item.country || 'mn').toLowerCase(),
+          desc:     item.desc || '',
+          episodes,
+        });
+      });
+    }
 
     raw.forEach((item, i) => {
       const isSeries = item.type?.toLowerCase().includes('series');
@@ -77,14 +109,14 @@ function makeBannerDiv() {
     <div class="adsterra-banner-inner">
       <script>
         atOptions = {
-          'key' : 'd2854ac5234b3ab02d5a2839d6dbef5e',
+          'key' : (window.GLOBAL_ADS?.bannerKey || 'd2854ac5234b3ab02d5a2839d6dbef5e'),
           'format' : 'iframe',
           'height' : 90,
           'width' : 728,
           'params' : {}
         };
       <\/script>
-      <script src="https://www.highperformanceformat.com/d2854ac5234b3ab02d5a2839d6dbef5e/invoke.js"><\/script>
+      <script src="https://www.highperformanceformat.com/${window.GLOBAL_ADS?.bannerKey||'d2854ac5234b3ab02d5a2839d6dbef5e'}/invoke.js"><\/script>
     </div>`;
   return wrap;
 }
