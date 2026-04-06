@@ -155,8 +155,8 @@ function initGlobalAds() {
 
   // Popunder + Social Bar (TV дээр ажиллуулахгүй)
   if (!window.isTV) {
-    if (ads.popunder)  _loadScript(ads.popunder);
-    if (ads.socialBar) _loadScript(ads.socialBar);
+    if (ads.popunder)  _loadScript(ads.popunder,  { 'data-cfasync': 'false' });
+    if (ads.socialBar) _loadScript(ads.socialBar, { 'data-cfasync': 'false' });
   }
 
   // Banner 728x90 — hero доорх slot
@@ -173,7 +173,7 @@ function initGlobalAds() {
       'width'  : window.isTV ? 468 : 728,
       'params' : {}
     };
-    _loadScript(`https://www.highperformanceformat.com/${ads.bannerKey}/invoke.js`);
+    _loadScript(`https://www.highperformanceformat.com/${ads.bannerKey}/invoke.js`, { 'data-cfasync': 'false' });
   }
 
   // Smartlink hooks
