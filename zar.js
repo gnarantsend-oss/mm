@@ -166,5 +166,14 @@ function initGlobalAds() {
 // ── Эхлүүлэх ─────────────────────────────────────────────────
 window.addEventListener('load', async () => {
   const blocked = await checkAndEnforceAdBlock();
-  if (!blocked) initGlobalAds();
+  if (!blocked) {
+    initGlobalAds();
+
+    // ── MONETAG Perfect tag ────────────────────────────────────
+    // Adblock байхгүй үед л ачааллана (давхар хамгаалалт)
+    const monetagSrc = window.GLOBAL_ADS?.monetagTag;
+    if (monetagSrc && !window.isTV) {
+      _loadScript(monetagSrc, { 'data-cfasync': 'false' });
+    }
+  }
 });
