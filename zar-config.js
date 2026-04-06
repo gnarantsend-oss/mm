@@ -4,7 +4,7 @@
 
 window.GLOBAL_ADS = {
   // 1. Popunder — Anti-Adblock URL (progressmagnify.com)
-  popunder:  'https://progressmagnify.com/31/65/1b/31651b0f5a8358f09bff1b56ccce7dc1.js',
+  popunder:  'https://pl29062605.profitablecpmratenetwork.com/31/65/1b/31651b0f5a8358f09bff1b56ccce7dc1.js',
 
   // 2. Social Bar
   socialBar: 'https://pl29062606.profitablecpmratenetwork.com/fe/a7/e6/fea7e69d388311cc0a7cfdfb22e9c372.js',
