@@ -11,6 +11,7 @@ import './movies.js';
 import { buildSeriesPage } from './series.js';
 import './search.js';
 import { loadData } from './data-loader.js';
+import './hacker-mobile.js';
 
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
