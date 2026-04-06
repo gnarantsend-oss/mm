@@ -30,6 +30,13 @@
   transform-origin: center center;
 }
 
+@media (max-width: 768px) {
+  .hero-bg {
+    background-position: center center;
+    animation: none; /* утасны CPU хэмнэнэ */
+  }
+}
+
 /* ── Виньетка — гүнзгий, кино маягийн ──────────────────────── */
 .hero-vignette {
   position: absolute; inset: 0;
@@ -40,6 +47,15 @@
     linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 18%);
   pointer-events: none;
   transition: opacity 0.6s ease;
+}
+
+/* Mobile: доошоо хүчтэй, зүүн тийш бага */
+@media (max-width: 768px) {
+  .hero-vignette {
+    background:
+      linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.15) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 20%);
+  }
 }
 
 /* ── Агуулгын блок ──────────────────────────────────────────── */
@@ -264,10 +280,16 @@
   .hero-body  { padding: 0 40px 80px; }
 }
 @media (max-width: 768px) {
-  .hero { height: 68vh; min-height: 440px; }
-  .hero-body { padding: 0 18px 40px; width: 100%; }
+  .hero { height: 72vh; min-height: 420px; }
+  .hero-body {
+    padding: 0 16px 36px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   .hero-title {
-    font-size: 28px !important;
+    font-size: 26px !important;
     line-height: 1.15 !important;
     margin-bottom: 10px !important;
     letter-spacing: 0 !important;
@@ -282,21 +304,21 @@
     line-height: 1.6;
     -webkit-line-clamp: 2;
   }
-  .hero-btns { gap: 8px; }
-  .btn-watch,
-  .btn-more  { padding: 10px 16px; font-size: 13px; }
-  .btn-volume { width: 40px; height: 40px; font-size: 14px; }
-  .hero-dots { bottom: 20px; right: 18px; }
+  .hero-btns { gap: 8px; width: 100%; }
+  .btn-watch { flex: 1; justify-content: center; padding: 11px 16px; font-size: 13px; }
+  .btn-more  { flex: 1; justify-content: center; padding: 11px 16px; font-size: 13px; }
+  .btn-volume { width: 40px; height: 40px; font-size: 14px; flex-shrink: 0; }
+  .hero-dots { bottom: 16px; right: 16px; }
   .hero-dot  { width: 5px; height: 5px; }
   .hero-dot.active { width: 16px; }
   .hero-tag { font-size: 9px; padding: 4px 10px; margin-bottom: 10px; }
 }
 
 @media (max-width: 390px) {
-  .hero { height: 62vh; min-height: 390px; }
-  .hero-body { padding: 0 14px 30px; }
+  .hero { height: 70vh; min-height: 360px; }
+  .hero-body { padding: 0 14px 28px; }
   .hero-title {
-    font-size: 23px !important;
+    font-size: 22px !important;
     line-height: 1.15 !important;
     margin-bottom: 8px !important;
   }
@@ -308,8 +330,17 @@
   .hero-tag { font-size: 9px; padding: 3px 9px; margin-bottom: 8px; }
   .hero-meta span { font-size: 11px; }
   .btn-watch, .btn-more {
-    padding: 8px 13px !important;
+    padding: 9px 12px !important;
     font-size: 12px !important;
   }
   .btn-volume { width: 36px !important; height: 36px !important; font-size: 13px !important; }
+}
+
+/* Маш жижиг дэлгэц (320px — Galaxy S8 г.м) */
+@media (max-width: 320px) {
+  .hero { height: 68vh; min-height: 320px; }
+  .hero-title { font-size: 20px !important; }
+  .hero-desc { display: none !important; }
+  .btn-more { display: none !important; }
+  .hero-tag { display: none !important; }
 }
