@@ -1,4 +1,4 @@
-/* hero-matrix.js — NABOOSHY Matrix Background — хэзээч солигдохгүй хувилбар */
+/* hero-matrix.js — NABOOSHY Matrix Background — HACKER EDITION v10 */
 
 (function () {
   'use strict';
@@ -6,10 +6,14 @@
   const WORD    = 'NABOOSHY';
   const FS      = 15;
   const FPS     = 42;
+
   const TERM_LINES = [
-    '> NABOOSHY_v7.0 initialized...',
-    '> Loading content database... OK',
+    '> NABOOSHY_v10.0 initialized...',
+    '> Establishing encrypted tunnel... [OK]',
+    '> Loading content database... [OK]',
+    '> Bypassing geo-restrictions... [OK]',
     '> Stream protocol: ACTIVE',
+    '> Proxy chain: 3 nodes',
     '> Welcome back, user_',
   ];
 
@@ -61,6 +65,29 @@
     return setInterval(draw, FPS);
   }
 
+  /* ── Horizontal scan beam ──────────────────────────────────── */
+  function createScanBeam(hero) {
+    const beam = document.createElement('div');
+    beam.id = 'nabScanBeam';
+    beam.style.cssText = [
+      'position:absolute;left:0;right:0;height:2px;z-index:5;pointer-events:none',
+      'background:linear-gradient(90deg,transparent,rgba(0,255,60,0.15),rgba(0,255,100,0.4),rgba(0,255,60,0.15),transparent)',
+      'box-shadow:0 0 12px rgba(0,255,60,0.3)',
+      'top:0',
+    ].join(';');
+    hero.appendChild(beam);
+
+    let pos = 0;
+    let dir = 1;
+    const heroH = () => hero.offsetHeight || 560;
+    setInterval(() => {
+      pos += dir * 1.8;
+      if (pos >= heroH()) { pos = heroH(); dir = -1; }
+      if (pos <= 0)       { pos = 0;       dir =  1; }
+      beam.style.top = pos + 'px';
+    }, 16);
+  }
+
   /* ── Scanlines давхарга ────────────────────────────────────── */
   function createScanlines(hero) {
     const s = document.createElement('div');
@@ -85,6 +112,61 @@
       Object.assign(d.style, { position:'absolute', width:'18px', height:'18px', zIndex:'12', pointerEvents:'none', ...pos });
       hero.appendChild(d);
     });
+
+    /* Targeting reticle — постерийн дунд */
+    const reticle = document.createElement('div');
+    reticle.id = 'nabReticle';
+    reticle.style.cssText = [
+      'position:absolute;top:50%;left:55%;transform:translate(-50%,-50%)',
+      'width:80px;height:80px;z-index:6;pointer-events:none',
+      'border:1px solid rgba(0,255,60,0.25)',
+      'border-radius:50%',
+    ].join(';');
+    reticle.innerHTML = `
+      <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(0,255,60,0.2);"></div>
+      <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(0,255,60,0.2);"></div>
+      <div style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:1px;height:12px;background:rgba(0,255,60,0.5);"></div>
+      <div style="position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:1px;height:12px;background:rgba(0,255,60,0.5);"></div>
+      <div style="position:absolute;left:-6px;top:50%;transform:translateY(-50%);width:12px;height:1px;background:rgba(0,255,60,0.5);"></div>
+      <div style="position:absolute;right:-6px;top:50%;transform:translateY(-50%);width:12px;height:1px;background:rgba(0,255,60,0.5);"></div>
+    `;
+    hero.appendChild(reticle);
+
+    /* Reticle мигдэх */
+    let rop = 1;
+    setInterval(() => {
+      rop = rop === 1 ? 0.3 : 1;
+      reticle.style.opacity = rop;
+    }, 2200);
+  }
+
+  /* ── Network stats panel (зүүн дээд доор) ─────────────────── */
+  function createNetStats(hero) {
+    const panel = document.createElement('div');
+    panel.id = 'nabNetStats';
+    panel.style.cssText = [
+      'position:absolute;bottom:100px;left:24px;z-index:12',
+      'font-family:monospace;font-size:9px;color:rgba(0,200,50,0.5)',
+      'letter-spacing:0.8px;line-height:2;pointer-events:none',
+    ].join(';');
+    panel.innerHTML = `
+      <div>DL: <span id="nabDL">0.00</span> MB/s</div>
+      <div>UL: <span id="nabUL">0.00</span> MB/s</div>
+      <div>PING: <span id="nabPing">--</span> ms</div>
+    `;
+    hero.appendChild(panel);
+
+    /* Амьд тоо өөрчлөх */
+    function rnd(min, max) { return (Math.random() * (max - min) + min).toFixed(2); }
+    function rndInt(min, max) { return Math.floor(Math.random() * (max - min) + min); }
+    setInterval(() => {
+      const dl = document.getElementById('nabDL');
+      const ul = document.getElementById('nabUL');
+      const ping = document.getElementById('nabPing');
+      if (dl)   dl.textContent   = rnd(1.2, 9.8);
+      if (ul)   ul.textContent   = rnd(0.1, 2.4);
+      if (ping) ping.textContent = rndInt(8, 45);
+    }, 1200);
   }
 
   /* ── Status panel (баруун дээд) ────────────────────────────── */
@@ -95,6 +177,8 @@
     s.innerHTML = `
       <div>SYS_STATUS: <span id="nabOnline" style="color:rgba(0,255,60,0.9);">■ ONLINE</span></div>
       <div>CONN: <span style="color:rgba(0,255,60,.7);">SECURE</span></div>
+      <div>ENC: <span style="color:rgba(0,255,60,.7);">AES-256</span></div>
+      <div>IP: <span id="nabIP" style="color:rgba(255,255,255,.35);">---.---.---.---</span></div>
       <div>USR: <span style="color:rgba(255,255,255,.4);">ANONYMOUS</span></div>
     `;
     hero.appendChild(s);
@@ -104,6 +188,19 @@
     setInterval(() => {
       onlineEl.style.opacity = onlineEl.style.opacity === '0.2' ? '1' : '0.2';
     }, 900);
+
+    /* Fake IP scramble */
+    const ipEl = s.querySelector('#nabIP');
+    const fakeIPs = [
+      '104.21.*.***', '172.67.*.***', '45.33.***.***',
+      '138.197.**.***', '192.168.*.***',
+    ];
+    let ipI = 0;
+    setInterval(() => {
+      if (ipEl) {
+        ipEl.textContent = fakeIPs[ipI++ % fakeIPs.length];
+      }
+    }, 3000);
   }
 
   /* ── Terminal (зүүн доод) ──────────────────────────────────── */
@@ -117,11 +214,17 @@
     function next() {
       if (i < TERM_LINES.length) {
         const d = document.createElement('div');
-        d.textContent = TERM_LINES[i++];
         d.style.cssText = 'opacity:0;transition:opacity 0.3s;';
         t.appendChild(d);
+        /* Typewriter per line */
+        const line = TERM_LINES[i++];
+        let ci = 0;
+        const tw = setInterval(() => {
+          d.textContent = line.slice(0, ++ci);
+          if (ci >= line.length) clearInterval(tw);
+        }, 28);
         requestAnimationFrame(() => { d.style.opacity = '1'; });
-        setTimeout(next, 950);
+        setTimeout(next, 900 + line.length * 28);
       } else {
         const cur = document.createElement('span');
         cur.style.cssText = 'display:inline-block;width:7px;height:11px;background:rgba(0,255,60,0.8);vertical-align:middle;margin-left:2px;';
@@ -132,7 +235,46 @@
     setTimeout(next, 800);
   }
 
-  /* ── Виньетка override (matrix-д тохирсон) ────────────────── */
+  /* ── Title glitch + decrypt effect ────────────────────────── */
+  function glitchTitle() {
+    const title = document.querySelector('.hero-title');
+    if (!title || title.dataset.nabGlitch) return;
+    title.dataset.nabGlitch = '1';
+
+    const original = title.textContent.trim();
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%';
+
+    function scramble(el, text, cb) {
+      let iter = 0;
+      const interval = setInterval(() => {
+        el.textContent = text.split('').map((c, idx) => {
+          if (idx < iter) return c;
+          if (c === ' ') return ' ';
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        if (iter >= text.length) { clearInterval(interval); el.textContent = text; if (cb) cb(); }
+        iter += 1.5;
+      }, 35);
+    }
+
+    /* Эхний decrypt */
+    setTimeout(() => scramble(title, original), 1800);
+
+    /* Мөн 12 секунд тутам богино glitch */
+    setInterval(() => {
+      const saved = title.textContent;
+      let g = 0;
+      const gi = setInterval(() => {
+        title.textContent = saved.split('').map(c => {
+          if (c === ' ') return ' ';
+          return Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : c;
+        }).join('');
+        if (++g > 6) { clearInterval(gi); title.textContent = saved; }
+      }, 60);
+    }, 12000);
+  }
+
+  /* ── Виньетка override ─────────────────────────────────────── */
   function patchVignette() {
     const v = document.querySelector('.hero-vignette');
     if (!v) return;
@@ -142,11 +284,6 @@
       'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, transparent 14%)',
     ].join(',');
     v.style.zIndex = '3';
-  }
-
-  /* ── hero-bg постер байвал матриксыг бүдгэрүүлэхгүй — үргэлж бүтэн ── */
-  function watchPoster(canvas) {
-    canvas.style.opacity = '1';
   }
 
   /* ── Nav tabs — hacker формат ──────────────────────────────── */
@@ -163,6 +300,14 @@
     if (logoName) logoName.style.fontFamily = 'monospace';
   }
 
+  /* ── MutationObserver: title гарч ирэхэд glitch дуудах ────── */
+  function observeTitle() {
+    const mo = new MutationObserver(() => glitchTitle());
+    const hero = document.getElementById('hero');
+    if (hero) mo.observe(hero, { childList: true, subtree: true });
+    glitchTitle(); /* анхны оролдлого */
+  }
+
   /* ── Эхлүүлэх ─────────────────────────────────────────────── */
   function init() {
     const hero = document.getElementById('hero');
@@ -171,12 +316,14 @@
     const canvas = createCanvas(hero);
     initMatrix(canvas);
     createScanlines(hero);
+    createScanBeam(hero);
     createHUD(hero);
     createStatus(hero);
+    createNetStats(hero);
     createTerminal(hero);
     patchVignette();
-    watchPoster(canvas);
     styleNavTabs();
+    observeTitle();
   }
 
   if (document.readyState === 'loading') {
