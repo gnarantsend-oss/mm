@@ -8,13 +8,12 @@
   const FPS     = 42;
 
   const TERM_LINES = [
-    '> NABOOSHY_v10.0 initialized...',
-    '> Establishing encrypted tunnel... [OK]',
-    '> Loading content database... [OK]',
-    '> Bypassing geo-restrictions... [OK]',
-    '> Stream protocol: ACTIVE',
-    '> Proxy chain: 3 nodes',
-    '> Welcome back, user_',
+    '> nabooshy site та нэвтэрсэн байна...',
+    '> nabooshy таний байршлыг тогтоож байна.......',
+    '> байрлал олдлоо... [OK]',
+    '> бүх мэдээллийг цуглуулж байна... [OK]',
+    '> хамтарч ажиллах бол gnarantsend@gmail',
+    '> өөрийн бизнесэ хөгжүүлэх бол site-д байрлуулна',
   ];
 
   /* ── Canvas үүсгэх ─────────────────────────────────────────── */
@@ -26,10 +25,108 @@
     return c;
   }
 
+  /* ── Circuit board арын давхарга ───────────────────────────── */
+  function initCircuit(canvas) {
+    const ctx = canvas.getContext('2d');
+    const nodes = [];
+    const lines = [];
+    const pulses = [];
+
+    function buildGraph() {
+      nodes.length = 0; lines.length = 0; pulses.length = 0;
+      const gx = Math.floor(canvas.width  / 80);
+      const gy = Math.floor(canvas.height / 70);
+      for (let x = 0; x <= gx; x++) {
+        for (let y = 0; y <= gy; y++) {
+          if (Math.random() > 0.45) continue;
+          nodes.push({
+            x: x * 80 + (Math.random() - 0.5) * 30,
+            y: y * 70 + (Math.random() - 0.5) * 25,
+          });
+        }
+      }
+      /* Ойр зангилаануудыг холбох */
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < 120 && Math.random() > 0.5) {
+            lines.push({ a: i, b: j, opacity: 0.08 + Math.random() * 0.12 });
+          }
+        }
+      }
+      /* Пульс урсгалууд */
+      for (let k = 0; k < Math.min(18, lines.length); k++) {
+        const li = Math.floor(Math.random() * lines.length);
+        pulses.push({ line: li, t: Math.random(), speed: 0.003 + Math.random() * 0.006, size: 2 + Math.random() * 2 });
+      }
+    }
+
+    buildGraph();
+    window.addEventListener('resize', buildGraph);
+
+    function drawCircuit() {
+      /* Lines */
+      lines.forEach(l => {
+        const a = nodes[l.a], b = nodes[l.b];
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        /* 90° эргэлт — circuit board шиг */
+        const mx = Math.abs(b.x - a.x) > Math.abs(b.y - a.y) ? b.x : a.x;
+        const my = Math.abs(b.x - a.x) > Math.abs(b.y - a.y) ? a.y : b.y;
+        ctx.lineTo(mx, my);
+        ctx.lineTo(b.x, b.y);
+        ctx.strokeStyle = `rgba(180,0,0,${l.opacity})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      });
+
+      /* Nodes */
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(200,30,0,0.25)';
+        ctx.fill();
+      });
+
+      /* Пульс — улаан гэрэл урсах */
+      pulses.forEach(p => {
+        p.t += p.speed;
+        if (p.t > 1) p.t = 0;
+        const l = lines[p.line];
+        if (!l) return;
+        const a = nodes[l.a], b = nodes[l.b];
+        const mx = Math.abs(b.x - a.x) > Math.abs(b.y - a.y) ? b.x : a.x;
+        const my = Math.abs(b.x - a.x) > Math.abs(b.y - a.y) ? a.y : b.y;
+        /* t дагуу байрлал тооцох */
+        let px, py;
+        if (p.t < 0.5) {
+          px = a.x + (mx - a.x) * (p.t * 2);
+          py = a.y + (my - a.y) * (p.t * 2);
+        } else {
+          px = mx + (b.x - mx) * ((p.t - 0.5) * 2);
+          py = my + (b.y - my) * ((p.t - 0.5) * 2);
+        }
+        const grad = ctx.createRadialGradient(px, py, 0, px, py, p.size * 4);
+        grad.addColorStop(0, 'rgba(255,60,0,0.9)');
+        grad.addColorStop(0.4, 'rgba(200,0,0,0.4)');
+        grad.addColorStop(1, 'rgba(200,0,0,0)');
+        ctx.beginPath();
+        ctx.arc(px, py, p.size * 4, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      });
+    }
+
+    return drawCircuit;
+  }
+
   /* ── Matrix дусал ──────────────────────────────────────────── */
   function initMatrix(canvas) {
     const ctx  = canvas.getContext('2d');
     let cols, drops, charIdx;
+    let drawCircuit;
 
     function resize() {
       const w = canvas.offsetWidth  || canvas.parentElement?.offsetWidth  || window.innerWidth  || 400;
@@ -39,6 +136,7 @@
       cols    = Math.floor(canvas.width / FS);
       drops   = Array(cols).fill(0).map(() => -(Math.random() * 50 | 0));
       charIdx = Array(cols).fill(0).map(() => Math.random() * WORD.length | 0);
+      drawCircuit = initCircuit(canvas);
     }
 
     resize();
@@ -47,6 +145,9 @@
     function draw() {
       ctx.fillStyle = 'rgba(0,0,0,0.048)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      /* Circuit board арын давхарга */
+      if (drawCircuit) drawCircuit();
       ctx.font = 'bold ' + FS + 'px monospace';
 
       for (let i = 0; i < cols; i++) {
