@@ -6,14 +6,11 @@ let hInt = null;
 export function startSlide() {
   clearInterval(hInt);
   hInt = setInterval(() => {
-    const cont = document.getElementById('heroVideoContainer');
-    if (!cont?.hasChildNodes()) {
-      window.setHero((hi + 1) % window.HERO_MOVIES.length);
-    }
+    window.setHero((hi + 1) % window.HERO_MOVIES.length);
   }, window.HERO_TIMER || 12000);
 }
 
-window.setHero = async (i) => {
+window.setHero = (i) => {
   hi = i;
   const m = window.HERO_MOVIES?.[i];
   if (!m) return;

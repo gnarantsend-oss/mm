@@ -143,18 +143,6 @@ function _hookSmartlinks() {
       return; // player нь үргэлжлэн нээгдэнэ
     }
 
-    // 3. Hero "Үзэх" товч
-    if (e.target.closest('#heroWatch')) {
-      window.open(sl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    // 4. Hero "Trailer" товч байвал
-    if (e.target.closest('#heroTrailer')) {
-      window.open(sl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-
   }, true); // capture phase — бусад handler-уудаас ӨМНӨ ажиллана
 }
 
