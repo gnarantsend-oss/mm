@@ -55,11 +55,8 @@ export function initGamesHero() {
   function startGameSlide() {
     clearInterval(gInt);
     gInt = setInterval(() => {
-      const cont = document.getElementById('heroVideoContainer');
-      if (!cont?.hasChildNodes()) {
-        gi = (gi + 1) % games.length;
-        showGame(gi);
-      }
+      gi = (gi + 1) % games.length;
+      showGame(gi);
     }, window.GAME_TIMER || 14000);
   }
 

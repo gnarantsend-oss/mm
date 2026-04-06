@@ -1,25 +1,3 @@
-export function showPoster(url) {
-  const bg  = document.querySelector('.hero-bg');
-  const vig = document.querySelector('.hero-vignette');
-  if (bg) {
-    bg.style.backgroundImage    = `url('${url}')`;
-    bg.style.backgroundSize     = 'cover';
-    bg.style.backgroundPosition = 'center';
-    bg.style.opacity            = '1';
-    bg.style.animation = 'none';
-    bg.offsetHeight; 
-    bg.style.animation = '';
-  }
-  if (vig) vig.style.opacity = '1';
-}
-
-export function hidePoster() {
-  const bg  = document.querySelector('.hero-bg');
-  const vig = document.querySelector('.hero-vignette');
-  if (bg)  bg.style.opacity  = '0';
-  if (vig) vig.style.opacity = '0.4';
-}
-
 export function animateContent() {
   const ids = ['heroTag', 'heroTitle', 'heroMeta', 'heroDesc', 'heroBtns'];
   ids.forEach((id, i) => {

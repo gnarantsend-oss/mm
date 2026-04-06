@@ -25,7 +25,6 @@ function _parseTMDB(results) {
     embed: `https://vidsrc.to/embed/movie/${m.id}`,
     cat: (m.genre_ids||[]).slice(0,3).map(id=>_GENRE_MAP[id]).filter(Boolean).join(', '),
     overview: m.overview ? (m.overview.length>180 ? m.overview.slice(0,177)+'...' : m.overview) : '',
-    trailer: null,
   }));
 }
 

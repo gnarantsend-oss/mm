@@ -110,8 +110,6 @@ function buildHomeRows() {
     const dc = document.getElementById('dynamicRows');
     if (dc && window.HOME_ROWS) {
       dc.innerHTML = '';
-      let rowCount = 0;
-
       window.HOME_ROWS.forEach(({ id, title, keys }) => {
         const items = window.MOVIES.filter(m => keys.some(k => m.cat.includes(k))).slice(0, 25);
         if (items.length > 0) {
@@ -126,9 +124,6 @@ function buildHomeRows() {
             </div>`;
           dc.appendChild(sec);
           fillRow(id, items);
-          rowCount++;
-
-
         }
       });
     }

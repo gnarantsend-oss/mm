@@ -12,9 +12,6 @@ import { buildSeriesPage } from './series.js';
 import './search.js';
 import { loadData } from './data-loader.js';
 
-window.MOVIES = [];
-window.SERIES = [];
-
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('navbar');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
@@ -51,7 +48,6 @@ window.gotoPage = function (p) {
 
   if (window.setPageHero)  window.setPageHero(p);
   if (p === 'games'   && window.buildGamesPage)  window.buildGamesPage();
-  if (p === 'movies'  && window.buildMoviesPage) window.buildMoviesPage();
   if (p === 'weather' && window.loadWeather)     window.loadWeather();
   if (p === 'search') setTimeout(() => document.getElementById('searchPageInput')?.focus(), 300);
 };
