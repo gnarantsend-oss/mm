@@ -17,7 +17,7 @@ window.GLOBAL_ADS = {
 
   // 5. Native Banner
   nativeBanner: {
-    src: 'https://pl29072042.profitablecpmratenetwork.com/6b235f7e75dd61d796440c813e01cf75/invoke.js',
+    src: 'https://progressmagnify.com/6b235f7e75dd61d796440c813e01cf75/invoke.js',
     containerId: 'container-6b235f7e75dd61d796440c813e01cf75'
   }
 };

@@ -32,8 +32,10 @@
     let cols, drops, charIdx;
 
     function resize() {
-      canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth  || 800;
-      canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight || 560;
+      const w = canvas.offsetWidth  || canvas.parentElement?.offsetWidth  || window.innerWidth  || 400;
+      const h = canvas.offsetHeight || canvas.parentElement?.offsetHeight || window.innerHeight || 560;
+      canvas.width  = w;
+      canvas.height = h;
       cols    = Math.floor(canvas.width / FS);
       drops   = Array(cols).fill(0).map(() => -(Math.random() * 50 | 0));
       charIdx = Array(cols).fill(0).map(() => Math.random() * WORD.length | 0);
@@ -308,22 +310,33 @@
     glitchTitle(); /* анхны оролдлого */
   }
 
+  /* ── Мобайл шалгах ─────────────────────────────────────────── */
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+                   window.innerWidth < 768;
+
   /* ── Эхлүүлэх ─────────────────────────────────────────────── */
   function init() {
     const hero = document.getElementById('hero');
     if (!hero) return;
 
-    const canvas = createCanvas(hero);
-    initMatrix(canvas);
-    createScanlines(hero);
-    createScanBeam(hero);
-    createHUD(hero);
-    createStatus(hero);
-    createNetStats(hero);
-    createTerminal(hero);
-    patchVignette();
-    styleNavTabs();
-    observeTitle();
+    /* Canvas хэмжээ зөв тооцогдохыг хүлээх */
+    requestAnimationFrame(() => {
+      const canvas = createCanvas(hero);
+      initMatrix(canvas);
+      createScanlines(hero);
+      createScanBeam(hero);
+      patchVignette();
+      styleNavTabs();
+      observeTitle();
+
+      /* Desktop дээр л overlay элементүүд нэмнэ */
+      if (!isMobile) {
+        createHUD(hero);
+        createStatus(hero);
+        createNetStats(hero);
+        createTerminal(hero);
+      }
+    });
   }
 
   if (document.readyState === 'loading') {
