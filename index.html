@@ -537,11 +537,13 @@
   // ── 5. DevTools илрүүлэх ─────────────────────────────────
   var _overlay  = document.getElementById('__devblock');
   var _devOpen  = false;
-  var _thresh   = 160;
+  var _thresh   = 300;
   var _alarmed  = false;
   var _matrixOn = false;
+  var _isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
 
   setInterval(function() {
+    if (_isMobile) return;
     var open = (window.outerWidth  - window.innerWidth  > _thresh) ||
                (window.outerHeight - window.innerHeight > _thresh);
     if (open !== _devOpen) {
