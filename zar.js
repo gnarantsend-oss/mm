@@ -120,31 +120,7 @@ async function checkAndEnforceAdBlock() {
 // Арга: event delegation — динамикаар нэмэгдэх элементүүдэд
 //       автоматаар ажиллана (MutationObserver шаардлагагүй)
 // ──────────────────────────────────────────────────────────────
-function _hookSmartlinks() {
-  const sl = window.GLOBAL_ADS?.smartlink;
-  if (!sl || window.isTV) return;
-
-  // Nav линк
-  const navLink = document.getElementById('nav-smartlink');
-  if (navLink) navLink.href = sl;
-
-  // Event delegation — бүх click-ийг барина
-  document.addEventListener('click', function (e) {
-
-    // 1. Кино постер зураг дарахад (mcard-poster-wrap дотор)
-    if (e.target.closest('.mcard-poster-wrap')) {
-      window.open(sl, '_blank', 'noopener,noreferrer');
-      return; // movie detail modal үргэлжлэн нээгдэнэ
-    }
-
-    // 2. "Үзэх" / Watch товч дарахад (movie modal дотор)
-    if (e.target.closest('.btn-watch')) {
-      window.open(sl, '_blank', 'noopener,noreferrer');
-      return; // player нь үргэлжлэн нээгдэнэ
-    }
-
-  }, true); // capture phase — бусад handler-уудаас ӨМНӨ ажиллана
-}
+// Smartlink хасагдсан
 
 // ══════════════════════════════════════════════════════════════
 // ── GLOBAL ADS: Popunder + Social Bar ────────────────────────
@@ -153,14 +129,21 @@ function initGlobalAds() {
   if (!window.GLOBAL_ADS) return;
   const ads = window.GLOBAL_ADS;
 
-  // Popunder + Social Bar (TV дээр ажиллуулахгүй)
+  // Popunder — <head> дотор ачааллана
   if (!window.isTV) {
-    if (ads.popunder)  _loadScript(ads.popunder,  { 'data-cfasync': 'false' });
-    if (ads.socialBar) _loadScript(ads.socialBar, { 'data-cfasync': 'false' });
+    if (ads.popunder) _loadScript(ads.popunder, { 'data-cfasync': 'false' });
   }
 
-  // Smartlink hooks
-  _hookSmartlinks();
+  // Social Bar — DOM бэлэн болсны дараа ачааллана (2026 стандарт)
+  if (!window.isTV && ads.socialBar) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        _loadScript(ads.socialBar, { 'data-cfasync': 'false' });
+      });
+    } else {
+      _loadScript(ads.socialBar, { 'data-cfasync': 'false' });
+    }
+  }
 }
 
 // ── Эхлүүлэх ─────────────────────────────────────────────────
@@ -169,11 +152,12 @@ window.addEventListener('load', async () => {
   if (!blocked) {
     initGlobalAds();
 
-    // ── MONETAG Perfect tag ────────────────────────────────────
+    // ── MONETAG Interesting tag ───────────────────────────────
     // Adblock байхгүй үед л ачааллана (давхар хамгаалалт)
     const monetagSrc = window.GLOBAL_ADS?.monetagTag;
+    const monetagZone = window.GLOBAL_ADS?.monetagZone;
     if (monetagSrc && !window.isTV) {
-      _loadScript(monetagSrc, { 'data-cfasync': 'false' });
+      _loadScript(monetagSrc, { 'data-zone': monetagZone, 'async': true, 'data-cfasync': 'false' });
     }
   }
 });
