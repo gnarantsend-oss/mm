@@ -10,5 +10,9 @@ window.GLOBAL_ADS = {
   socialBar: 'https://progressmagnify.com/fe/a7/e6/fea7e69d388311cc0a7cfdfb22e9c372.js',
 
   // 4. Smartlink — Anti-Adblock URL (progressmagnify.com)
-  smartlink: 'https://progressmagnify.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951'
+  smartlink: 'https://progressmagnify.com/p2i14tfiwb?key=4414465ba4bfd51bebb6566079182951',
+
+  // ── MONETAG ───────────────────────────────────────────────────
+  // 5. Monetag Perfect tag (all-in-one) — Zone ID: 10841293
+  monetagTag: '//thubanoa.com/1?z=10841293',
 };
