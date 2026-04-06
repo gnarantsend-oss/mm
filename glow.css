@@ -1,0 +1,272 @@
+/* ═══════════════════════════════════════════════════════════════════
+   GLOW.CSS v2 — Mobile-Safe Aurora · RGB · Neon · Gradient Effects
+   filter:hue-rotate() огт хэрэглэхгүй (mobile Safari эвддэг)
+   Зөвхөн: background-position · box-shadow · text-shadow · transform
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* KEYFRAMES */
+@keyframes gradFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes shimmerSweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes glowBreath {
+  0%, 100% { box-shadow: 0 0 8px  var(--gb-c, rgba(229,9,20,.5)), 0 0 24px var(--gb-c, rgba(229,9,20,.2)); }
+  50%       { box-shadow: 0 0 18px var(--gb-c, rgba(229,9,20,.85)), 0 0 50px var(--gb-c, rgba(229,9,20,.35)), 0 0 90px var(--gb-c, rgba(229,9,20,.1)); }
+}
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 6px currentColor, 0 0 16px currentColor; }
+  50%       { text-shadow: 0 0 14px currentColor, 0 0 36px currentColor, 0 0 70px currentColor; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+@keyframes rgbBorder {
+  0%   { border-color: hsl(0,100%,62%);   box-shadow: 0 0 10px hsl(0,100%,62%,.5); }
+  14%  { border-color: hsl(51,100%,58%);  box-shadow: 0 0 10px hsl(51,100%,58%,.5); }
+  28%  { border-color: hsl(120,90%,48%);  box-shadow: 0 0 10px hsl(120,90%,48%,.5); }
+  42%  { border-color: hsl(180,100%,50%); box-shadow: 0 0 10px hsl(180,100%,50%,.5); }
+  57%  { border-color: hsl(217,100%,65%); box-shadow: 0 0 10px hsl(217,100%,65%,.5); }
+  71%  { border-color: hsl(270,90%,65%);  box-shadow: 0 0 10px hsl(270,90%,65%,.5); }
+  85%  { border-color: hsl(320,100%,60%); box-shadow: 0 0 10px hsl(320,100%,60%,.5); }
+  100% { border-color: hsl(360,100%,62%); box-shadow: 0 0 10px hsl(360,100%,62%,.5); }
+}
+@keyframes cardGlowShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+@keyframes neonFlicker {
+  0%, 92%, 94%, 100% { opacity: 1; }
+  93%                 { opacity: .82; }
+}
+
+/* ── LOGO ── */
+.logo-mark {
+  --gb-c: rgba(229,9,20,.55);
+  animation: glowBreath 3s ease-in-out infinite, neonFlicker 9s linear infinite;
+  will-change: box-shadow;
+}
+.logo-name {
+  isolation: isolate;
+  background: linear-gradient(90deg, #ffffff 0%, #ffaaaa 20%, #ffffff 35%, #ffe88a 52%, #ffffff 65%, #a8d4ff 82%, #ffffff 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 6s linear infinite;
+}
+.logo-name span { -webkit-text-fill-color: inherit; }
+
+/* ── NAVBAR ACTIVE ── */
+.nav-tab.active {
+  --gb-c: rgba(229,9,20,.4);
+  animation: glowBreath 3s ease-in-out infinite;
+  will-change: box-shadow;
+}
+.nav-tab.active .tab-icon { display: inline-block; animation: floatY 2.8s ease-in-out infinite; }
+.nav-settings-btn { --gb-c: rgba(229,9,20,.3); animation: glowBreath 4s ease-in-out infinite; }
+.nav-settings-btn:hover { animation: rgbBorder 2.5s linear infinite; }
+
+/* ── HERO TAG ── */
+.hero-tag {
+  background: linear-gradient(90deg, #e50914 0%, #ff6b35 25%, #e50914 50%, #e91e8c 75%, #e50914 100%);
+  background-size: 300% auto;
+  will-change: background-position;
+  animation: gradFlow 4s linear infinite;
+  box-shadow: 0 0 10px rgba(229,9,20,.5), 0 0 28px rgba(229,9,20,.2);
+}
+
+/* ── HERO TITLE ── */
+.hero-title {
+  isolation: isolate;
+  background: linear-gradient(120deg, #ffffff 0%, #ffe4e4 30%, #ffffff 50%, #ddeeff 75%, #ffffff 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 7s ease-in-out infinite;
+}
+
+/* ── SECTION TITLES ── */
+.sec-title {
+  isolation: isolate;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,.65) 35%, #ffffff 55%, #ff6b6b 78%, #ffffff 100%);
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 8s linear infinite;
+}
+
+/* ── STARS ── */
+.hero-meta .star, .mcard-sub .st, .m-meta .st {
+  color: var(--gold);
+  animation: textGlow 2.5s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+/* ── BTN WATCH ── */
+.btn-watch {
+  position: relative; overflow: hidden; isolation: isolate;
+  --gb-c: rgba(229,9,20,.6);
+  animation: glowBreath 2.5s ease-in-out infinite;
+  will-change: box-shadow;
+}
+.btn-watch::after {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmerSweep 2.8s linear infinite;
+}
+
+/* ── GENRE PILLS active ── */
+.gpill.on {
+  background: rgba(255,255,255,.06) !important;
+  color: #fff !important;
+  will-change: border-color, box-shadow;
+  animation: rgbBorder 3.5s linear infinite;
+}
+
+/* ── MOVIE CARDS ── */
+@media (hover: hover) {
+  .mcard:hover::before {
+    background: linear-gradient(45deg, hsl(0,80%,50%) 0%, hsl(200,80%,50%) 50%, hsl(280,80%,55%) 100%);
+    background-size: 300% 300%;
+    animation: cardGlowShift 3s ease-in-out infinite;
+    opacity: .7;
+  }
+  .mcard:hover .mcard-poster-wrap { animation: rgbBorder 3.5s linear infinite; }
+  .mcard:hover .mcard-play { --gb-c: rgba(229,9,20,.75); animation: glowBreath 1.2s ease-in-out infinite; }
+}
+.mcard:active::before {
+  opacity: .6;
+  background: linear-gradient(45deg, hsl(0,80%,50%), hsl(200,80%,50%));
+  background-size: 200% 200%;
+  animation: cardGlowShift 1.5s linear infinite;
+}
+.mcard-play { --gb-c: rgba(229,9,20,.6); animation: glowBreath 2.2s ease-in-out infinite; will-change: box-shadow; }
+
+/* ── BOTTOM NAV active ── */
+.bnav-item.active .bnav-icon { display: inline-block; animation: floatY 2.5s ease-in-out infinite; will-change: transform; }
+.bnav-item.active .bnav-label { color: var(--red); animation: textGlow 3s ease-in-out infinite; }
+
+/* ── SCROLL BTNS ── */
+.scroll-btn:hover { --gb-c: rgba(229,9,20,.5); animation: glowBreath 1.5s ease-in-out infinite; }
+
+/* ── SETTINGS SHEET rainbow top ── */
+.settings-sheet { position: relative; }
+.settings-sheet::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 10;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(90deg, hsl(0,100%,62%) 0%, hsl(51,100%,58%) 16%, hsl(120,90%,48%) 33%, hsl(180,100%,50%) 50%, hsl(217,100%,65%) 66%, hsl(270,90%,65%) 83%, hsl(0,100%,62%) 100%);
+  background-size: 200% auto;
+  will-change: background-position;
+  animation: gradFlow 3s linear infinite;
+}
+@media (min-width: 560px) { .settings-sheet::before { border-radius: 24px 24px 0 0; } }
+
+/* ── SETTINGS TITLE ── */
+.settings-title {
+  isolation: isolate;
+  background: linear-gradient(90deg, #fff 0%, #ffaaaa 22%, #fff 40%, #aad4ff 62%, #ccffcc 80%, #fff 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 5s linear infinite;
+}
+
+/* ── TOGGLE checked ── */
+.s-toggle input:checked ~ .s-toggle-track { --gb-c: var(--red-glow); animation: glowBreath 2.5s ease-in-out infinite; }
+
+/* ── TOAST ── */
+.toast.show { border-left-width: 3px; animation: rgbBorder 3s linear infinite; }
+
+/* ── WEATHER ── */
+.w-temp-big {
+  isolation: isolate;
+  background: linear-gradient(135deg, #fff 0%, #7eb3ff 50%, #fff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 5s ease-in-out infinite;
+}
+.w-card:hover { animation: rgbBorder 4s linear infinite; }
+.w-icon-big { display: inline-block; animation: floatY 3s ease-in-out infinite; will-change: transform; }
+
+/* ── GAMES ── */
+.game-card:hover { --gb-c: rgba(229,9,20,.3); animation: glowBreath 2s ease-in-out infinite; }
+.game-card:hover .game-emoji { animation: floatY 2s ease-in-out infinite; }
+
+/* ── PROMO LINK ── */
+#nav-smartlink {
+  isolation: isolate;
+  background: linear-gradient(90deg, var(--gold) 0%, #fff5a0 30%, var(--gold) 55%, #ffb300 80%, var(--gold) 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 4s linear infinite;
+  border: 1px solid rgba(255,193,7,.5) !important;
+}
+
+/* ── HERO PROGRESS rainbow ── */
+.hero-progress-fill {
+  background: linear-gradient(90deg, hsl(0,100%,55%) 0%, hsl(60,100%,55%) 20%, hsl(120,90%,45%) 40%, hsl(200,100%,55%) 60%, hsl(270,100%,60%) 80%, hsl(330,100%,55%) 100%);
+  background-size: 300% 100%;
+  will-change: background-position;
+  animation: gradFlow 3s linear infinite;
+  box-shadow: 0 0 12px rgba(255,80,80,.7);
+}
+
+/* ── SEARCH ── */
+.search-wrap:focus-within { --gb-c: rgba(229,9,20,.4); animation: glowBreath 2s ease-in-out infinite; }
+.search-page-input:focus { animation: rgbBorder 3s linear infinite; outline: none; }
+
+/* ── EP ITEMS ── */
+.ep-item:hover { animation: rgbBorder 3s linear infinite; }
+
+/* ── MODAL TITLE ── */
+.m-title {
+  isolation: isolate;
+  background: linear-gradient(120deg, #fff 0%, #ffd0d0 30%, #fff 55%, #d0e8ff 80%, #fff 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 6s ease-in-out infinite;
+}
+
+/* ── PAGE H1 ── */
+.page-h1 {
+  isolation: isolate;
+  background: linear-gradient(90deg, #fff 0%, #ff8a8a 35%, #fff 55%, #8ab4ff 80%, #fff 100%);
+  background-size: 280% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  will-change: background-position;
+  animation: gradFlow 7s linear infinite;
+}
+
+/* ── REDUCE MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; will-change: auto !important; }
+  .logo-name, .hero-title, .sec-title, .settings-title, .w-temp-big, .m-title, .page-h1 {
+    background-position: 0% 50% !important;
+  }
+}
