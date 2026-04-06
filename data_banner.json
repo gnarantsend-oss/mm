@@ -1,0 +1,14 @@
+[
+  {
+    "id": "id1",
+    "type": "adsterra",
+    "afterRowId": "rowSeries",
+    "active": true
+  },
+  {
+    "id": "id2",
+    "type": "adsterra",
+    "afterRowId": "rowInternational",
+    "active": true
+  }
+]
