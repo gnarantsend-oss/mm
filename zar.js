@@ -152,12 +152,38 @@ window.addEventListener('load', async () => {
   if (!blocked) {
     initGlobalAds();
 
-    // ── MONETAG Interesting tag ───────────────────────────────
+    // ── MONETAG — 3 төрлийн зар ──────────────────────────────
     // Adblock байхгүй үед л ачааллана (давхар хамгаалалт)
-    const monetagSrc = window.GLOBAL_ADS?.monetagTag;
-    const monetagZone = window.GLOBAL_ADS?.monetagZone;
-    if (monetagSrc && !window.isTV) {
-      _loadScript(monetagSrc, { 'data-zone': monetagZone, 'async': true, 'data-cfasync': 'false' });
+    if (!window.isTV) {
+      const ads = window.GLOBAL_ADS || {};
+
+      // 1. Push Notifications
+      if (ads.monetagPush) {
+        _loadScript(ads.monetagPush, {
+          'data-zone': ads.monetagPushZone,
+          'data-cfasync': 'false',
+        });
+      }
+
+      // 2. Vignette Banner — inline script хэлбэртэй тул dynamic inject
+      if (ads.monetagVignette) {
+        const s = document.createElement('script');
+        s.dataset.zone = ads.monetagVignetteZone;
+        s.src = ads.monetagVignette;
+        s.async = true;
+        s.setAttribute('data-cfasync', 'false');
+        document.body.appendChild(s);
+      }
+
+      // 3. In-Page Push (Banner)
+      if (ads.monetagInPage) {
+        const s = document.createElement('script');
+        s.dataset.zone = ads.monetagInPageZone;
+        s.src = ads.monetagInPage;
+        s.async = true;
+        s.setAttribute('data-cfasync', 'false');
+        document.body.appendChild(s);
+      }
     }
   }
 });
