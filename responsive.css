@@ -1,0 +1,218 @@
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE.CSS — Nabooshy 2026 — Unified Breakpoint Fixes
+   Зураг · Утас · Компьютер бүх дэлгэцэнд тааруулсан
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────
+   1. SECTION MATRIX — утасны CPU хэмнэхийн тулд идэвхгүй болгох
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sec-matrix-canvas { display: none !important; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   2. TABLET (769px – 1024px) — iPad, Surface, Galaxy Tab
+   ───────────────────────────────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  main { padding: 0 24px; }
+
+  /* Scroll-row cards */
+  .mcard { width: 155px; }
+  .mcard-poster-wrap { height: 232px; }
+  .mcard-title { font-size: 13px; }
+  .scroll-row { gap: 14px; }
+
+  /* Grid */
+  .mgrid, .ggrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+  }
+
+  /* Section title */
+  .sec-title { font-size: 19px; }
+
+  /* Nav search тогтмол өргөн */
+  .search-wrap input { width: 140px; }
+
+  /* Hero */
+  .hero-title { font-size: 44px !important; }
+  .hero-body  { padding: 0 36px 90px; }
+  .hero-desc  { max-width: 480px; font-size: 14px; }
+
+  /* Hacker terminal text */
+  .term-line { font-size: 12px !important; }
+
+  /* Modal */
+  .modal { max-width: 600px; }
+  .m-hero { height: 260px; }
+  .player-layout { height: 360px; }
+
+  /* Settings */
+  .settings-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px;
+  }
+
+  /* Genre bar */
+  .genre-bar { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; }
+  .genre-bar::-webkit-scrollbar { display: none; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   3. PHONE SMALL (≤ 480px) — iPhone SE, Galaxy S series
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* Cards: 2 баганат grid илүү уншигдахад тохиромжтой */
+  .mgrid, .ggrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+  .mgrid .mcard, .ggrid .mcard {
+    width: 100% !important;
+  }
+  .mgrid .mcard-poster-wrap,
+  .ggrid .mcard-poster-wrap {
+    height: 48vw !important;
+    max-height: 200px;
+  }
+
+  /* Scroll row: жижиг card */
+  .mcard { width: 110px !important; }
+  .mcard-poster-wrap { height: 165px !important; }
+  .mcard-title { font-size: 11px !important; }
+  .mcard-sub { font-size: 10px !important; gap: 5px !important; }
+  .scroll-row { gap: 10px !important; padding: 12px 0 !important; }
+
+  /* Section */
+  .sec { margin-bottom: 28px; }
+  .sec-title { font-size: 15px !important; }
+  main { padding: 0 12px !important; }
+
+  /* Hero ultra-compact */
+  .hero { height: 68vh; min-height: 360px; }
+  .hero-title { font-size: 24px !important; line-height: 1.15 !important; }
+  .hero-desc  { font-size: 12px !important; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+  .hero-tag   { font-size: 10px !important; padding: 4px 10px !important; }
+  .hero-acts  { gap: 8px !important; }
+  .hero-acts button { padding: 10px 18px !important; font-size: 13px !important; }
+
+  /* Nav */
+  nav { height: 50px !important; padding: 0 12px !important; }
+  .logo-name { font-size: 16px !important; letter-spacing: 0.5px !important; }
+  .logo-mark { width: 26px !important; height: 26px !important; font-size: 14px !important; }
+
+  /* Modal */
+  .m-title { font-size: 22px !important; }
+  .m-hero  { height: 200px !important; }
+  .m-body  { padding: 0 14px 90px !important; }
+  .m-desc  { font-size: 12px !important; }
+  .m-acts button { font-size: 13px !important; }
+
+  /* Genre pills */
+  .gpill { padding: 5px 10px !important; font-size: 11px !important; }
+
+  /* Bottom nav */
+  .bnav-inner { height: 56px !important; }
+  .bnav-item .bnav-icon { font-size: 20px !important; }
+  .bnav-item .bnav-label { font-size: 9px !important; }
+
+  /* Toast */
+  .toast { font-size: 12px !important; padding: 12px 16px !important; }
+
+  /* Settings */
+  .settings-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   4. HACKER THEME — mobile fixes (hacker-theme.css байхгүй)
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Terminal text block */
+  .hacker-term,
+  [class*="term-"] {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Glitch title */
+  .glitch-title {
+    font-size: 28px !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* Matrix overlay text */
+  .matrix-overlay-text {
+    font-size: 10px !important;
+  }
+
+  /* Scan lines — утасны GPU дарамт хасах */
+  .scan-lines { display: none !important; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   5. SETTINGS PAGE — 768px breakpoint дутаж байсан
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .settings-page,
+  #settingsModal .modal {
+    padding: 16px !important;
+  }
+  .settings-section {
+    padding: 16px !important;
+    margin-bottom: 12px !important;
+  }
+  .settings-section h3 {
+    font-size: 14px !important;
+  }
+  .settings-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .settings-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   6. SEARCH PAGE — mobile refinements
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .search-results-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .search-page-box {
+    border-radius: 12px !important;
+    padding: 12px !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   7. PLAYER — responsive video area
+   ───────────────────────────────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .player-vid-sec {
+    width: 100% !important;
+    height: 42vw !important;
+    min-height: 300px !important;
+  }
+  .player-sidebar { width: 240px !important; }
+}
+
+/* ─────────────────────────────────────────────────────────
+   8. 4K / WIDE SCREEN (> 1920px)
+   ───────────────────────────────────────────────────────── */
+@media (min-width: 1920px) {
+  main { max-width: 1800px; margin: 0 auto; padding: 0 80px; }
+  .mcard { width: 240px; }
+  .mcard-poster-wrap { height: 360px; }
+  .mgrid, .ggrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+  }
+}
