@@ -6,23 +6,24 @@ import Ticker from "./components/Ticker";
 import StatsRow from "./components/StatsRow";
 import MovieCard from "./components/MovieCard";
 import WeatherWidget from "./components/WeatherWidget";
+import moviesData from "./data/movies.json";
 
 const MatrixRain = dynamic(() => import("./components/MatrixRain"), { ssr: false });
 
-const movies = [
-  { emoji: "🎭", badge: "HD", tag: "ДРАМА • 2025", title: "Тал Нутгийн Нулимс", duration: "2ч 15мин", rating: "8.4" },
-  { emoji: "⚔️", badge: "4K", tag: "ТҮҮХ • 2024", title: "Чингисийн Сүүлчийн Тулаан", duration: "2ч 48мин", rating: "9.1" },
-  { emoji: "🚀", badge: "NEW", tag: "ФАН • 2025", title: "Говийн Зомби Апокалипс", duration: "1ч 52мин", rating: "7.6" },
-  { emoji: "🎵", tag: "ХӨГЖИМ • 2025", title: "Морин Хуурын Дуун", duration: "1ч 30мин", rating: "8.8" },
-  { emoji: "👾", badge: "ANIME", tag: "АНИМЭ • 2025", title: "Нүүдэлчин Баатар", duration: "Цуврал: 24", rating: "9.3" },
-  { emoji: "🌙", tag: "ХОШИН • 2024", title: "Гэр Бүл", duration: "1ч 45мин", rating: "8.0" },
-];
-
-const games = [
-  { emoji: "⚡", badge: "HOT", tag: "ACTION • ONLINE", title: "Нүүдэлчин Дайчин Online", duration: "3,241 тоглогч", rating: "9.0" },
-  { emoji: "🧩", tag: "PUZZLE • BROWSER", title: "Тооцооны Тоглоом", duration: "512 тоглогч", rating: "7.9" },
-  { emoji: "🏹", badge: "NEW", tag: "RPG • 2025", title: "Эртний Монголын Нууц", duration: "Beta", rating: "8.5" },
-];
+const GENRE_LABELS: Record<string, string> = {
+  all: "БҮГД",
+  action: "ЭКШН",
+  comedy: "ИНЭЭДМИЙН",
+  horror: "АЙМШГИЙН",
+  drama: "ДРАМА",
+  romance: "ХАЙРЫН",
+  fantasy: "ФАНТАЗИ",
+  thriller: "ТРИЛЛЕР",
+  animation: "АНИМЭ",
+  "sci-fi": "ШУ-ФАНТАСТИК",
+  adventure: "АДАЛ ЯВДАЛ",
+  crime: "ГЭМТ ХЭРЭГ",
+};
 
 const SectionHeader = ({ title }: { title: string }) => (
   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
@@ -31,8 +32,15 @@ const SectionHeader = ({ title }: { title: string }) => (
   </div>
 );
 
+const allGenres = ["all", ...Array.from(new Set(moviesData.flatMap(m => m.genre))).sort()];
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("кино");
+  const [activeGenre, setActiveGenre] = useState("all");
+
+  const filteredMovies = activeGenre === "all"
+    ? moviesData
+    : moviesData.filter(m => m.genre.includes(activeGenre));
 
   return (
     <>
@@ -71,52 +79,40 @@ export default function Home() {
             <span style={{ color: "var(--green)" }}>&gt;_</span>
             <div style={{ overflow: "hidden", flex: 1 }}>
               <span className="animate-scroll" style={{ display: "inline-block", whiteSpace: "nowrap" }}>
-                nabooshy@server:~$ loading content... шинэ кино нэмэгдлээ... систем хэвийн ажиллаж байна... хэрэглэгч нэвтэрсэн...
+                nabooshy@server:~$ loading content... {moviesData.length} кино ачааллаа... систем хэвийн ажиллаж байна...
               </span>
             </div>
           </div>
 
           <StatsRow />
 
-          {/* TAB CONTENT */}
           {activeTab === "кино" && (
             <div className="animate-fadeIn">
-              {/* Featured */}
-              <SectionHeader title="ОНЦЛОХ КОНТЕНТ" />
-              <div style={{
-                background: "var(--bg2)", border: "1px solid rgba(0,255,136,0.35)",
-                borderRadius: 10, overflow: "hidden", display: "grid",
-                gridTemplateColumns: "1fr 1fr", marginBottom: "2.5rem",
-                boxShadow: "0 0 30px rgba(0,255,136,0.06)", cursor: "pointer",
-              }}>
-                <div style={{
-                  background: "linear-gradient(135deg,#001a0d 0%,#003322 60%,#005533 100%)",
-                  minHeight: 220, display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "5rem", position: "relative",
-                }}>
-                  🎬
-                  <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(0,255,136,0.03) 20px,rgba(0,255,136,0.03) 21px)" }} />
-                </div>
-                <div style={{ padding: "1.5rem", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                  <span style={{ fontSize: "0.6rem", color: "var(--green)", letterSpacing: "0.3em", border: "1px solid var(--border)", display: "inline-block", padding: "2px 8px", borderRadius: 3, marginBottom: "0.75rem", width: "fit-content" }}>ШИНЭ • 2025</span>
-                  <h2 style={{ fontFamily: "'Orbitron', monospace", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3, marginBottom: "0.75rem", textShadow: "0 0 15px rgba(0,255,136,0.3)" }}>САНСРЫН ГЭР<br />ОРШИН СУУГЧ</h2>
-                  <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: "1rem" }}>Монгол анхны sci-fi бүтээл. Сансрын дайны дундуур нэг ганц командлагч дэлхийгээ аврах гэж оролдоно...</p>
-                  <button style={{ background: "var(--green)", color: "var(--bg)", border: "none", padding: "0.5rem 1.1rem", fontFamily: "'Space Mono', monospace", fontSize: "0.72rem", fontWeight: 700, borderRadius: 4, cursor: "pointer", width: "fit-content" }}>▶ ҮЗЭХ</button>
-                </div>
+              <SectionHeader title={`КИНОНУУД (${filteredMovies.length})`} />
+
+              {/* Genre Filter */}
+              <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+                {allGenres.map(g => (
+                  <button
+                    key={g}
+                    onClick={() => setActiveGenre(g)}
+                    style={{
+                      background: activeGenre === g ? "var(--green)" : "transparent",
+                      color: activeGenre === g ? "var(--bg)" : "var(--text-muted)",
+                      border: `1px solid ${activeGenre === g ? "var(--green)" : "var(--border)"}`,
+                      padding: "4px 12px", borderRadius: 4, cursor: "pointer",
+                      fontFamily: "'Space Mono', monospace", fontSize: "0.65rem",
+                      letterSpacing: "0.1em", transition: "all 0.2s",
+                    }}
+                  >
+                    {GENRE_LABELS[g] || g.toUpperCase()}
+                  </button>
+                ))}
               </div>
 
-              <SectionHeader title="ШИНЭ КИНОНУУД" />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
-                {movies.map((m, i) => <MovieCard key={i} {...m} />)}
-              </div>
-            </div>
-          )}
-
-          {activeTab === "тоглоом" && (
-            <div className="animate-fadeIn">
-              <SectionHeader title="ТОГЛООМУУД" />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
-                {games.map((g, i) => <MovieCard key={i} {...g} />)}
+              {/* Movie Grid */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: "1rem", marginBottom: "3rem" }}>
+                {filteredMovies.map((m, i) => <MovieCard key={i} movie={m} />)}
               </div>
             </div>
           )}
