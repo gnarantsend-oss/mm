@@ -152,37 +152,30 @@ window.addEventListener('load', async () => {
   if (!blocked) {
     initGlobalAds();
 
-    // ── MONETAG — 3 төрлийн зар ──────────────────────────────
-    // Adblock байхгүй үед л ачааллана (давхар хамгаалалт)
+    // ── MONETAG — дардаггүй автомат зарууд ──────────────────────
+    // Adblock байхгүй үед л ачааллана
+    // Vignette + In-Page Push хоёулаа <head> дотор байх ёстой
     if (!window.isTV) {
       const ads = window.GLOBAL_ADS || {};
 
-      // 1. Push Notifications
-      if (ads.monetagPush) {
-        _loadScript(ads.monetagPush, {
-          'data-zone': ads.monetagPushZone,
-          'data-cfasync': 'false',
-        });
-      }
-
-      // 2. Vignette Banner — inline script хэлбэртэй тул dynamic inject
+      // 1. Vignette Banner — хуудас нээгдэхэд дэлгэцийн төвд гарна
       if (ads.monetagVignette) {
         const s = document.createElement('script');
         s.dataset.zone = ads.monetagVignetteZone;
         s.src = ads.monetagVignette;
         s.async = true;
         s.setAttribute('data-cfasync', 'false');
-        document.body.appendChild(s);
+        document.head.appendChild(s);
       }
 
-      // 3. In-Page Push (Banner)
+      // 2. In-Page Push — буланд push notification хэлбэртэй гарна
       if (ads.monetagInPage) {
         const s = document.createElement('script');
         s.dataset.zone = ads.monetagInPageZone;
         s.src = ads.monetagInPage;
         s.async = true;
         s.setAttribute('data-cfasync', 'false');
-        document.body.appendChild(s);
+        document.head.appendChild(s);
       }
     }
   }
