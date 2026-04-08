@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-netflix-red: #E50914;
+  --color-netflix-black: #141414;
+}
+
+body {
+  background-color: var(--color-netflix-black);
+  color: white;
+}
